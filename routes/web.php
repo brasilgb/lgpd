@@ -2,7 +2,8 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\HomeController as HomeAdmin;
+use App\Http\Controllers\Site\HomeController as HomeSite;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,6 @@ use App\Http\Controllers\Admin\HomeController;
 |
 */
 
-Route::resource('admin', HomeController::class);
+Route::resource('/admin', HomeAdmin::class);
+
+Route::resource('/', HomeSite::class);

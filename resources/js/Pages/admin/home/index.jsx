@@ -1,11 +1,14 @@
 import React, { Fragment } from 'react'
-
-const index = (props) => {
+import Layout from '../../../components/admin/layout'
+const HomeAdmin = (props) => {
     return (
-        <Fragment>
-            <h1>Isto é o home!!{props.title}</h1>
-        </Fragment>
+        <Layout>
+            <Fragment>
+                <h1>Isto é o home!!{props.title}</h1>
+            </Fragment>
+        </Layout>
+
     )
 }
 
-export default index
+export default HomeAdmin
