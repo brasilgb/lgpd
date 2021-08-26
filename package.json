@@ -25,6 +25,7 @@
         "laravel-mix-tailwind": "^0.1.2",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
+        "react-icons": "^4.2.0",
         "reactjs": "^1.0.0"
     }
 }

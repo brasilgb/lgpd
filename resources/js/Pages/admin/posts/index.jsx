@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react'
 import Layout from '../../../components/site/layout'
 
-const HomeSite = () => {
+const PostsAdmin = () => {
     return (
         <Fragment>
             
             <Layout>
-                home site
+                Postagens
             </Layout>
             
         </Fragment>
     )
 }
 
-export default HomeSite
+export default PostsAdmin

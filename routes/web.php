@@ -1,8 +1,10 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController as HomeAdmin;
+use App\Http\Controllers\Admin\CategoryController as CategoryAdmin;
+use App\Http\Controllers\Admin\PostController as PostAdmin;
+use App\Http\Controllers\Admin\SettingController as SettingAdmin;
 use App\Http\Controllers\Site\HomeController as HomeSite;
 
 /*
@@ -17,5 +19,11 @@ use App\Http\Controllers\Site\HomeController as HomeSite;
 */
 
 Route::resource('/admin', HomeAdmin::class);
+
+Route::resource('/admin/categoria', CategoryAdmin::class)->parameters(['categoria' => 'category']);
+
+Route::resource('/admin/postagem', PostAdmin::class)->parameters(['postagem' => 'post']);
+
+Route::resource('/admin/configuracao', SettingAdmin::class)->parameters(['configuracao' => 'setting']);
 
 Route::resource('/', HomeSite::class);

@@ -1,16 +1,15 @@
 import React, { Fragment } from 'react'
 import Layout from '../../../components/site/layout'
 
-const HomeSite = () => {
+const CategoriesAdmin = ({ props }) => {
     return (
         <Fragment>
-            
             <Layout>
-                home site
+                <h1>categorias {props.title}</h1>
+
             </Layout>
-            
         </Fragment>
     )
 }
 
-export default HomeSite
+export default CategoriesAdmin
