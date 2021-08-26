@@ -29,4 +29,5 @@ const Layout = ({ children }) => {
     )
 }
 
+Layout.displayName = "Layout Admin";
 export default Layout;

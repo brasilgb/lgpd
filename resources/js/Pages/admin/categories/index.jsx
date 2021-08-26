@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
-import Layout from '../../../components/site/layout'
+import Layout from '../../../components/admin/layout'
 
-const CategoriesAdmin = ({ props }) => {
+const CategoriesAdmin = ({ title }) => {
     return (
         <Fragment>
             <Layout>
-                <h1>categorias {props.title}</h1>
+                <h1>categorias {title}</h1>
 
             </Layout>
         </Fragment>

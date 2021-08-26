@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import Layout from '../../../components/site/layout'
+import Layout from '../../../components/admin/layout'
 
 const PostsAdmin = () => {
     return (

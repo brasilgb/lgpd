@@ -18,7 +18,7 @@ use App\Http\Controllers\Site\HomeController as HomeSite;
 |
 */
 
-Route::resource('/admin', HomeAdmin::class);
+Route::get('/admin', [HomeAdmin::class, 'index'])->name('admin');
 
 Route::resource('/admin/categoria', CategoryAdmin::class)->parameters(['categoria' => 'category']);
 

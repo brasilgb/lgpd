@@ -40,7 +40,7 @@ const NavbarSite = () => {
                         </button>
 
                         <InertiaLink 
-                        href={route('admin.index')}
+                        href={route('admin')}
                         className="flex items-center focus:outline-none" 
                         aria-label="toggle profile dropdown"
                         type="button"

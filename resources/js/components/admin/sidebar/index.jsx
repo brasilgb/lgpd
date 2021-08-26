@@ -14,11 +14,13 @@ const SidebarAdmin = () => {
 
                 <div className="flex flex-col justify-between flex-1 mt-6">
                     <nav>
-                        <a className="flex items-center px-4 py-2 text-gray-700 bg-gray-200 dark:bg-gray-700 dark:text-gray-200" href="#">
+                        <InertiaLink 
+                        className="flex items-center px-4 py-2 text-gray-700 bg-gray-200 dark:bg-gray-700 dark:text-gray-200" 
+                        href={route('admin')}
+                        >
                             <HiOutlineCollection />
-
                             <span className="mx-4 font-medium">Dashboard</span>
-                        </a>
+                        </InertiaLink>
 
                         <InertiaLink
                         className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700"
@@ -28,10 +30,13 @@ const SidebarAdmin = () => {
                             <span className="mx-4 font-medium"> Categorias</span>
                         </InertiaLink>
 
-                        <a className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                        <InertiaLink 
+                        className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" 
+                        href={route('postagem.index')}
+                        >
                             <HiPencilAlt />
                             <span className="mx-4 font-medium"> Postagens</span>
-                        </a>
+                        </InertiaLink>
 
                         <a className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
                             <HiOutlineCog />
