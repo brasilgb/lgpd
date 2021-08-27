@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Setting;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class SettingController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return Inertia::render('admin/settings', ['title' => 'Configurações da página!']);
+        return Inertia::render('admin/users', ['title' => 'Usuários do sistema']);
     }
 
     /**
@@ -43,10 +42,10 @@ class SettingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Setting  $setting
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Setting $setting)
+    public function show($id)
     {
         //
     }
@@ -54,10 +53,10 @@ class SettingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Setting  $setting
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Setting $setting)
+    public function edit($id)
     {
         //
     }
@@ -66,10 +65,10 @@ class SettingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Setting  $setting
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -77,10 +76,10 @@ class SettingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Setting  $setting
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Setting $setting)
+    public function destroy($id)
     {
         //
     }

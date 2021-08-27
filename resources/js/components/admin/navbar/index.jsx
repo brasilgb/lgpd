@@ -4,7 +4,7 @@ import { HiOutlineUser, HiOutlineUserCircle, HiUserCircle } from 'react-icons/hi
 const NavbarAdmin = () => {
     return (
         <Fragment>
-            <nav className="bg-white shadow dark:bg-gray-800">
+            <nav className="bg-blue-400 shadow dark:bg-gray-800">
                 <div className="container px-6 py-4 mx-auto">
                     <div className="md:flex md:items-center md:justify-between">
                         <div className="flex items-center justify-between">
@@ -39,7 +39,7 @@ const NavbarAdmin = () => {
                         </button> */}
 
                                 <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
-                                    <div className="w-8 h-8 overflow-hidden text-gray-600 text-3xl">
+                                    <div className="w-8 h-8 overflow-hidden text-gray-100 text-3xl">
                                         <HiUserCircle />
                                     </div>
 

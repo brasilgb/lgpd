@@ -10,43 +10,75 @@ const SidebarAdmin = () => {
                 <div className="flex flex-col items-center mt-6 -mx-2">
                     <img className="object-cover w-24 h-24 mx-2 rounded-full" src="/storage/images/grupo_solar.png" alt="Grupo Solar" />
                     <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">Grupo Solar</h4>
+                    <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:underline">john@example.com</p>
                 </div>
 
                 <div className="flex flex-col justify-between flex-1 mt-6">
                     <nav>
-                        <InertiaLink 
-                        className="flex items-center px-4 py-2 text-gray-700 bg-gray-200 dark:bg-gray-700 dark:text-gray-200" 
-                        href={route('admin')}
+                        <InertiaLink
+                            className={
+                                route().current('admin') ?
+                                    "flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700 bg-gray-200"
+                                    :
+                                    "flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700"
+                            }
+                            href={route('admin')}
                         >
                             <HiOutlineCollection />
                             <span className="mx-4 font-medium">Dashboard</span>
                         </InertiaLink>
 
                         <InertiaLink
-                        className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700"
-                        href={route('categoria.index')} 
+                            className={
+                                route().current('categoria.*') ?
+                                    "flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700 bg-gray-200"
+                                    :
+                                    "flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700"
+                            }
+                            href={route('categoria.index')}
                         >
                             <HiViewGrid />
                             <span className="mx-4 font-medium"> Categorias</span>
                         </InertiaLink>
 
-                        <InertiaLink 
-                        className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" 
-                        href={route('postagem.index')}
+                        <InertiaLink
+                            className={
+                                route().current('postagem.*') ?
+                                    "flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700 bg-gray-200"
+                                    :
+                                    "flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700"
+                            }
+                            href={route('postagem.index')}
                         >
                             <HiPencilAlt />
                             <span className="mx-4 font-medium"> Postagens</span>
                         </InertiaLink>
 
-                        <a className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                        <InertiaLink
+                            className={
+                                route().current('configuracao.*') ?
+                                    "flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700 bg-gray-200"
+                                    :
+                                    "flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700"
+                            }
+                            href={route('configuracao.index')}
+                        >
                             <HiOutlineCog />
                             <span className="mx-4 font-medium"> Configurações</span>
-                        </a>
+                        </InertiaLink>
 
-                        <a className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                        <InertiaLink
+                            className={
+                                route().current('usuario.*') ?
+                                    "flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700 bg-gray-200"
+                                    :
+                                    "flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700"
+                            }
+                            href={route('usuario.index')}
+                        >
                             <HiUsers />
                             <span className="mx-4 font-medium"> Usuários</span>
-                        </a>
+                        </InertiaLink>
                     </nav>
                 </div>
             </div>

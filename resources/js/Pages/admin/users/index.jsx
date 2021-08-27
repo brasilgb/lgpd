@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react'
-import Layout from '../../../components/site/layout'
+import Layout from '../../../components/admin/layout'
 
-const UsersAdmin = () => {
+const UsersAdmin = ({ title }) => {
     return (
         <Fragment>
 
             <Layout>
-                Usuários
+                Usuários {title}
             </Layout>
             
         </Fragment>
