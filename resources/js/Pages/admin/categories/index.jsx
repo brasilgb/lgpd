@@ -1,13 +1,16 @@
 import { Inertia } from '@inertiajs/inertia';
-import { InertiaLink, Head } from '@inertiajs/inertia-react';
+import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import React, { Fragment, useRef, useState } from 'react'
 import route from 'ziggy';
-import { HiCheck, HiOutlineCheck, HiOutlineDocumentDuplicate, HiPlus, HiSearch, HiTrash, HiX } from 'react-icons/hi'
+import { HiCheck, HiOutlineCheck, HiOutlineDocumentDuplicate, HiPencilAlt, HiPlus, HiSearch, HiTrash, HiX } from 'react-icons/hi'
 import { compareAsc, format } from 'date-fns'
 import Layout from '../../../components/admin/layout'
+import ModalCategory from '../../../components/admin/modal/category'
+import Pagination from '../../../components/admin/pagination';
 
-const CategoriesAdmin = ({ categories, title, success, reload }) => {
+const CategoriesAdmin = ({ title, success, reload }) => {
 
+    const { categories } = usePage().props;
 
     const searchRef = useRef();
 
@@ -34,14 +37,19 @@ const CategoriesAdmin = ({ categories, title, success, reload }) => {
     };
 
     const verifyCategories = () => {
-        if (dataCategory.length == 0) {
-            return <tr><td colSpan="7"><div className="flex justify-left bg-red-200 text-red-700 text-md p-2"><HiLightBulb className="text-2xl text-yellow-600" /> Não há categorias a serem mostradas no momento. Clique no botão criar categoria para adicionar.</div></td></tr>;
+        if (categories.length == 0) {
+            return <tr><td colSpan="7">
+                <div className="flex justify-left bg-red-200 text-red-700 text-md p-2">
+                    <HiLightBulb className="text-2xl text-yellow-600" /> Não há categorias a serem mostradas no momento. Clique no botão criar categoria para adicionar.
+                </div>
+            </td>
+            </tr>;
         }
     };
 
-    // const dataFormatada = (dataRaw) => {
-    //     return format(new Date(dataRaw), 'dd/MM/yyyy')
-    // }
+    const dataFormatada = (dataRaw) => {
+        return format(new Date(dataRaw), 'dd/MM/yyyy')
+    }
 
     const [idCategory, setIdCategory] = useState("");
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -70,7 +78,8 @@ const CategoriesAdmin = ({ categories, title, success, reload }) => {
                             <InertiaLink
                                 as="button"
                                 type="button"
-                                href={route('categoria.create')} className="flex items-center mb-2 md:mb-0 bg-blue-500 hover:bg-blue-700 px-5 py-2 text-sm shadow-sm border-2 border-white text-gray-100 rounded-lg hover:shadow-lg">
+                                href={route('categoria.create')}
+                                className="flex items-center mb-2 md:mb-0 bg-blue-500 hover:bg-blue-700 px-5 py-2 text-sm shadow-sm border-2 border-white text-gray-100 rounded-lg hover:shadow-lg">
                                 <HiPlus className="text-xl" /> Categoria
                             </InertiaLink>
                         </div>
@@ -111,11 +120,11 @@ const CategoriesAdmin = ({ categories, title, success, reload }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Object.entries(categories).map((category, index) => (
+                                {categories.data.map((category, index) => (
                                     <tr key={index} className="border-b hover:bg-orange-100 bg-gray-100">
                                         <td className="p-1">{category.id_category}</td>
                                         <td className="p-1">{category.categoryname}</td>
-                                        <td className="p-1">{category.created_at}</td>
+                                        <td className="p-1">{dataFormatada(category.created_at)}</td>
                                         <td className="p-1">{category.active == 1 ? <HiOutlineCheck className="text-2xl text-green-600" /> : <HiX className="text-2xl text-red-600" />}</td>
                                         <td className="p-1 flex justify-end">
                                             <InertiaLink
@@ -153,7 +162,7 @@ const CategoriesAdmin = ({ categories, title, success, reload }) => {
                             </ModalCategory>
                             : null}
                     </div>
-
+                    <Pagination data={categories}/>
                 </div>
             </Layout>
         </Fragment>

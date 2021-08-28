@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(15);
+        $categories = Category::orderByDesc('id_category')->paginate(5);
         $reload = false;
         return Inertia::render('admin/categories', ['categories' => $categories, 'reload' => $reload, 'categoryTitle' => 'categorias cadastradas']);
     }
