@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
+use Intervention\Image\Facades\Image;
+
 
 class UserController extends Controller
 {
@@ -15,9 +20,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        return Inertia::render('admin/users', ['title' => 'Usuários do sistema']);
+        $users = User::orderByDesc('id_user')->paginate(15);
+        $reload = false;
+        return Inertia::render('admin/users', ['users' => $users, 'reload' => $reload, 'userTitle' => 'usuários cadastrados']);
     }
 
+    public function search(Request $request)
+    {
+        $term = $request->search;
+        $reload = true;
+        $users = User::where('title', 'like', "%$term%")->paginate(200);
+        return Inertia::render('admin/users', ['users' => $users, 'reload' => $reload, 'userTitle' => 'usuários buscados']);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -25,7 +39,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return inertia::render('admin/users/Create', ['userTitle' => 'Cadastrar usuários']);
     }
 
     /**
@@ -36,51 +50,108 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $messages = [
+            'required' => 'O campo :attribute deve ser preenchido!',
+            'confirmed' => 'Redigite a senha, devem ser iguais.',
+            'min' => 'O campo :attribute deve ter no mínimo :min caracteres!',
+            'email' => 'O ampo :attribute deve ser um endereço de email válido!'
+        ];
+        $request->validate(
+            [
+                'name' => 'required',
+                'username' => 'required',
+                'email' => 'required|email',
+                'password' => 'required|confirmed|min:6',
+                'password_confirmation' => 'required|min:6'
+            ],
+            $messages,
+            [
+                'name' => 'nome',
+                'username' => 'usuário',
+                'email' => 'email',
+                'password' => 'senha',
+                'password_confirmation' => 'repita a senha'
+            ]
+        );
+
+        $data['id_user'] = User::iduser();
+        User::create($data);
+        Session::flash('success', 'Usuário criado com sucesso!');
+        return Redirect::route('usuario.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return Inertia::render('admin/users/Edit', ['user' => $user, 'userTitle' => 'Editar usuários']);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return redirect()->route('usuario.show', ['user' => $user->id_user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $data = $request->all();
+        $messages = [
+            'required' => 'O campo :attribute deve ser preenchido!',
+            'confirmation' => 'Redigite a senha, devem ser iguais.',
+            'min' => 'O campo :attribute deve ter no mínimo :min caracteres!',
+            'email' => 'O ampo :attribute deve ser um endereço de email válido!'
+        ];
+        $request->validate(
+            [
+                'name' => 'required',
+                'username' => 'required',
+                'email' => 'required|email',
+                'password' => 'confirmed',
+            ],
+            $messages,
+            [
+                'name' => 'nome',
+                'username' => 'usuário',
+                'email' => 'email',
+                'password' => 'senha',
+                'password_confirmation' => 'repita a senha'
+            ]
+        );
+
+        $data['password'] = $request->password ? $request->password : $user->password;
+        $user->update($data);
+        Session::flash('success', 'Usuário editado com sucesso!');
+        return Redirect::route('usuario.show', ['user' => $user->id_user]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        Session::flash('success', 'Usuário deletado com sucesso!');
+        return Redirect::route('usuario.index');
     }
 }

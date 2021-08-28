@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderByDesc('id_category')->paginate(5);
+        $categories = Category::orderByDesc('id_category')->paginate(10);
         $reload = false;
         return Inertia::render('admin/categories', ['categories' => $categories, 'reload' => $reload, 'categoryTitle' => 'categorias cadastradas']);
     }
@@ -27,7 +27,7 @@ class CategoryController extends Controller
     {
         $term = $request->search;
         $reload = true;
-        $categories = Category::where('categoryname', 'like', "%$term%")->get();
+        $categories = Category::where('categoryname', 'like', "%$term%")->paginate(200);
         return Inertia::render('admin/categories', ['categories' => $categories, 'reload' => $reload, 'categoryTitle' => 'categorias buscadas']);
     }
     /**

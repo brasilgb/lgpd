@@ -2,6 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -39,6 +42,18 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'success' => session()->get('success'),
             'error' => session()->get('error'),
+
+            'settings' => fn () => Setting::first()
+                ? Setting::orderByDesc('id_setting')->first(['id_setting', 'title', 'description', 'logo'])
+                : false,
+
+            'categories' => fn () => Category::get()
+            ? Category::orderBy('categoryname')->get()
+            : false,
+
+            'pages' => fn () => Post::get()
+            ? Post::where('type', 0)->orderBy('title')->get()
+            : false
         ]);
     }
 }

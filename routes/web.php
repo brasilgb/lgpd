@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController as HomeAdmin;
 use App\Http\Controllers\Admin\CategoryController as CategoryAdmin;
 use App\Http\Controllers\Admin\PostController as PostAdmin;
+use App\Http\Controllers\Admin\PageController as PageAdmin;
 use App\Http\Controllers\Admin\SettingController as SettingAdmin;
 use App\Http\Controllers\Admin\UserController as UserAdmin;
 // Controller do site
@@ -30,7 +31,10 @@ Route::resource('/admin/categoria', CategoryAdmin::class)->parameters(['categori
 
 Route::resource('/admin/postagem', PostAdmin::class)->parameters(['postagem' => 'post']);
 
-Route::resource('/admin/configuracao', SettingAdmin::class)->parameters(['configuracao' => 'setting']);
+Route::resource('/admin/pagina', PageAdmin::class)->parameters(['pagina' => 'page']);
+
+Route::get('/admin/configuracao', [SettingAdmin::class, 'index'])->name('configuracao');
+Route::put('/admin/configuracao/{setting}', [SettingAdmin::class, 'update'])->name('configuracao.alterar');
 
 Route::resource('/admin/usuario', UserAdmin::class)->parameters(['usuario' => 'user']);
 

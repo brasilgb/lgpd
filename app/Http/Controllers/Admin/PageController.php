@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Post;
+use App\Models\Post as Page;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 use Intervention\Image\Facades\Image;
 
-class PostController extends Controller
+
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,22 +20,17 @@ class PostController extends Controller
      */
     public function index()
     {
-        //$posts = Post::orderByDesc('id_post')->where('type', 1)->get();
-        $posts = DB::table('posts')
-            ->orderByDesc('id_post')
-            ->join('categories', 'posts.category_id', '=', 'categories.id_category')
-            ->select('posts.*', 'categories.categoryname')
-            ->paginate(15);
+        $pages = Page::orderByDesc('id_post')->where('type', 0)->paginate(15);
         $reload = false;
-        return Inertia::render('admin/posts', ['posts' => $posts, 'reload' => $reload, 'postTitle' => 'postagens cadastradas']);
+        return Inertia::render('admin/pages', ['pages' => $pages, 'reload' => $reload, 'pageTitle' => 'páginas cadastradas']);
     }
 
     public function search(Request $request)
     {
         $term = $request->search;
         $reload = true;
-        $posts = Post::where('title', 'like', "%$term%")->paginate(15);
-        return Inertia::render('admin/posts', ['posts' => $posts, 'reload' => $reload, 'postTitle' => 'postagens buscadas']);
+        $pages = Page::where('title', 'like', "%$term%")->paginate(15);
+        return Inertia::render('admin/pages', ['pages' => $pages, 'reload' => $reload, 'pageTitle' => 'páginas buscadas']);
     }
     /**
      * Show the form for creating a new resource.
@@ -45,8 +39,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::orderByDesc('categoryname')->get();
-        return inertia::render('admin/posts/Create', ['categories' => $categories, 'postTitle' => 'Cadastrar página']);
+        return inertia::render('admin/pages/Create', ['pageTitle' => 'Cadastrar página']);
     }
 
     /**
@@ -62,84 +55,80 @@ class PostController extends Controller
         $messages = [
             'required' => 'O campo :attribute deve ser preenchido!',
             'mimes' => 'O campo :attribute aceita somente arquivos (jpeg,jpg e png). ' . $seExtensionImage,
-            'max' => 'A :attribute deve ter até 1500 KB.' . $setSizeImage
+            'max' => 'A :attribute deve ter até 150 KB.' . $setSizeImage
         ];
         $request->validate(
             [
                 'title' => ['required'],
                 'summary' => ['required'],
                 'content' => ['required'],
-                'featured' => ['mimes:jpeg,jpg,png', 'max:1500'],
-                'category' => ['required']
+                'featured' => ['mimes:jpeg,jpg,png', 'max:150']
+
             ],
             $messages,
             [
                 'title' => 'título',
                 'summary' => 'resumo',
                 'content' => 'conteúdo',
-                'category' => 'categoria',
                 'featured' => 'imagem destaque'
             ]
         );
-
         if ($request->hasfile('featured')) {
             $image = $request->file('featured');
             $imageName = $image->getClientOriginalName();
-            $fileName =  time() . sha1($imageName) . '.' . $image->getClientOriginalExtension();
+            $fileName =  time() . sha1($imageName).'.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(1600, null,function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('storage/post/' . $fileName));
+            })->save(public_path('storage/page/' . $fileName));
         }
 
         $data = [
-            'id_post' => Post::idpost(),
-            'category_id' => $request->category,
+            'id_post' => Page::idpost(),
             'title' => $request->title,
             'summary' => $request->summary,
             'content' => $request->content,
             'featured' => $request->file('featured') ? $fileName : '',
             'social' => $request->social == true ? 1 : 0,
             'active' => $request->active == true ? 1 : 0,
-            'type' => 1
+            'type' => 0
         ];
-
-        Post::create($data);
-        Session::flash('success', 'Postagem criada com sucesso!');
-        return Redirect::route('postagem.index');
+        Page::create($data);
+        Session::flash('success', 'Página criada com sucesso!');
+        return Redirect::route('pagina.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Page $page)
     {
-        $categories = Category::orderByDesc('categoryname')->get();
-        return Inertia::render('admin/posts/Edit', ['categories' => $categories, 'post' => $post, 'postTitle' => 'Editar página']);
+        return Inertia::render('admin/pages/Edit', ['page' => $page, 'pageTitle' => 'Editar página']);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Page $page)
     {
-        return redirect()->route('postagem.show', ['post' => $post->id_post]);
+        return redirect()->route('pagina.show', ['page' => $page->id_post]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Page $page)
     {
+
         $seExtensionImage = $request->file('featured') ? ' Sua imagem é do tipo: ' . $request->featured->extension() : '';
         $setSizeImage = $request->file('featured') ? ' Sua imagem têm: ' . round($request->featured->getSize() / 1024) . 'KB' : '';
         $messages = [
@@ -152,7 +141,6 @@ class PostController extends Controller
                 'title' => ['required'],
                 'summary' => ['required'],
                 'content' => ['required'],
-                'category' => ['required'],
                 'featured' => ['mimes:jpeg,jpg,png', 'max:150']
             ],
             $messages,
@@ -160,51 +148,48 @@ class PostController extends Controller
                 'title' => 'título',
                 'summary' => 'resumo',
                 'content' => 'conteúdo',
-                'category' => 'categoria',
                 'featured' => 'imagem destaque'
             ]
         );
-
         if ($request->hasfile('featured')) {
             $image = $request->file('featured');
             $imageName = $image->getClientOriginalName();
-            $fileName =  time() . sha1($imageName) . '.' . $image->getClientOriginalExtension();
+            $fileName =  time() . sha1($imageName).'.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(1600, null,function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('storage/post/' . $fileName));
-            if ($post->featured && file_exists(public_path('storage/post/' . $post->featured))) {
-                unlink(public_path('storage/post/' . $post->featured));
+            })->save(public_path('storage/page/' . $fileName));
+            if ($page->featured && file_exists(public_path('storage/page/' . $page->featured))) {
+                unlink(public_path('storage/page/' . $page->featured));
             }
         }
 
         $data = [
-            'category_id' => $request->category,
             'title' => $request->title,
             'summary' => $request->summary,
             'content' => $request->content,
-            'featured' => $request->file('featured') ? $fileName : $post->featured,
+            'featured' => $request->file('featured') ? $fileName : $page->featured,
             'social' => $request->social == true ? 1 : 0,
             'active' => $request->active == true ? 1 : 0
         ];
 
-        $post->update($data);
+        $page->update($data);
         Session::flash('success', 'Página editada com sucesso!');
-        return Redirect::route('postagem.show', ['post' => $post->id_post]);
+        return Redirect::route('pagina.show', ['page' => $page->id_post]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\post  $post
+     * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Page $page)
     {
-        if ($post->featured != null && file_exists(public_path('storage/post/' . $post->featured))) {
-            unlink(public_path('storage/post/' . $post->featured));
+        if ($page->featured != null && file_exists(public_path('storage/page/' . $page->featured))) {
+            unlink(public_path('storage/page/' . $page->featured));
         }
-        $post->delete();
+        $page->delete();
         Session::flash('success', 'Página deletada com sucesso!');
-        return Redirect::route('postagem.index');
+        return Redirect::route('pagina.index');
     }
 }
