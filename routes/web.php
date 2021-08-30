@@ -38,4 +38,4 @@ Route::put('/admin/configuracao/{setting}', [SettingAdmin::class, 'update'])->na
 
 Route::resource('/admin/usuario', UserAdmin::class)->parameters(['usuario' => 'user']);
 
-Route::resource('/', HomeSite::class);
+Route::get('/', [HomeSite::class, 'index']);

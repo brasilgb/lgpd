@@ -108,8 +108,8 @@ const Edit = ({ category, categoryTitle, success }) => {
                                     <option value="0">Selecione a secção</option>
                                     <option value="1">Secção 1</option>
                                     <option value="2">Secção 2</option>
+                                    <option value="3">Secção 3</option>
                                     <option value="4">Secção 4</option>
-                                    <option value="5">Secção 5</option>
                                 </select>
                                 {errors.seccao && <div className="p-2 border border-t-0 border-red-200 text-sm flex items-center w-full bg-yellow-100 text-red-500"><HiExclamation className="text-md mt-1" />{errors.seccao}</div>}
                             </div>
