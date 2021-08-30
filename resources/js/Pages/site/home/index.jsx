@@ -127,7 +127,7 @@ console.log(section1);
                         </section>
                     </div>
                 }
-                
+
                 {section4[0] &&
                     <div className="bg-yellow-700 bg-opacity-20 px-4 md:px-8 lg:px-80 py-20 pt-2"
                         style={{ backgroundImage: "url('/storage/images/bottom_ars3.jpg')", backgroundSize: "100%" }}
@@ -155,20 +155,7 @@ console.log(section1);
                         </div>
                     </div>
                 }
-                {/* <div className="h-8 bg-gradient-to-t from-gray-100 to-gray-200 shadow border-t border-b border-white"></div>
-                <div className="bg-gradient-to-b from-gray-100 to-gray-200 px-4 md:px-8 lg:px-80 py-10 pt-2">
-
-                    <nav class="text-3xl" style={{ fontFamily: "'Rouge Script', cursive" }}>
-                        <div class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300">
-                            <a href="#" class="text-gray-800 dark:text-gray-200 border-b-2 border-blue-500 mx-1.5 sm:mx-6">home</a>
-
-                            <a href="#" class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">features</a>
-
-                            <a href="#" class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">pricing</a>
-
-                        </div>
-                    </nav>
-                </div> */}
+               
             </Layout>
         </Fragment>
 
