@@ -5686,17 +5686,11 @@ var HomeSite = function HomeSite(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
-    className: "text-5xl text-yellow-900 text-shadow",
-    style: {
-      fontFamily: "'sail', cursive"
-    }
+    className: "text-5xl text-yellow-900 text-shadow"
   }, "Grupo Solar")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex-1 pt-2 pl-10"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
-    className: "text-4xl text-gray-700 text-shadow text-left",
-    style: {
-      fontFamily: "'Rouge Script', cursive"
-    }
+    className: "text-4xl text-gray-700 text-shadow text-left"
   }, "Voc\xEA est\xE1 acessando o portal da transpar\xEAncia do Grupo Solar")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "auto text-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
@@ -5734,10 +5728,7 @@ var HomeSite = function HomeSite(_ref) {
   })), section2[0] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "px-4 md:px-8 lg:px-80 py-20 pt-2 bg-gray-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "py-8",
-    style: {
-      fontFamily: "'Comfortaa', cursive"
-    }
+    className: "py-8"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "text-3xl text-center text-shadow text-red-900"
   }, section2[0].categorytitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
@@ -5748,10 +5739,7 @@ var HomeSite = function HomeSite(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       key: index
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-      className: "shadow bg-white transition duration-600 ease-in-out hover:shadow-lg hover:bg-white",
-      style: {
-        fontFamily: "'Comfortaa', cursive"
-      }
+      className: "shadow bg-white transition duration-600 ease-in-out hover:shadow-lg hover:bg-white"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "pb-1 bg-gradient-to-r from-yellow-800 to-yellow-600"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
@@ -5770,6 +5758,39 @@ var HomeSite = function HomeSite(_ref) {
       className: "text-sm text-gray-600 hover:text-gray-500",
       href: "#"
     }, "+ Veja Mais"))));
+  }))), section3[0] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "p-4 md:px-8 lg:px-80 py-20 pt-2 bg-gray-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "py-8",
+    style: {
+      fontFamily: "'Comfortaa', cursive"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    className: "text-3xl text-red-900 text-center text-shadow"
+  }, section3[0].categorytitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "text-xl text-center py-4"
+  }, section3[0].descricao)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+    className: "grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8"
+  }, section3.map(function (section, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      key: index
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "p-2 border border-white shadow hover:shadow-lg",
+      style: {
+        backgroundImage: "url(/storage/post/" + section.featured + ")",
+        backgroundSize: "100%"
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "p-4 cursor-pointer bg-white rounded border border-white bg-white bg-opacity-80 hover:bg-opacity-70"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "text-center text-gray-700"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "flex justify-center"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+      className: "text-8xl text-gray-800"
+    }, iconClientes(index))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+      className: "text-xl uppercase text-center pt-4"
+    }, section.title)))));
   }))), section4[0] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "bg-yellow-700 bg-opacity-20 px-4 md:px-8 lg:px-80 py-20 pt-2",
     style: {
