@@ -1,7 +1,22 @@
+import { Inertia } from '@inertiajs/inertia';
+import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import React, { Fragment, useState } from 'react'
 import { HiUserCircle } from 'react-icons/hi'
-
+import route from 'ziggy'
 const NavbarAdmin = () => {
+
+    const { auth } = usePage().props;
+
+    const setLogout = (e) => {
+        e.preventDefault();
+        Inertia.post(route('logout'));
+    }
+
+    const setUserProfile = (e) => {
+        e.preventDefault();
+        Inertia.get(route('usuario.show', auth.user.id_user));
+    }
+
     const [menuUserOpen, setMenuUserOpen] = useState(false);
     return (
         <Fragment>
@@ -48,13 +63,24 @@ const NavbarAdmin = () => {
                                     <div className={"absolute right-0 z-20 w-48 p-2 mt-2 bg-white rounded-md shadow-xl dark:bg-gray-800" +
                                         (menuUserOpen ? " block" : " hidden")
                                     }>
-
-                                        <a href="#" className="block flex justify-left px-4 py-2 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-blue-100 hover:text-gray-500 dark:hover:text-white">
-                                            <span> Seu perfil</span>
-                                        </a>
-                                        <a href="#" className="block flex justify-left px-4 py-2 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-blue-100 hover:text-gray-500 dark:hover:text-white">
+                                        <InertiaLink
+                                            className="w-full block flex justify-left px-4 py-2 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-blue-100 hover:text-gray-500 dark:hover:text-white"
+                                            as="button"
+                                            type="button"
+                                            href="#"
+                                            onClick={setUserProfile}
+                                        >
+                                            <span>Seu perfil</span>
+                                        </InertiaLink>
+                                        <InertiaLink
+                                            className="w-full flex justify-left px-4 py-2 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-blue-100 hover:text-gray-500 dark:hover:text-white"
+                                            as="button"
+                                            type="button"
+                                            href="#"
+                                            onClick={setLogout}
+                                        >
                                             <span> Sair</span>
-                                        </a>
+                                        </InertiaLink>
                                     </div>
                                 </div>
                             </div>

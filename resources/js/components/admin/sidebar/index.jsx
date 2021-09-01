@@ -5,7 +5,7 @@ import { HiDocumentDuplicate, HiOutlineCog, HiOutlineCollection, HiPencilAlt, Hi
 
 const SidebarAdmin = () => {
 
-    const { settings } = usePage().props
+    const { settings, auth } = usePage().props
 
     const logo = settings.logo ? settings.logo :'default.jpg';
 
@@ -14,8 +14,8 @@ const SidebarAdmin = () => {
             <div className="flex flex-col h-screen py-8 bg-white border-r dark:bg-gray-800 dark:border-gray-600">
                 <div className="flex flex-col items-center mt-6 -mx-2">
                     <img className="object-cover w-24 h-24 mx-2 rounded-full" src={"/storage/images/" + logo} alt="Grupo Solar" />
-                    <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">Grupo Solar</h4>
-                    <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:underline">john@example.com</p>
+                    <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">{auth.user.name}</h4>
+                    <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:underline">{auth.user.email}</p>
                 </div>
 
                 <div className="flex flex-col justify-between flex-1 mt-6">

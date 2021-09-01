@@ -12,16 +12,7 @@ use App\Http\Controllers\Admin\UserController as UserAdmin;
 // Controller do site
 use App\Http\Controllers\Site\HomeController as HomeSite;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::group(['middleware' => ['auth']], function () {
 
 Route::get('/admin', [HomeAdmin::class, 'index'])->name('admin');
 
@@ -37,5 +28,7 @@ Route::get('/admin/configuracao', [SettingAdmin::class, 'index'])->name('configu
 Route::put('/admin/configuracao/{setting}', [SettingAdmin::class, 'update'])->name('configuracao.alterar');
 
 Route::resource('/admin/usuario', UserAdmin::class)->parameters(['usuario' => 'user']);
+
+});
 
 Route::get('/', [HomeSite::class, 'index']);

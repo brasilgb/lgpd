@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
@@ -76,6 +77,7 @@ class UserController extends Controller
         );
 
         $data['id_user'] = User::iduser();
+        $data['password'] = Hash::make($request->password);
         User::create($data);
         Session::flash('success', 'Usuário criado com sucesso!');
         return Redirect::route('usuario.index');
@@ -136,7 +138,7 @@ class UserController extends Controller
             ]
         );
 
-        $data['password'] = $request->password ? $request->password : $user->password;
+        $data['password'] = $request->password ? Hash::make($request->password) : $user->password;
         $user->update($data);
         Session::flash('success', 'Usuário editado com sucesso!');
         return Redirect::route('usuario.show', ['user' => $user->id_user]);

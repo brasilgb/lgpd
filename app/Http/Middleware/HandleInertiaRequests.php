@@ -43,17 +43,21 @@ class HandleInertiaRequests extends Middleware
             'success' => session()->get('success'),
             'error' => session()->get('error'),
 
+            'auth.user' => fn () => $request->user()
+                ? $request->user()->only('id_user', 'name', 'email')
+                : null,
+
             'settings' => fn () => Setting::first()
                 ? Setting::orderByDesc('id_setting')->first(['id_setting', 'title', 'description', 'logo'])
-                : false,
+                : null,
 
             'categories' => fn () => Category::get()
-            ? Category::orderBy('categoryname')->get()
-            : false,
+                ? Category::orderBy('categoryname')->get()
+                : null,
 
             'pages' => fn () => Post::get()
-            ? Post::where('type', 0)->orderBy('title')->get()
-            : false
+                ? Post::where('type', 0)->orderBy('title')->get()
+                : null
         ]);
     }
 }
