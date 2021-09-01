@@ -79,18 +79,6 @@ const Edit = ({ user, userTitle, success }) => {
                         </div>
 
                         <div className="pt-2">
-                            <label><span className="text-gray-500">Usuário</span></label>
-                            <input
-                                ref={usernameRef}
-                                type="text"
-                                className="form-input text-gray-500 mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                id="username"
-                                placeholder=""
-                            />
-                            {errors.username && <div className="p-2 border border-t-0 border-red-200 text-sm flex items-center w-full bg-yellow-100 text-red-500"><HiExclamation className="text-md mt-1" /> {errors.username}</div>}
-                        </div>
-
-                        <div className="pt-2">
                             <label><span className="text-gray-500">E-mail</span></label>
                             <input
                                 ref={emailRef}

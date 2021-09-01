@@ -15,14 +15,16 @@ const Register = () => {
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
+    const password_confirmationRef = useRef();
 
     const getUser = (e) => {
         e.preventDefault();
         const name = nameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
+        const password_confirmation = password_confirmationRef.current.value;
 
-        Inertia.post(route('register'), { name, email, password });
+        Inertia.post(route('register'), { name, email, password, password_confirmation });
     }
 
     return (
@@ -107,13 +109,15 @@ const Register = () => {
                                     </div>
 
                                     <input
+                                    ref={password_confirmationRef}
                                         id="password_confirmation"
                                         type="password"
                                         name="password_confirmation"
                                         className={`text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400
-                                        `}
+                                        ${errors.password_confirmation ? 'border-red-500' : ''}`}
                                         placeholder="" />
                                 </div>
+                                {errors.password_confirmation && <div className="text-md text-red-500 p-1">{errors.password_confirmation}</div>}
                             </div>
 
                             {/* <div className="flex items-center mb-6 -mt-4">

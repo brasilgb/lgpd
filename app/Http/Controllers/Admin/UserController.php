@@ -61,7 +61,6 @@ class UserController extends Controller
         $request->validate(
             [
                 'name' => 'required',
-                'username' => 'required',
                 'email' => 'required|email',
                 'password' => 'required|confirmed|min:6',
                 'password_confirmation' => 'required|min:6'
@@ -69,7 +68,6 @@ class UserController extends Controller
             $messages,
             [
                 'name' => 'nome',
-                'username' => 'usuário',
                 'email' => 'email',
                 'password' => 'senha',
                 'password_confirmation' => 'repita a senha'
@@ -124,14 +122,12 @@ class UserController extends Controller
         $request->validate(
             [
                 'name' => 'required',
-                'username' => 'required',
                 'email' => 'required|email',
                 'password' => 'confirmed',
             ],
             $messages,
             [
                 'name' => 'nome',
-                'username' => 'usuário',
                 'email' => 'email',
                 'password' => 'senha',
                 'password_confirmation' => 'repita a senha'
