@@ -4,6 +4,7 @@ import { FiFacebook } from "react-icons/fi";
 import { HiOutlineArrowCircleUp } from 'react-icons/hi';
 import FooterSite from '../footer';
 import NavBarSite from '../navbar';
+
 const Layout = ({ children }) => {
 
     const { settings } = usePage().props;

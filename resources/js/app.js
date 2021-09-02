@@ -4,7 +4,10 @@ import { render } from 'react-dom'
 import { createInertiaApp } from '@inertiajs/inertia-react'
 import { InertiaProgress } from '@inertiajs/progress'
 
-InertiaProgress.init()
+InertiaProgress.init({
+  color: '#FFF',
+  showSpinner: true,
+})
 
 createInertiaApp({
   resolve: name => require(`./Pages/${name}`),

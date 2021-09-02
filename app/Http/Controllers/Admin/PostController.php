@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -86,7 +87,7 @@ class PostController extends Controller
             $image = $request->file('featured');
             $imageName = $image->getClientOriginalName();
             $fileName =  time() . sha1($imageName) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(1600, null,function ($constraint) {
+            Image::make($image)->resize(1600, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('storage/post/' . $fileName));
         }
@@ -95,6 +96,7 @@ class PostController extends Controller
             'id_post' => Post::idpost(),
             'category_id' => $request->category,
             'title' => $request->title,
+            'slug' => Str::slug($request->title),
             'summary' => $request->summary,
             'content' => $request->content,
             'featured' => $request->file('featured') ? $fileName : '',
@@ -169,7 +171,7 @@ class PostController extends Controller
             $image = $request->file('featured');
             $imageName = $image->getClientOriginalName();
             $fileName =  time() . sha1($imageName) . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(1600, null,function ($constraint) {
+            Image::make($image)->resize(1600, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('storage/post/' . $fileName));
             if ($post->featured && file_exists(public_path('storage/post/' . $post->featured))) {
@@ -180,6 +182,7 @@ class PostController extends Controller
         $data = [
             'category_id' => $request->category,
             'title' => $request->title,
+            'slug' => Str::slug($request->title),
             'summary' => $request->summary,
             'content' => $request->content,
             'featured' => $request->file('featured') ? $fileName : $post->featured,

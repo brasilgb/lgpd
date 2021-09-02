@@ -9,8 +9,14 @@ use App\Http\Controllers\Admin\PostController as PostAdmin;
 use App\Http\Controllers\Admin\PageController as PageAdmin;
 use App\Http\Controllers\Admin\SettingController as SettingAdmin;
 use App\Http\Controllers\Admin\UserController as UserAdmin;
+
 // Controller do site
 use App\Http\Controllers\Site\HomeController as HomeSite;
+use App\Http\Controllers\Site\CategoryController as CategorySite;
+use App\Http\Controllers\Site\PostController as PostSite;
+use App\Http\Controllers\Site\PageController as PageSite;
+use App\Http\Controllers\Site\GalleryController as GallerySite;
+use App\Http\Controllers\Site\MediaController as MediaSite;
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -31,4 +37,9 @@ Route::resource('/admin/usuario', UserAdmin::class)->parameters(['usuario' => 'u
 
 });
 
-Route::get('/', [HomeSite::class, 'index']);
+Route::get('/', [HomeSite::class, 'index'])->name('home');
+Route::get('/categoria/{category}', [CategorySite::class, 'index'])->name('categoria');
+Route::get('/postagem/{post}', [PostSite::class, 'index'])->name('postagem');
+Route::get('/pagina/{page}', [PageSite::class, 'index'])->name('pagina');
+Route::get('/site/galeria/{gallery}', [GallerySite::class, 'index'])->name('galeria');
+Route::get('/imagem/{image}', [MediaSite::class, 'index'])->name('imagem');

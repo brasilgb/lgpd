@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class CategoryController extends Controller
@@ -37,7 +39,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return inertia::render('admin/categories/Create', ['categoryTitle' => 'Cadastrar categorias']);
+        $parentcategory = Category::orderByDesc('categoryname')->where('parent',0)->get();
+        return inertia::render('admin/categories/Create', ['parentcategory' => $parentcategory, 'categoryTitle' => 'Cadastrar categorias']);
     }
 
     /**
@@ -60,7 +63,8 @@ class CategoryController extends Controller
         ]);
 
         $data['id_category'] = Category::idcategory();
-
+        $data['parent'] = $request->parentcategory?$request->parentcategory:0;
+        $data['slug'] = Str::slug($request->categoryname);
         Category::create($data);
         Session::flash('success', 'Categoria criada com sucesso!');
         return Redirect::route('categoria.index');
@@ -74,7 +78,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return Inertia::render('admin/categories/Edit', ['category' => $category, 'categoryTitle' => 'Editar categorias']);
+        $parentcategory = Category::orderByDesc('categoryname')->where('parent',0)->get();
+        return Inertia::render('admin/categories/Edit', ['category' => $category,'parentcategory' => $parentcategory, 'categoryTitle' => 'Editar categorias']);
     }
 
     /**
@@ -107,6 +112,8 @@ class CategoryController extends Controller
         [
             'categoryname' => 'categoria',
         ]);
+        $data['slug'] = Str::slug($request->categoryname);
+        $data['parent'] = $request->parentcategory;
         $category->update($data);
         Session::flash('success', 'Categoria editada com sucesso!');
         return Redirect::route('categoria.show', ['category' => $category->id_category]);

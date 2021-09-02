@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 
 class PageController extends Controller
@@ -85,6 +86,7 @@ class PageController extends Controller
         $data = [
             'id_post' => Page::idpost(),
             'title' => $request->title,
+            'slug' => Str::slug($request->title),
             'summary' => $request->summary,
             'content' => $request->content,
             'featured' => $request->file('featured') ? $fileName : '',
@@ -165,6 +167,7 @@ class PageController extends Controller
 
         $data = [
             'title' => $request->title,
+            'slug' => Str::slug($request->title),
             'summary' => $request->summary,
             'content' => $request->content,
             'featured' => $request->file('featured') ? $fileName : $page->featured,

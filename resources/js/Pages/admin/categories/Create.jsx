@@ -5,7 +5,7 @@ import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import Layout from '../../../components/admin/layout';
 
-const Create = ({ success, categoryTitle, error }) => {
+const Create = ({ parentcategory, success, categoryTitle, error }) => {
 
     const { errors } = usePage().props
 
@@ -13,6 +13,7 @@ const Create = ({ success, categoryTitle, error }) => {
 
     const categorynameRef = useRef();
     const seccaoRef = useRef();
+    const parentcategoryRef = useRef();
     const categorytitleRef = useRef();
     const descricaoRef = useRef();
     const activeRef = useRef();
@@ -21,11 +22,12 @@ const Create = ({ success, categoryTitle, error }) => {
         e.preventDefault();
         const categoryname = categorynameRef.current.value;
         const seccao = seccaoRef.current.value;
+        const parentcategory = parentcategoryRef.current.value;
         const categorytitle = categorytitleRef.current.value;
         const descricao = descricaoRef.current.value;
         const active = activeRef.current.checked;
 
-        Inertia.post(route('categoria.store'), { categoryname, seccao, categorytitle, descricao, active });
+        Inertia.post(route('categoria.store'), { categoryname, seccao, parentcategory, categorytitle, descricao, active });
     };
 
     return (
@@ -58,7 +60,24 @@ const Create = ({ success, categoryTitle, error }) => {
 
                     <form onSubmit={saveData} className="py-4" autoComplete="off">
 
-                        <div className="w-8/12 pb-0">
+                        <div className="w-8/12 pt-2">
+                            <label htmlFor=""><span className="text-gray-500">Categoria Pai</span></label>
+
+                            <select
+                                ref={parentcategoryRef}
+                                className="form-input text-gray-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                id="parentcategory"
+                                placeholder=""
+                            >
+                                <option value="">Selecione a categoria pai</option>
+                                {parentcategory.map((parent, index) => (
+                                    <option key={index} value={parent.id_category}>{parent.categoryname}</option>
+
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="w-8/12 pt-2">
                             <label><span className="text-gray-500">Nome da categoria</span></label>
                             <input
                                 ref={categorynameRef}
@@ -83,14 +102,14 @@ const Create = ({ success, categoryTitle, error }) => {
                         </div>
 
                         {/* Adiciona categorias as secções da página inicial*/}
-                        <div 
-                        onClick={() => setSeccaoOpen(!seccaoOpen)}
-                        className="mt-4 p-2 cursor-pointer rounded-t bg-gray-200 border border-gray-300 flex justify-left">
+                        <div
+                            onClick={() => setSeccaoOpen(!seccaoOpen)}
+                            className="mt-4 p-2 cursor-pointer rounded-t bg-gray-200 border border-gray-300 flex justify-left">
                             <span>Adicione esta categoria como secção na página inicial </span> {seccaoOpen ? <HiChevronDown className="text-2xl" /> : <HiChevronUp className="text-2xl" />}
                         </div>
                         <div className={"py-4 px-2 border border-gray-300 border-t-0 bg-gray-200 " +
-                                        (seccaoOpen ? 'block' : 'hidden')
-                                        }>
+                            (seccaoOpen ? 'block' : 'hidden')
+                        }>
                             <div className="w-8/12 pt-0">
                                 {/* <label htmlFor=""><span className="text-gray-500">Secção</span></label> */}
                                 <select

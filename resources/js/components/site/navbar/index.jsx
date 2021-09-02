@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { Inertia } from '@inertiajs/inertia';
-import { usePage } from '@inertiajs/inertia-react';
+import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import { BiLogIn } from 'react-icons/bi';
 import route from 'ziggy';
 import useDocumentScrollThrottled from '../../../hooks';
@@ -8,7 +8,7 @@ import useDocumentScrollThrottled from '../../../hooks';
 import "../../../../../public/css/styles.css";
 
 const navBarSite = () => {
-    const { settings } = usePage().props;
+    const { settings, categories, pages } = usePage().props;
 
     const logo = settings.logo ? settings.logo:'default.jpg';
 
@@ -59,16 +59,41 @@ const navBarSite = () => {
                         {/* <!-- Mobile Menu open: "block", Menu closed: "hidden" --> */}
                         <div className="flex-1 md:flex md:items-center md:justify-between">
 
-                            <div className="container flex items-center justify-center p-4 mx-auto text-gray-100 uppercase font-semibold dark:text-gray-300">
-
-                                <a href="#" class="text-yellow-500 dark:text-gray-200 border-b-2 border-yellow-500 mx-1.5 sm:mx-6">home</a>
-
-                                <a href="#" class="border-b-2 border-transparent hover:text-yellow-500 dark:hover:text-gray-200 hover:border-yellow-500 mx-1.5 sm:mx-6">features</a>
-
-                                <a href="#" class="border-b-2 border-transparent hover:text-yellow-500 dark:hover:text-gray-200 hover:border-yellow-500 mx-1.5 sm:mx-6">pricing</a>
-
-                                <a href="#" class="border-b-2 border-transparent hover:text-yellow-500 dark:hover:text-gray-200 hover:border-yellow-500 mx-1.5 sm:mx-6">blog</a>
-
+                            <div className="container flex items-center justify-center p-4 mx-auto text-gray-100 font-semibold dark:text-gray-300">
+                            <InertiaLink
+                                    href={'/'}
+                                    className={`${route().current('home') ? 
+                                    'text-white border-b-2 border-white' : 
+                                    'border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6'}
+                                    `}
+                                >
+                                    home
+                                </InertiaLink>
+                                {pages.map((page, index) => (
+                                    (page.active == 1 &&
+                                        <InertiaLink
+                                            key={index}
+                                            href={route('pagina', page.slug)}
+                                            className="border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6">
+                                            {page.title}
+                                        </InertiaLink>
+                                    )
+                                ))}
+                                {categories.map((category, index) => (
+                                    (category.active == 1 &&
+                                        <InertiaLink
+                                            key={index}
+                                            href={route('categoria', category.slug)}
+                                            className="border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6">
+                                            {category.categoryname}
+                                        </InertiaLink>
+                                    )
+                                ))}
+                                <a
+                                    href="#"
+                                    className="border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6">
+                                    Contato
+                                </a>
                             </div>
 
                             <div className="flex justify-center mt-4 lg:flex lg:mt-0 lg:-mx-2">

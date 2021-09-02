@@ -18,6 +18,7 @@ class Page extends Model
     protected $fillable = [
         'id_post',
         'title', //título da postagem ou página
+        'slug',
         'summary', //resumo de conteúdo
         'content', //conteúdo da postagem
         'featured', //imagem destaque

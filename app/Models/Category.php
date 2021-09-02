@@ -16,10 +16,12 @@ class Category extends Model
     protected $fillable = [
         'id_category',
         'categoryname',
+        'slug',
         'seccao',
         'categorytitle',
         'descricao',
-        'active'
+        'active',
+        'parent'
     ];
 
     public function scopeIdcategory()

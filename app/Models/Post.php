@@ -17,6 +17,7 @@ class Post extends Model
         'id_post',
         'category_id',
         'title', //título da postagem ou página
+        'slug',
         'summary', //resumo de conteúdo
         'content', //conteúdo da postagem
         'featured', //imagem destaque

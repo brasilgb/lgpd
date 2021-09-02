@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->integer('category_id')->nullable();
             $table->foreign('category_id')->references('id_category')->on('categories')->onDelete('cascade');
             $table->string('title');
+            $table->string('slug');
             $table->text('summary');
             $table->text('content');
             $table->string('featured');
