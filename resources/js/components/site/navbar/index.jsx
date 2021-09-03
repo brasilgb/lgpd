@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
 import { BiLogIn } from 'react-icons/bi';
@@ -10,7 +10,7 @@ import "../../../../../public/css/styles.css";
 const navBarSite = () => {
     const { settings, categories, pages } = usePage().props;
 
-    const logo = settings.logo ? settings.logo:'default.jpg';
+    const logo = settings.logo ? settings.logo : 'default.jpg';
 
     const openAdmin = (e) => {
         e.preventDefault();
@@ -24,19 +24,26 @@ const navBarSite = () => {
     const TIMEOUT_DELAY = 400;
 
     useDocumentScrollThrottled(callbackData => {
-      const { previousScrollTop, currentScrollTop } = callbackData;
-      const isScrolledDown = previousScrollTop < currentScrollTop;
-      const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;
+        const { previousScrollTop, currentScrollTop } = callbackData;
+        const isScrolledDown = previousScrollTop < currentScrollTop;
+        const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;
 
-      setShouldShowShadow(currentScrollTop > 2);
+        setShouldShowShadow(currentScrollTop > 2);
 
-      setTimeout(() => {
-        setShouldHideHeader(isScrolledDown && isMinimumScrolled);
-      }, TIMEOUT_DELAY);
+        setTimeout(() => {
+            setShouldHideHeader(isScrolledDown && isMinimumScrolled);
+        }, TIMEOUT_DELAY);
     });
 
     const shadowStyle = shouldShowShadow ? 'shadow' : '';
     const hiddenStyle = shouldHideHeader ? 'hidden' : '';
+
+    const parentRef = useRef();
+    
+    const parentCategory = (parent) => {
+       e.preventDefault();
+        alert(parent);
+    };
 
     return (
         <Fragment>
@@ -60,15 +67,16 @@ const navBarSite = () => {
                         <div className="flex-1 md:flex md:items-center md:justify-between">
 
                             <div className="container flex items-center justify-center p-4 mx-auto text-gray-100 font-semibold dark:text-gray-300">
-                            <InertiaLink
+                                <InertiaLink
                                     href={'/'}
-                                    className={`${route().current('home') ? 
-                                    'text-white border-b-2 border-white' : 
-                                    'border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6'}
+                                    className={`${route().current('home') ?
+                                        'text-white border-b-2 border-white' :
+                                        'border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6'}
                                     `}
                                 >
                                     home
                                 </InertiaLink>
+
                                 {pages.map((page, index) => (
                                     (page.active == 1 &&
                                         <InertiaLink
@@ -79,16 +87,29 @@ const navBarSite = () => {
                                         </InertiaLink>
                                     )
                                 ))}
+
                                 {categories.map((category, index) => (
-                                    (category.active == 1 &&
-                                        <InertiaLink
+                                    (category.active == 1 && category.parent == 0 &&
+                                        <div
                                             key={index}
-                                            href={route('categoria', category.slug)}
+                                            onClick={(e) => {e.target.parentCategory(category.id_category)}}
                                             className="border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6">
                                             {category.categoryname}
-                                        </InertiaLink>
+                                        </div>
                                     )
                                 ))}
+                                <div>
+                                    {categories.map((category, index) => (
+                                        (category.active == 1 && category.parent == parentCategory() &&
+                                            <InertiaLink
+                                                key={index}
+                                                href={route('categoria', category.slug)}
+                                                className="border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6">
+                                                {category.categoryname}
+                                            </InertiaLink>
+                                        )
+                                    ))}
+                                </div>
                                 <a
                                     href="#"
                                     className="border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6">
