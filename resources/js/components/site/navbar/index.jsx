@@ -16,6 +16,11 @@ const navBarSite = () => {
         e.preventDefault();
         Inertia.get(route('admin'));
     };
+    const openLink = (e, slug) => {
+        e.preventDefault();
+        console.log(slug);
+        Inertia.get(route('categoria', slug));
+    };
 
     const [shouldHideHeader, setShouldHideHeader] = useState(false);
     const [shouldShowShadow, setShouldShowShadow] = useState(false);
@@ -38,11 +43,21 @@ const navBarSite = () => {
     const shadowStyle = shouldShowShadow ? 'shadow' : '';
     const hiddenStyle = shouldHideHeader ? 'hidden' : '';
 
-    const parentRef = useRef();
-    
-    const parentCategory = (parent) => {
-       e.preventDefault();
-        alert(parent);
+    const [menuCategoryOpen, setMenuCategoryOpen] = useState([false, false]);
+
+    const toggleSubMenu = (e, i) => {
+        e.preventDefault()
+
+        const clone = menuCategoryOpen.slice(0)
+
+        const newState = clone.map((val, index) => {
+            if (index === i) {
+                return val
+            }
+            return false
+        })
+        newState[i] = !newState[i]
+        setMenuCategoryOpen(newState)
     };
 
     return (
@@ -88,28 +103,42 @@ const navBarSite = () => {
                                     )
                                 ))}
 
-                                {categories.map((category, index) => (
-                                    (category.active == 1 && category.parent == 0 &&
-                                        <div
-                                            key={index}
-                                            onClick={(e) => {e.target.parentCategory(category.id_category)}}
-                                            className="border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6">
-                                            {category.categoryname}
-                                        </div>
-                                    )
-                                ))}
-                                <div>
-                                    {categories.map((category, index) => (
-                                        (category.active == 1 && category.parent == parentCategory() &&
-                                            <InertiaLink
-                                                key={index}
-                                                href={route('categoria', category.slug)}
-                                                className="border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6">
-                                                {category.categoryname}
-                                            </InertiaLink>
-                                        )
-                                    ))}
-                                </div>
+                                {categories.map(function (menuItem, i) {
+                                    //if (menuItem.sub_categories != undefined) {
+                                        return (
+                                            <div key={i}>
+                                                <div className="relative z-10 block" aria-label="toggle profile dropdown">
+                                                
+                                                    {menuItem.parent == 0 &&
+                                                        <InertiaLink
+                                                            onClick={(e) => menuItem.sub_categories.length == 0 ? openLink(e, menuItem.slug) : toggleSubMenu(e, i)}
+                                                            className="border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6"
+                                                        >
+                                                            {menuItem.categoryname}
+                                                        </InertiaLink>
+                                                    }
+
+                                                    <div className={"absolute right-0 z-20 w-48 p-2 mt-2 bg-white rounded-md shadow-xl dark:bg-gray-800" +
+                                                        (menuCategoryOpen[i] ? " block" : " hidden")
+                                                    }>
+                                                        {menuItem.sub_categories.map(function (subMenu, i) {
+                                                            return (
+                                                                <InertiaLink
+                                                                    key={i}
+                                                                    href={route('categoria', subMenu.slug)}
+                                                                    className="w-full flex justify-left px-4 py-2 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-blue-100 hover:text-gray-500 dark:hover:text-white"
+                                                                >
+                                                                    {subMenu.categoryname}
+                                                                </InertiaLink>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    //}
+                                })}
+
                                 <a
                                     href="#"
                                     className="border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6">

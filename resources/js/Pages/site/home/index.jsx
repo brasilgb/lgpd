@@ -1,10 +1,13 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { HiOutlineColorSwatch, HiOutlineLibrary, HiOutlineLightBulb, HiOutlinePuzzle, HiOutlineUsers } from 'react-icons/hi';
 import { BiChurch } from "react-icons/bi";
 import Layout from '../../../components/site/layout';
 import { FiFacebook } from 'react-icons/fi';
+import { usePage } from '@inertiajs/inertia-react';
 
 const HomeSite = ({ section1, section2, section3, section4 }) => {
+
+    const { categories } = usePage().props
 
 
     const iconSevices = (index) => {
@@ -42,13 +45,16 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
                         <p className="text-4xl text-gray-700 text-shadow text-left">Você está acessando o portal da transparência do Grupo Solar</p>
                     </div>
                     <div className="auto text-right">
-                        <a
+                        {/* <a
                             href="https://www.facebook.com/arsartesacra/"
                             className="text-5xl text-yellow-900 hover:text-yellow-800 text-shadow"
                         >
                             <FiFacebook />
-                        </a>
+                        </a> */}
                     </div>
+                </div>
+                <div>
+
                 </div>
                 {section1[0] &&
                     <section className="bg-gradient-to-r from-yellow-900 to-yellow-700 border-b border-white" style={{ backgroundImage: "url('/storage/images/hero_ars.jpg')" }}>

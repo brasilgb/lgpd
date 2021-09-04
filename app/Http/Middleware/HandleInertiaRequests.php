@@ -52,7 +52,7 @@ class HandleInertiaRequests extends Middleware
                 : '',
 
             'categories' => fn () => Category::get()
-                ? Category::orderBy('categoryname')->get()
+                ? Category::with('subCategories')->get()
                 : '',
 
             'pages' => fn () => Post::get()
