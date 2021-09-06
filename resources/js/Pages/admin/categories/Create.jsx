@@ -69,7 +69,7 @@ const Create = ({ parentcategory, success, categoryTitle, error }) => {
                                 id="parentcategory"
                                 placeholder=""
                             >
-                                <option value="">Selecione a categoria pai</option>
+                                <option value="0">Selecione a categoria pai</option>
                                 {parentcategory.map((parent, index) => (
                                     <option key={index} value={parent.id_category}>{parent.categoryname}</option>
 
