@@ -6,6 +6,7 @@ import Layout from '../../../components/admin/layout';
 import { Inertia } from '@inertiajs/inertia';
 import Pagination from '../../../components/admin/pagination';
 import { compareAsc, format } from 'date-fns'
+import ModalPost from '../../../components/admin/modal/post'
 
 const postAdmin = ({ posts, success, reload, postTitle }) => {
 

@@ -12,15 +12,9 @@ class CategoryController extends Controller
 {
     public function index($category) 
     {
-        
-        $categories = DB::table('posts')
-        ->orderByDesc('id_post')
-        ->join('categories', 'posts.category_id', '=', 'categories.id_category')
-        ->select('posts.*', 'categories.*')
-        ->where('categories.slug', $category)
-        ->get();
-        
-        return Inertia::render('site/category', ['categories' => $categories]);
+
+        $categories_posts = Category::with('posts')->where('slug', $category)->get();
+        return Inertia::render('site/categories', ['categories_posts' => $categories_posts]);
 
     }
 }

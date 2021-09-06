@@ -1,19 +1,17 @@
 import { usePage } from '@inertiajs/inertia-react';
 import React, { Fragment, useState } from 'react';
-import { FiFacebook } from "react-icons/fi";
 import { HiOutlineArrowCircleUp } from 'react-icons/hi';
 import FooterSite from '../footer';
 import NavBarSite from '../navbar';
 
 const Layout = ({ children }) => {
 
-    const { settings } = usePage().props;
     const [showScroll, setShowScroll] = useState(false)
 
     const checkScrollTop = () => {
-        if (!showScroll && window.pageYOffset > 400) {
+        if (!showScroll && window.pageYOffset > 200) {
             setShowScroll(true)
-        } else if (showScroll && window.pageYOffset <= 400) {
+        } else if (showScroll && window.pageYOffset <= 200) {
             setShowScroll(false)
         }
     };
@@ -27,7 +25,8 @@ const Layout = ({ children }) => {
     return (
         <Fragment>
             <div className="flex flex-col min-h-screen">
-                <div className="w-full bg-black pb-16 z-50">
+
+                <div className="w-full z-50 pt-20">
                     <NavBarSite />
                 </div>
 
@@ -38,7 +37,8 @@ const Layout = ({ children }) => {
                 <div className="w-full">
                     <FooterSite />
                 </div>
-                <HiOutlineArrowCircleUp className="scrollTop text-yellow-400" onClick={scrollTop} style={{ height: 40, display: showScroll ? 'flex' : 'none' }} />
+
+                <HiOutlineArrowCircleUp className="scrollTop text-blue-700" onClick={scrollTop} style={{ height: 40, display: showScroll ? 'flex' : 'none' }} />
             </div>
         </Fragment>
     )

@@ -6,6 +6,7 @@ import Layout from '../../../components/admin/layout';
 import Pagination from '../../../components/admin/pagination';
 import { Inertia } from '@inertiajs/inertia';
 import { compareAsc, format } from 'date-fns';
+import ModalPage from '../../../components/admin/modal/page'
 
 const PageAdmin = ({ pages, success, reload, pageTitle }) => {
 

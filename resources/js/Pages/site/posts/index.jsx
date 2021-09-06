@@ -1,15 +1,15 @@
 import React, { Fragment } from 'react'
 import Layout from '../../../components/site/layout'
 
-const categorySite = ({ categories }) => {
-console.log(categories);
+const postSite = ({ posts }) => {
+console.log(posts);
     return (
         <Layout>
             <Fragment>
-                <h1>{categories.categoryname}</h1>
+                <h1>{posts.title}</h1>
             </Fragment>
         </Layout>
     )
 }
 
-export default categorySite
+export default postSite

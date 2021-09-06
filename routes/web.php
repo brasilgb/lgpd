@@ -42,4 +42,3 @@ Route::get('/categoria/{category}', [CategorySite::class, 'index'])->name('categ
 Route::get('/postagem/{post}', [PostSite::class, 'index'])->name('postagem');
 Route::get('/pagina/{page}', [PageSite::class, 'index'])->name('pagina');
 Route::get('/site/galeria/{gallery}', [GallerySite::class, 'index'])->name('galeria');
-Route::get('/imagem/{image}', [MediaSite::class, 'index'])->name('imagem');

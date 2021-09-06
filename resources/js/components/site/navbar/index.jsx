@@ -18,7 +18,6 @@ const navBarSite = () => {
     };
     const openLink = (e, slug) => {
         e.preventDefault();
-        console.log(slug);
         Inertia.get(route('categoria', slug));
     };
 
@@ -64,10 +63,10 @@ const navBarSite = () => {
         <Fragment>
             <nav className={`bg-blue-500 header ${shadowStyle} ${hiddenStyle}`}>
                 <div className="container mx-auto">
-                    <div className="py-2 md:flex md:items-center md:justify-between">
+                    <div className="py-2 md:flex md:items-center md:justify-between h-22">
                         <div className="flex items-center justify-between">
                             <div className="">
-                                <a className="" href="#"><img className="h-10" src={'/storage/images/' + logo} alt={settings.title} /></a>
+                                <a className="" href="#"><img className="h-16 rounded-full" src={'/storage/images/' + logo} alt={settings.title} /></a>
                             </div>
 
                             {/* <!-- Mobile menu button --> */}
@@ -81,7 +80,7 @@ const navBarSite = () => {
                         {/* <!-- Mobile Menu open: "block", Menu closed: "hidden" --> */}
                         <div className="flex-1 md:flex md:items-center md:justify-between">
 
-                            <div className="container flex items-center justify-center p-4 mx-auto text-gray-100 font-semibold dark:text-gray-300">
+                            <div className="container flex items-center justify-center p-4 mx-auto text-gray-100">
                                 <InertiaLink
                                     href={'/'}
                                     className={`${route().current('home') ?
@@ -104,13 +103,14 @@ const navBarSite = () => {
                                 ))}
 
                                 {categories.map(function (menuItem, i) {
-                                    //if (menuItem.sub_categories != undefined) {
+                                    if (menuItem.sub_categories != undefined) {
                                         return (
                                             <div key={i}>
                                                 <div className="relative z-10 block" aria-label="toggle profile dropdown">
                                                 
                                                     {menuItem.parent == 0 &&
                                                         <InertiaLink
+                                                        href=""
                                                             onClick={(e) => menuItem.sub_categories.length == 0 ? openLink(e, menuItem.slug) : toggleSubMenu(e, i)}
                                                             className="border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6"
                                                         >
@@ -118,7 +118,7 @@ const navBarSite = () => {
                                                         </InertiaLink>
                                                     }
 
-                                                    <div className={"absolute right-0 z-20 w-48 p-2 mt-2 bg-white rounded-md shadow-xl dark:bg-gray-800" +
+                                                    <div className={"absolute right-0 z-20 w-60 py-2 mt-2 bg-white rounded-md shadow-xl dark:bg-gray-800" +
                                                         (menuCategoryOpen[i] ? " block" : " hidden")
                                                     }>
                                                         {menuItem.sub_categories.map(function (subMenu, i) {
@@ -126,7 +126,7 @@ const navBarSite = () => {
                                                                 <InertiaLink
                                                                     key={i}
                                                                     href={route('categoria', subMenu.slug)}
-                                                                    className="w-full flex justify-left px-4 py-2 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-blue-100 hover:text-gray-500 dark:hover:text-white"
+                                                                    className="block px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-blue-500 hover:text-white dark:hover:text-white"
                                                                 >
                                                                     {subMenu.categoryname}
                                                                 </InertiaLink>
@@ -136,7 +136,7 @@ const navBarSite = () => {
                                                 </div>
                                             </div>
                                         );
-                                    //}
+                                    }
                                 })}
 
                                 <a
@@ -146,7 +146,7 @@ const navBarSite = () => {
                                 </a>
                             </div>
 
-                            <div className="flex justify-center mt-4 lg:flex lg:mt-0 lg:-mx-2">
+                            <div className="flex justify-center mt-4 lg:flex lg:mt-0">
                                 <div className="relative">
                                     <button
                                         title="Acesso administrativo"

@@ -36,43 +36,32 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
         <Fragment>
 
             <Layout>
-                <div className="flex bg-gray-100 py-10 px-40">
-                    <div className="auto">
-                        <h1 className="text-5xl text-yellow-900 text-shadow">Grupo Solar</h1>
-                    </div>
-
-                    <div className="flex-1 pt-2 pl-10">
-                        <p className="text-4xl text-gray-700 text-shadow text-left">Você está acessando o portal da transparência do Grupo Solar</p>
-                    </div>
-                    <div className="auto text-right">
-                        {/* <a
-                            href="https://www.facebook.com/arsartesacra/"
-                            className="text-5xl text-yellow-900 hover:text-yellow-800 text-shadow"
-                        >
-                            <FiFacebook />
-                        </a> */}
-                    </div>
+                <div className="bg-white py-10">
+                    <p className="text-xl text-gray-900 text-shadow text-center">Você está acessando o portal da transparência do Grupo Solar</p>
                 </div>
-                <div>
-
-                </div>
-                {section1[0] &&
-                    <section className="bg-gradient-to-r from-yellow-900 to-yellow-700 border-b border-white" style={{ backgroundImage: "url('/storage/images/hero_ars.jpg')" }}>
+                {section1 &&
+                    <section className="h-auto border-b border-white" style={{
+                        backgroundImage: `url('/storage/post/${section1[0].posts[0].featured}')`,
+                        backgroundPosition: 'right',
+                        backgroundColor: '#1E40AF',
+                        backgroundSize: '60%',
+                        backgroundRepeat: 'no-repeat'
+                    }}>
                         {section1.map((section, index) => (
                             <div key={index}>
-                                <div className="container px-6 py-16 mx-auto">
+                                <div className="container mx-auto">
                                     <div className="items-center lg:flex">
-                                        <div className="w-full lg:w-1/2">
+                                        <div className="h-96 flex items-center justify-left w-full rounded-r-full bg-gradient-to-r from-blue-800 to-blue-700 lg:w-7/12">
                                             <div className="lg:max-w-lg">
-                                                <h1 className="text-2xl font-semibold text-gray-200 uppercase dark:text-white lg:text-3xl">{section.title}</h1>
-                                                <p className="mt-2 text-gray-500 dark:text-gray-400">{section.summary}</p>
+                                                <h1 className="text-2xl font-semibold text-gray-200 uppercase dark:text-white lg:text-3xl">{section.categorytitle}</h1>
+                                                <p className="mt-2 text-gray-500 dark:text-gray-400">{section.descricao}</p>
                                                 <button className="w-full px-3 py-2 mt-6 text-xs font-medium text-white uppercase transition-colors duration-200 transform bg-yellow-800 rounded-md lg:w-auto hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
                                                     + Ver mais
                                                 </button>
                                             </div>
                                         </div>
-                                        <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-                                            <img className="w-full h-full lg:max-w-2xl shadow-lg border-2 border-white" src={"/storage/post/" + section.featured} alt="" />
+                                        <div className="h-96 flex items-center justify-rigth w-full mt-6 lg:mt-0 lg:w-5/12">
+                                            {/* <img className="w-full h-80 rounded-l-full" src={"/storage/post/" + category.posts[0].featured} alt="" /> */}
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +70,7 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
                     </section>
                 }
                 {section2[0] &&
-                    <div className="px-4 md:px-8 lg:px-80 py-20 pt-2 bg-gray-100">
+                    <div className="h-80 px-4 md:px-8 lg:px-80 py-20 pt-2 pb-20 bg-white">
                         <div className="py-8">
                             <h1 className="text-3xl text-center text-shadow text-red-900">{section2[0].categorytitle}</h1>
                             <p className="text-xl text-center py-4">{section2[0].descricao}</p>
@@ -96,7 +85,7 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
                                         <div className="flex justify-center pt-4">
                                             <h1 className="text-6xl ">{iconSevices(index)}</h1>
                                         </div>
-                                        <h1 className="mt-2 text-2xl uppercase text-center">{section.title}</h1>
+                                        <h1 className="mt-2 text-2xl uppercase text-center">{section.title}dfdsfdf</h1>
                                         <div className="flex justify-end py-3 px-4">
                                             <a className="text-sm text-gray-600 hover:text-gray-500" href="#">+ Veja Mais</a>
                                         </div>
@@ -109,34 +98,9 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
                     </div>
                 }
 
-                {section3[0] &&
-                    <div className="p-4 md:px-8 lg:px-80 py-20 pt-2 bg-gray-100">
-                        <div className="py-8" style={{ fontFamily: "'Comfortaa', cursive" }}>
-                            <h1 className="text-3xl text-red-900 text-center text-shadow">{section3[0].categorytitle}</h1>
-                            <p className="text-xl text-center py-4">{section3[0].descricao}</p>
-                        </div>
-                        <section className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
-                            {section3.map((section, index) => (
-                                <div key={index}>
-                                    <div className="p-2 border border-white shadow hover:shadow-lg" style={{ backgroundImage: "url(/storage/post/" + section.featured + ")", backgroundSize: "100%" }}>
-                                        <div className="p-4 cursor-pointer bg-white rounded border border-white bg-white bg-opacity-80 hover:bg-opacity-70">
-                                            <div className="text-center text-gray-700">
-                                                <div className="flex justify-center">
-                                                    <h1 className="text-8xl text-gray-800">{iconClientes(index)}</h1>
-                                                </div>
-                                                <h1 className="text-xl uppercase text-center pt-4">{section.title}</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                            }
-                        </section>
-                    </div>
-                }
 
                 {section4[0] &&
-                    <div className="bg-yellow-700 bg-opacity-20 px-4 md:px-8 lg:px-80 py-20 pt-2"
+                    <div className="bg-gray-200 bg-opacity-20 px-4 md:px-8 lg:px-80 py-20 pt-2"
                         style={{ backgroundImage: "url('/storage/images/bottom_ars3.jpg')", backgroundSize: "100%" }}
                     >
                         <div className="py-8" style={{ fontFamily: "'Comfortaa', cursive" }}>

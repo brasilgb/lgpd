@@ -63,7 +63,7 @@ class CategoryController extends Controller
         ]);
 
         $data['id_category'] = Category::idcategory();
-        $data['parent'] = $request->parentcategory?$request->parentcategory:0;
+        $data['parent'] = $request->parentcategory ? $request->parentcategory : 0;
         $data['slug'] = Str::slug($request->categoryname);
         Category::create($data);
         Session::flash('success', 'Categoria criada com sucesso!');

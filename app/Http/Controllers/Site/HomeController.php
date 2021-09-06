@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -16,12 +17,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $section1 = DB::table('posts')
-            ->orderByDesc('title')
-            ->join('categories', 'posts.category_id', '=', 'categories.id_category')
-            ->select('posts.*', 'categories.*')
-            ->where('seccao', 1)
-            ->get();
+        $section1 = Category::with('posts')->where('seccao', 1)->get();
 
         $section2 = DB::table('posts')
             ->orderBy('title')

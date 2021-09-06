@@ -21,7 +21,7 @@ class CreateCategoriesTable extends Migration
             $table->text('descricao')->nullable();
             $table->integer('seccao')->nullable();
             $table->integer('active');
-            $table->integer('parent');
+            $table->integer('parent')->nullable();
             $table->timestamps();
         });
     }
