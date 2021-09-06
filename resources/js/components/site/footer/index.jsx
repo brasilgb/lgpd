@@ -16,7 +16,6 @@ const FooterSite = () => {
     return (
         <Fragment>
 
-
             <div className="container px-6 py-4 mx-auto">
 
                 <nav>
@@ -25,7 +24,11 @@ const FooterSite = () => {
                             <div className="flex-1 md:flex md:items-center md:justify-between">
                                 <div className="flex items-center justify-between">
                                     <div className="">
-                                        <a className="" href="#"><img className="h-20 p-2 rounded-full bg-blue-600" src={'/storage/images/' + logo} alt={settings.title} /></a>
+                                        <InertiaLink
+                                            className=""
+                                            href="/">
+                                            <img className="h-20 p-2 rounded-full bg-blue-600" src={'/storage/images/' + logo} alt={settings.title} />
+                                        </InertiaLink>
                                     </div>
 
                                     {/* <!-- Mobile menu button --> */}
@@ -61,7 +64,7 @@ const FooterSite = () => {
                                                     {menuItem.parent == 0 &&
                                                         <InertiaLink
                                                             onClick={(e) => menuItem.sub_categories.length == 0 ? openLink(e, menuItem.slug) : '#'}
-                                                            className={`px-4 py-2 capitalize 
+                                                            className={`px-4 py-2 capitalize
                                                             ${menuItem.sub_categories.length == 0 ? 'underline hover:no-underline' : 'cursor-text'}`}
                                                         >
                                                             {menuItem.categoryname}
@@ -97,11 +100,9 @@ const FooterSite = () => {
                 </nav>
             </div>
             <footer className="bg-gray-100">
-               
                 <div>
                     <p className="text-center text-gray-800 py-4">© Grupo Solar. Todos os direitos reservados.</p>
                 </div>
-
             </footer>
 
         </Fragment>

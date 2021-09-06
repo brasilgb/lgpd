@@ -6,7 +6,8 @@ import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import Layout from '../../../components/admin/layout';
 
 const Edit = ({ category, parentcategory, categoryTitle, success }) => {
-    const { errors } = usePage().props
+
+    const { settings, errors } = usePage().props
 
     const [seccaoOpen, setSeccaoOpen] = useState(false);
 
@@ -40,7 +41,7 @@ const Edit = ({ category, parentcategory, categoryTitle, success }) => {
     return (
         <Fragment>
             <Layout>
-                <Head category={"Site " + categoryTitle} />
+                <Head title={settings.title + " - " + categoryTitle} />
                 <div className="rounded py-2 px-4 text-gray-900 bg-gray-100 shadow">
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">

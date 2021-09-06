@@ -23,7 +23,7 @@ class PageController extends Controller
     {
         $pages = Page::orderByDesc('id_post')->where('type', 0)->paginate(15);
         $reload = false;
-        return Inertia::render('admin/pages', ['pages' => $pages, 'reload' => $reload, 'pageTitle' => 'páginas cadastradas']);
+        return Inertia::render('admin/pages', ['pages' => $pages, 'reload' => $reload, 'pageTitle' => 'Páginas cadastradas']);
     }
 
     public function search(Request $request)
@@ -31,7 +31,7 @@ class PageController extends Controller
         $term = $request->search;
         $reload = true;
         $pages = Page::where('title', 'like', "%$term%")->paginate(15);
-        return Inertia::render('admin/pages', ['pages' => $pages, 'reload' => $reload, 'pageTitle' => 'páginas buscadas']);
+        return Inertia::render('admin/pages', ['pages' => $pages, 'reload' => $reload, 'pageTitle' => 'Páginas buscadas']);
     }
     /**
      * Show the form for creating a new resource.

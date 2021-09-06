@@ -66,7 +66,11 @@ const navBarSite = () => {
                     <div className="py-2 md:flex md:items-center md:justify-between h-22">
                         <div className="flex items-center justify-between">
                             <div className="">
-                                <a className="" href="#"><img className="h-16 rounded-full" src={'/storage/images/' + logo} alt={settings.title} /></a>
+                                <a
+                                    className=""
+                                    href="/">
+                                    <img className="h-16 rounded-full" src={'/storage/images/' + logo} alt={settings.title} />
+                                </a>
                             </div>
 
                             {/* <!-- Mobile menu button --> */}
@@ -81,15 +85,6 @@ const navBarSite = () => {
                         <div className="flex-1 md:flex md:items-center md:justify-between">
 
                             <div className="container flex items-center justify-center p-4 mx-auto text-gray-100">
-                                <InertiaLink
-                                    href={'/'}
-                                    className={`${route().current('home') ?
-                                        'text-white border-b-2 border-white' :
-                                        'border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6'}
-                                    `}
-                                >
-                                    home
-                                </InertiaLink>
 
                                 {pages.map((page, index) => (
                                     (page.active == 1 &&
@@ -107,10 +102,10 @@ const navBarSite = () => {
                                         return (
                                             <div key={i}>
                                                 <div className="relative z-10 block" aria-label="toggle profile dropdown">
-                                                
+
                                                     {menuItem.parent == 0 &&
                                                         <InertiaLink
-                                                        href=""
+                                                            href=""
                                                             onClick={(e) => menuItem.sub_categories.length == 0 ? openLink(e, menuItem.slug) : toggleSubMenu(e, i)}
                                                             className="border-b-2 border-transparent hover:text-white dark:hover:text-gray-200 hover:border-white mx-1.5 sm:mx-6"
                                                         >

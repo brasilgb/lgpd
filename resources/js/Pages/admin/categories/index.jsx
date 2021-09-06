@@ -2,13 +2,15 @@ import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import React, { Fragment, useRef, useState } from 'react'
 import route from 'ziggy';
-import {HiChevronDoubleLeft, HiCheck, HiOutlineCheck, HiPencilAlt, HiPlus, HiSearch, HiTrash, HiX, HiDocumentDuplicate } from 'react-icons/hi'
+import {HiChevronDoubleLeft, HiCheck, HiOutlineCheck, HiPencilAlt, HiPlus, HiSearch, HiTrash, HiX, HiDocumentDuplicate, HiLightBulb } from 'react-icons/hi'
 import { compareAsc, format } from 'date-fns'
 import Layout from '../../../components/admin/layout'
 import ModalCategory from '../../../components/admin/modal/category'
 import Pagination from '../../../components/admin/pagination';
 
-const CategoriesAdmin = ({categories, title, success, reload }) => {
+const CategoriesAdmin = ({categories, categoryTitle, success, reload }) => {
+
+    const { settings } = usePage().props;
 
     const searchRef = useRef();
 
@@ -63,7 +65,7 @@ const CategoriesAdmin = ({categories, title, success, reload }) => {
     return (
         <Fragment>
             <Layout>
-                <Head title={"Site " + title} />
+                <Head title={settings.title + " - " + categoryTitle} />
                 <div className="rounded py-2 px-4 text-gray-900 bg-gray-100 shadow">
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">

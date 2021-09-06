@@ -29,7 +29,7 @@ class PostController extends Controller
             ->select('posts.*', 'categories.categoryname')
             ->paginate(15);
         $reload = false;
-        return Inertia::render('admin/posts', ['posts' => $posts, 'reload' => $reload, 'postTitle' => 'postagens cadastradas']);
+        return Inertia::render('admin/posts', ['posts' => $posts, 'reload' => $reload, 'postTitle' => 'Postagens cadastradas']);
     }
 
     public function search(Request $request)
@@ -37,7 +37,7 @@ class PostController extends Controller
         $term = $request->search;
         $reload = true;
         $posts = Post::where('title', 'like', "%$term%")->paginate(15);
-        return Inertia::render('admin/posts', ['posts' => $posts, 'reload' => $reload, 'postTitle' => 'postagens buscadas']);
+        return Inertia::render('admin/posts', ['posts' => $posts, 'reload' => $reload, 'postTitle' => 'Postagens buscadas']);
     }
     /**
      * Show the form for creating a new resource.
@@ -47,7 +47,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::orderByDesc('categoryname')->get();
-        return inertia::render('admin/posts/Create', ['categories' => $categories, 'postTitle' => 'Cadastrar página']);
+        return inertia::render('admin/posts/Create', ['categories' => $categories, 'postTitle' => 'Cadastrar postagem']);
     }
 
     /**
@@ -119,7 +119,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $categories = Category::orderByDesc('categoryname')->get();
-        return Inertia::render('admin/posts/Edit', ['categories' => $categories, 'post' => $post, 'postTitle' => 'Editar página']);
+        return Inertia::render('admin/posts/Edit', ['categories' => $categories, 'post' => $post, 'postTitle' => 'Editar postagem']);
     }
 
     /**

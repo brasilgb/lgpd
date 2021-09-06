@@ -19,26 +19,11 @@ class HomeController extends Controller
     {
         $section1 = Category::with('posts')->where('seccao', 1)->get();
 
-        $section2 = DB::table('posts')
-            ->orderBy('title')
-            ->join('categories', 'posts.category_id', '=', 'categories.id_category')
-            ->select('posts.*', 'categories.*')
-            ->where('seccao', 2)
-            ->get();
+        $section2 = Category::with('posts')->where('seccao', 2)->get();
 
-        $section3 = DB::table('posts')
-            ->orderBy('title')
-            ->join('categories', 'posts.category_id', '=', 'categories.id_category')
-            ->select('posts.*', 'categories.*')
-            ->where('seccao', 3)
-            ->get();
+        $section3 = Category::with('posts')->where('seccao', 3)->get();
 
-        $section4 = DB::table('posts')
-            ->orderByDesc('title')
-            ->join('categories', 'posts.category_id', '=', 'categories.id_category')
-            ->select('posts.*', 'categories.*')
-            ->where('seccao', 4)
-            ->get();
+        $section4 = Category::with('posts')->where('seccao', 4)->get();
 
         return Inertia::render('site/home', [
             'section1' => $section1,

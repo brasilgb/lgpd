@@ -22,7 +22,7 @@ class CategoryController extends Controller
     {
         $categories = Category::orderByDesc('id_category')->paginate(10);
         $reload = false;
-        return Inertia::render('admin/categories', ['categories' => $categories, 'reload' => $reload, 'categoryTitle' => 'categorias cadastradas']);
+        return Inertia::render('admin/categories', ['categories' => $categories, 'reload' => $reload, 'categoryTitle' => 'Categorias cadastradas']);
     }
 
     public function search(Request $request)
@@ -30,7 +30,7 @@ class CategoryController extends Controller
         $term = $request->search;
         $reload = true;
         $categories = Category::where('categoryname', 'like', "%$term%")->paginate(200);
-        return Inertia::render('admin/categories', ['categories' => $categories, 'reload' => $reload, 'categoryTitle' => 'categorias buscadas']);
+        return Inertia::render('admin/categories', ['categories' => $categories, 'reload' => $reload, 'categoryTitle' => 'Categorias buscadas']);
     }
     /**
      * Show the form for creating a new resource.
@@ -63,7 +63,7 @@ class CategoryController extends Controller
         ]);
 
         $data['id_category'] = Category::idcategory();
-        $data['parent'] = $request->parentcategory ? $request->parentcategory : 0;
+        $data['parent'] = $request->parentcategory == null ? 0 : $request->parentcategory;
         $data['slug'] = Str::slug($request->categoryname);
         Category::create($data);
         Session::flash('success', 'Categoria criada com sucesso!');
@@ -102,6 +102,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        // dd($request->parentcategory);
         $data = $request->all();
         $messages = [
             'required' => 'O campo :attribute deve ser preenchido!'
@@ -113,7 +114,7 @@ class CategoryController extends Controller
             'categoryname' => 'categoria',
         ]);
         $data['slug'] = Str::slug($request->categoryname);
-        $data['parent'] = $request->parentcategory;
+        $data['parent'] = $request->parentcategory == null ? 0 : $request->parentcategory;
         $category->update($data);
         Session::flash('success', 'Categoria editada com sucesso!');
         return Redirect::route('categoria.show', ['category' => $category->id_category]);
