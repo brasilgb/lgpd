@@ -8,6 +8,7 @@ import useDocumentScrollThrottled from '../../../hooks';
 import "../../../../../public/css/styles.css";
 
 const navBarSite = () => {
+
     const { settings, categories, pages } = usePage().props;
 
     const logo = settings.logo ? settings.logo : 'default.jpg';
@@ -16,6 +17,7 @@ const navBarSite = () => {
         e.preventDefault();
         Inertia.get(route('admin'));
     };
+    
     const openLink = (e, slug) => {
         e.preventDefault();
         Inertia.get(route('categoria', slug));
