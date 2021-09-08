@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react'
-import { HiOutlineColorSwatch, HiOutlineLibrary, HiOutlineLightBulb, HiOutlinePuzzle, HiOutlineUsers } from 'react-icons/hi';
+import { HiIdentification, HiOutlineColorSwatch, HiOutlineLibrary, HiOutlineLightBulb, HiOutlinePuzzle, HiOutlineUsers } from 'react-icons/hi';
 import { BiChurch } from "react-icons/bi";
 import Layout from '../../../components/site/layout';
 import SubBarSite from '../../../components/site/subbar'
+import {GoArrowSmallRight} from 'react-icons/go'
+import route from 'ziggy';
 const HomeSite = ({ section1, section2, section3, section4 }) => {
 
 
@@ -32,14 +34,14 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
         <Fragment>
 
             <Layout>
-            <SubBarSite pageName={'Página inicial'}/>
+                <SubBarSite pageName={'Página inicial'} />
                 {section1 &&
                     <div>
                         {
                             section1.map((section, index) => (
                                 <div key={index}>
                                     <section className="h-auto border-b border-white" style={{
-                                        backgroundImage: `url('/storage/post/${section.posts.featured}')`,
+                                        backgroundImage: `url('/storage/post/${section.posts[0].featured}')`,
                                         backgroundPosition: 'right',
                                         backgroundColor: '#1E40AF',
                                         backgroundSize: '60%',
@@ -50,11 +52,11 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
                                             <div className="items-center lg:flex">
                                                 <div className="h-96 flex items-center justify-left w-full rounded-r-full bg-gradient-to-r from-blue-800 to-blue-700 lg:w-7/12">
                                                     <div className="lg:max-w-lg">
-                                                        <h1 className="text-2xl font-semibold text-gray-200 uppercase dark:text-white lg:text-3xl">{section.categorytitle}</h1>
-                                                        <p className="mt-2 text-gray-500 dark:text-gray-400">{section.descricao}</p>
-                                                        <button className="w-full px-3 py-2 mt-6 text-xs font-medium text-white uppercase transition-colors duration-200 transform bg-yellow-800 rounded-md lg:w-auto hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
+                                                        <h1 className="text-2xl text-xl font-semibold text-gray-200 uppercase dark:text-white lg:text-3xl">{section.categorytitle}</h1>
+                                                        <p className="mt-2 text-gray-100 dark:text-gray-400">{section.descricao}</p>
+                                                        {/* <button className="w-full px-3 py-2 mt-6 text-xs font-medium text-white uppercase transition-colors duration-200 transform bg-yellow-800 rounded-md lg:w-auto hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">
                                                             + Ver mais
-                                                        </button>
+                                                        </button> */}
                                                     </div>
                                                 </div>
                                                 <div className="h-96 flex items-center justify-rigth w-full mt-6 lg:mt-0 lg:w-5/12">
@@ -70,27 +72,34 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
                 }
 
                 {section2 &&
-                    <div className="bg-gray-200 bg-opacity-20 px-4 md:px-8 lg:px-80 py-20 pt-2">
+                    <div className="bg-gray-200 px-4 md:px-8 lg:px-80 py-20 pt-2">
                         {section2.map((sec2, index2) => (
                             <div key={index2}>
-                                <div className="py-8" style={{ fontFamily: "'Comfortaa', cursive" }}>
-                                    <h1 className="text-3xl text-center text-gray-100 text-shadow">{sec2.categorytitle}</h1>
-                                    <p className="text-xl text-center py-4 text-gray-200">{sec2.descricao}</p>
+                                <div className="py-8">
+                                    <h1 className="text-3xl text-center text-gray-800 text-shadow">{sec2.categorytitle}</h1>
+                                    <p className="text-xl text-center py-4 text-gray-700">{sec2.descricao}</p>
                                 </div>
-                                {sec2.posts.map((post2, pIndex2) => (
-                                    <div key={pIndex2} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                                        <div className="h-full flex flex-col p-0 shadow bg-white transition duration-600 ease-in-out hover:shadow-lg hover:bg-white" style={{ fontFamily: "'Comfortaa', cursive" }}>
-                                            <div className="pb-1 pr-0 bg-gradient-to-r from-yellow-800 to-yellow-600">
-                                                <img className="" src={"/storage/post/" + post2.length > 0 ? post2[0].featured : ''} alt="" />
-                                            </div>
-                                            <h1 className="mt-2 text-2xl uppercase text-center">{post2.title}</h1>
-                                            <p className="text-center text-gray-500 text-sm">{post2.summary}</p>
-                                            <div className="relative py-6 flex-grow">
-                                                <a className="absolute bottom-3 right-4 text-sm text-gray-600 hover:text-gray-500" href="#">+ Veja Mais</a>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                                    {sec2.sub_categories.map((post2, pIndex2) => (
+                                        <div key={pIndex2}>
+
+                                            <div className="p-0 shadow bg-white transition duration-600 ease-in-out hover:shadow-lg hover:bg-white">
+                                                <div className="flex justify-start">
+                                                    <div className="p-4">
+                                                        <HiIdentification className="text-8xl text-blue-400" />
+                                                    </div>
+                                                    <div className="p-4">
+                                                        <h1 className="mt-2 text-2xl uppercase text-blue-600">{post2.categorytitle}</h1>
+                                                        <p className="text-gray-500 text-md">{post2.descricao}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="relative py-6 flex-grow">
+                                                    <a className="absolute flex items-center bottom-3 right-4 text-sm font-semibold text-yellow-600 hover:text-yellow-500" href={route('categoria', post2.slug)}><span>Saiba mais</span><GoArrowSmallRight className="pt-1 text-4xl"/></a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
                         ))
                         }
@@ -98,27 +107,32 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
                 }
 
                 {section3 &&
-                    <div className="bg-gray-200 bg-opacity-20 px-4 md:px-8 lg:px-80 py-20 pt-2">
+                    <div className="bg-gray-100 px-4 md:px-8 lg:px-80 py-20 pt-2">
                         {section3.map((sec3, index3) => (
                             <div key={index3}>
-                                <div className="py-8" style={{ fontFamily: "'Comfortaa', cursive" }}>
-                                    <h1 className="text-3xl text-center text-gray-100 text-shadow">{sec3.categorytitle}</h1>
-                                    <p className="text-xl text-center py-4 text-gray-200">{sec3.descricao}</p>
+                                <div className="py-8">
+                                    <h1 className="text-3xl text-center text-gray-800 text-shadow">{sec3.categorytitle}</h1>
+                                    <p className="text-xl text-center py-4 text-gray-700">{sec3.descricao}</p>
                                 </div>
-                                {sec3.posts.map((post3, pIndex3) => (
-                                    <div key={pIndex3} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                                        <div className="h-full flex flex-col p-0 shadow bg-white transition duration-600 ease-in-out hover:shadow-lg hover:bg-white" style={{ fontFamily: "'Comfortaa', cursive" }}>
-                                            <div className="pb-1 pr-0 bg-gradient-to-r from-yellow-800 to-yellow-600">
-                                                <img className="" src={"/storage/post/" + post3.length > 0 ? post3[0].featured: ''} alt="" />
-                                            </div>
-                                            <h1 className="mt-2 text-2xl uppercase text-center">{post3.title}</h1>
-                                            <p className="text-center text-gray-500 text-sm">{post3.summary}</p>
-                                            <div className="relative py-6 flex-grow">
-                                                <a className="absolute bottom-3 right-4 text-sm text-gray-600 hover:text-gray-500" href="#">+ Veja Mais</a>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                                    {sec3.posts.map((post3, pIndex3) => (
+                                        <div key={pIndex3}>
+                                            <div className="p-0 h-full flex flex-col items-stretch shadow bg-white transition duration-600 ease-in-out hover:shadow-lg hover:bg-white">
+
+                                                <div className="pt-4 flex justify-center">
+                                                    <HiIdentification className="text-8xl text-blue-400" />
+                                                </div>
+                                                <div className=" ">
+                                                    <h1 className="p-4 mt-2 text-center text-2xl uppercase text-blue-600">{post3.title}</h1>
+                                                    <p className="p-4 text-gray-500 text-center text-md">{post3.summary}</p>
+                                                </div>
+                                                <div className="py-4 mb-0 flex flex-auto justify-end pr-4">
+                                                    <a className="p-2 bg-yellow-600 hover:bg-yellow-700 shadow rounded-md self-end text-sm text-gray-100 hover:text-gray-200" href={route('postagem', post3.slug)}>+ Saiba mais</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
                         ))
                         }

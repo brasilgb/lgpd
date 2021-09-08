@@ -113,6 +113,7 @@ const CategoriesAdmin = ({categories, categoryTitle, success, reload }) => {
                                 <tr className="border-b bg-white">
                                     <th className="text-left p-2">ID</th>
                                     <th className="text-left p-2">Categoria</th>
+                                    <th className="text-left p-2">Secção</th>
                                     <th className="text-left p-2">Data Criação</th>
                                     <th className="text-left p-2">Ativar</th>
                                     <th className="w-20 text-left p-2">Ações</th>
@@ -123,6 +124,7 @@ const CategoriesAdmin = ({categories, categoryTitle, success, reload }) => {
                                     <tr key={index} className={(index%2) == 0 ? "border-b bg-gray-100 hover:bg-blue-100": "border-b bg-gray-200 hover:bg-blue-100"}>
                                         <td className="p-2">{category.id_category}</td>
                                         <td className="p-2">{category.categoryname}</td>
+                                        <td className="p-2">{category.seccao}</td>
                                         <td className="p-2">{dataFormatada(category.created_at)}</td>
                                         <td className="p-2">{category.active == 1 ? <HiOutlineCheck className="text-2xl text-green-600" /> : <HiX className="text-2xl text-red-600" />}</td>
                                         <td className="p-2 flex justify-end">

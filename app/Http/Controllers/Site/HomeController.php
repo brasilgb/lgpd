@@ -17,9 +17,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $section1 = Category::with('posts')->where('seccao', 1)->get();
+        $section1 = Category::with('posts')->orderByDesc('id_category')->where('seccao', 1)->limit(1)->get();
 
-        $section2 = Category::with('posts')->where('seccao', 2)->get();
+        $section2 = Category::with('subCategories')->where('seccao', 2)->get();
 
         $section3 = Category::with('posts')->where('seccao', 3)->get();
 

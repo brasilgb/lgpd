@@ -10,7 +10,7 @@ use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
-    public function index($category) 
+    public function index($category)
     {
 
         $categories_posts = Category::with('posts')->where('slug', $category)->get();
