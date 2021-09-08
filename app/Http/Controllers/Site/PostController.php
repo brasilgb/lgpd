@@ -12,8 +12,8 @@ class PostController extends Controller
 {
     public function index($post) 
     {
-        $posts = Post::orderByDesc('id_post')->where('slug', $post)->get();
-dd($posts);
-        return Inertia::render(['posts' => $posts]);
+        $post_content = Post::where('slug', $post)->first();
+        
+        return Inertia::render('site/posts', ['post_content' => $post_content]);
     }
 }

@@ -1,5 +1,5 @@
 import React, { Fragment, useRef, useState } from 'react';
-import { HiDocumentDuplicate, HiCheck, HiChevronDoubleLeft, HiSave, HiExclamation, HiChevronUp, HiChevronDown } from 'react-icons/hi';
+import { HiDocumentDuplicate, HiCheck, HiChevronDoubleLeft, HiSave, HiExclamation, HiChevronUp, HiChevronDown, HiViewGrid } from 'react-icons/hi';
 import route from 'ziggy';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
@@ -38,7 +38,7 @@ const Create = ({ parentcategory, success, categoryTitle, error }) => {
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
                         <h1 className="text-2xl text-gray-600 flex items-center">
-                            <HiDocumentDuplicate /> Categorias
+                            <HiViewGrid /> Categorias
                         </h1>
                     </div>
 
@@ -97,7 +97,7 @@ const Create = ({ parentcategory, success, categoryTitle, error }) => {
                                     className="form-checkbox text-gray-500 mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     id="active"
                                 />
-                                <label htmlFor=""><span className="text-gray-500 pl-2">Tornar categoria disponível em menus</span></label>
+                                <label htmlFor=""><span className="text-gray-500 pl-2">Tornar categoria disponível em menus (categoria pai)</span></label>
                             </div>
                         </div>
 
@@ -105,7 +105,7 @@ const Create = ({ parentcategory, success, categoryTitle, error }) => {
                         <div
                             onClick={() => setSeccaoOpen(!seccaoOpen)}
                             className="mt-4 p-2 cursor-pointer rounded-t bg-gray-200 border border-gray-300 flex justify-left">
-                            <span>Adicione esta categoria como secção na página inicial </span> {seccaoOpen ? <HiChevronDown className="text-2xl" /> : <HiChevronUp className="text-2xl" />}
+                            <span>Adicione esta categoria como secção na página inicial ou cabeçalho da categoria</span> {seccaoOpen ? <HiChevronDown className="text-2xl" /> : <HiChevronUp className="text-2xl" />}
                         </div>
                         <div className={"py-4 px-2 border border-gray-300 border-t-0 bg-gray-200 " +
                             (seccaoOpen ? 'block' : 'hidden')
@@ -128,7 +128,7 @@ const Create = ({ parentcategory, success, categoryTitle, error }) => {
                             </div>
 
                             <div className="w-8/12 pt-2">
-                                <label><span className="text-gray-500">Título para a secção</span></label>
+                                <label><span className="text-gray-500">Título para a secção ou cabeçalho da categoria</span></label>
                                 <input
                                     ref={categorytitleRef}
                                     type="text"
@@ -140,7 +140,7 @@ const Create = ({ parentcategory, success, categoryTitle, error }) => {
                             </div>
 
                             <div className="w-8/12 pt-2">
-                                <label><span className="text-gray-500">Descrição para a secção</span></label>
+                                <label><span className="text-gray-500">Descrição para a secção ou cabeçalho da categoria</span></label>
                                 <textarea
                                     ref={descricaoRef}
                                     type="text"

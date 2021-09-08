@@ -60,7 +60,7 @@ const postAdmin = ({ posts, success, reload, postTitle }) => {
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
                         <h1 className="text-2xl text-gray-600 flex items-center">
-                            <HiDocumentDuplicate /> Postagens
+                            <HiPencilAlt /> Postagens
                         </h1>
                     </div>
 
@@ -104,7 +104,6 @@ const postAdmin = ({ posts, success, reload, postTitle }) => {
                                     <th className="text-left p-2">Título</th>
                                     <th className="text-left p-2">Categoria</th>
                                     <th className="text-left p-2">Data Criação</th>
-                                    <th className="text-left p-2">Social</th>
                                     <th className="text-left p-2">Ativar</th>
                                     <th className="w-20 text-left p-2">Ações</th>
                                 </tr>
@@ -114,9 +113,8 @@ const postAdmin = ({ posts, success, reload, postTitle }) => {
                                     <tr key={index} className="border-b hover:bg-orange-100 bg-gray-100">
                                         <td className="p-2">{post.id_post}</td>
                                         <td className="p-2">{post.title}</td>
-                                        <td className="p-2">{post.categoryname}</td>
+                                        <td className="p-2">{post.category.categoryname}</td>
                                         <td className="p-2">{dataFormatada(post.created_at)}</td>
-                                        <td className="p-2">{post.social == 1 ? <HiOutlineCheck className="text-2xl text-green-600" /> : <HiX className="text-2xl text-red-600" />}</td>
                                         <td className="p-2">{post.active == 1 ? <HiOutlineCheck className="text-2xl text-green-600" /> : <HiX className="text-2xl text-red-600" />}</td>
                                         <td className="p-2 flex justify-end">
                                             <InertiaLink

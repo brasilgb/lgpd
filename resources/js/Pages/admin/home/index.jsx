@@ -4,7 +4,9 @@ const HomeAdmin = (props) => {
     return (
         <Layout>
             <Fragment>
-                <h1>Isto é o home!!{props.title}</h1>
+                <div className="p-4 bg-gray-100 border border-white rounded-lg shadow-md">
+                    <h1 className="text-center text-2xl text-gray-600">Portal LGPD Grupo Solar</h1>
+                </div>
             </Fragment>
         </Layout>
 

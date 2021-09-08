@@ -10,9 +10,9 @@
     transition: transform 0.3s ease;
   }
 
-  .header.shadow {
+  /* .header.shadow {
     box-shadow: 0 9px 9px -9px rgba(0, 0, 0, 0.13);
-  }
+  } */
 
   .header.hidden {
     transform: translateY(-110%);

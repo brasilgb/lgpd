@@ -2,7 +2,7 @@ import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import React, { Fragment, useRef, useState } from 'react'
 import route from 'ziggy';
-import {HiChevronDoubleLeft, HiCheck, HiOutlineCheck, HiPencilAlt, HiPlus, HiSearch, HiTrash, HiX, HiDocumentDuplicate, HiLightBulb } from 'react-icons/hi'
+import {HiChevronDoubleLeft, HiCheck, HiOutlineCheck, HiPencilAlt, HiPlus, HiSearch, HiTrash, HiX, HiDocumentDuplicate, HiLightBulb, HiViewGrid } from 'react-icons/hi'
 import { compareAsc, format } from 'date-fns'
 import Layout from '../../../components/admin/layout'
 import ModalCategory from '../../../components/admin/modal/category'
@@ -70,7 +70,7 @@ const CategoriesAdmin = ({categories, categoryTitle, success, reload }) => {
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
                         <h1 className="text-2xl text-gray-600 flex items-center">
-                            <HiDocumentDuplicate /> Categorias
+                            <HiViewGrid /> Categorias
                         </h1>
                     </div>
 

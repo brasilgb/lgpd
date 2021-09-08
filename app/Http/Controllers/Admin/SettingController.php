@@ -104,7 +104,7 @@ class SettingController extends Controller
 
         if ($request->hasfile('logo')) {
             $image = $request->file('logo');
-            $fileName =  'logo' . $image->getClientOriginalExtension();
+            $fileName =  'logo.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(200, null,function ($constraint) {
                 $constraint->aspectRatio();
             })->save(public_path('storage/images/' . $fileName));

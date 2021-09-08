@@ -1,5 +1,5 @@
 import React, { Fragment, useRef, useState } from 'react';
-import { HiDocumentDuplicate, HiCheck, HiChevronDoubleLeft, HiSave, HiExclamation } from 'react-icons/hi';
+import { HiDocumentDuplicate, HiCheck, HiChevronDoubleLeft, HiSave, HiExclamation, HiPencilAlt } from 'react-icons/hi';
 import route from 'ziggy';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
@@ -14,7 +14,6 @@ const Create = ({ categories, success, postTitle, error }) => {
     const contentRef = useRef();
     const featuredRef = useRef();
     const categoryRef = useRef();
-    const socialRef = useRef();
     const activeRef = useRef();
     const [imageFile, setImageFile] = useState();
 
@@ -33,10 +32,9 @@ const Create = ({ categories, success, postTitle, error }) => {
         const content = contentRef.current.value;
         const category = categoryRef.current.value;
         const featured = featuredRef.current.files[0];
-        const social = socialRef.current.checked;
         const active = activeRef.current.checked;
 
-        Inertia.post(route('postagem.store'), { title, summary, content, featured, category, social, active });
+        Inertia.post(route('postagem.store'), { title, summary, content, featured, category, active });
     };
 
     return (
@@ -47,7 +45,7 @@ const Create = ({ categories, success, postTitle, error }) => {
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
                         <h1 className="text-2xl text-gray-600 flex items-center">
-                            <HiDocumentDuplicate /> postagems
+                            <HiPencilAlt /> Postagems
                         </h1>
                     </div>
 
@@ -140,24 +138,12 @@ const Create = ({ categories, success, postTitle, error }) => {
                                 <div className="pt-2">
                                     <div className="flex items-center">
                                         <input
-                                            ref={socialRef}
-                                            type="checkbox"
-                                            className="form-checkbox text-gray-500 mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                            id="social"
-                                        />
-                                        <label htmlFor=""><span className="text-gray-500 pl-2">Vizualizar botões das redes sociais</span></label>
-                                    </div>
-                                </div>
-
-                                <div className="pt-2">
-                                    <div className="flex items-center">
-                                        <input
                                             ref={activeRef}
                                             type="checkbox"
                                             className="form-checkbox text-gray-500 mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                             id="active"
                                         />
-                                        <label htmlFor=""><span className="text-gray-500 pl-2">Tornar postagem disponível em menus</span></label>
+                                        <label htmlFor=""><span className="text-gray-500 pl-2">Tornar postagem disponível</span></label>
                                     </div>
                                 </div>
 

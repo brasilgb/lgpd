@@ -22,12 +22,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //$posts = Post::orderByDesc('id_post')->where('type', 1)->get();
-        $posts = DB::table('posts')
-            ->orderByDesc('id_post')
-            ->join('categories', 'posts.category_id', '=', 'categories.id_category')
-            ->select('posts.*', 'categories.categoryname')
-            ->paginate(15);
+        $posts = Post::with('category')->orderByDesc('id_post')->where('type', 1)->paginate(15);
         $reload = false;
         return Inertia::render('admin/posts', ['posts' => $posts, 'reload' => $reload, 'postTitle' => 'Postagens cadastradas']);
     }
@@ -36,7 +31,7 @@ class PostController extends Controller
     {
         $term = $request->search;
         $reload = true;
-        $posts = Post::where('title', 'like', "%$term%")->paginate(15);
+        $posts = Post::where('title', 'like', "%$term%")->where('type', 1)->paginate(200);
         return Inertia::render('admin/posts', ['posts' => $posts, 'reload' => $reload, 'postTitle' => 'Postagens buscadas']);
     }
     /**

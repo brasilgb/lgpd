@@ -26,13 +26,19 @@ Route::get('/admin', [HomeAdmin::class, 'index'])->name('admin');
 Route::post('/admin/categoria/search', [CategoryAdmin::class, 'search'])->name('categoria.search');
 Route::resource('/admin/categoria', CategoryAdmin::class)->parameters(['categoria' => 'category']);
 
+// Rotas Admin Postagens
+Route::post('/admin/postagem/search', [PostAdmin::class, 'search'])->name('postagem.search');
 Route::resource('/admin/postagem', PostAdmin::class)->parameters(['postagem' => 'post']);
 
+// Rotas Admin páginas
+Route::post('/admin/pagina/search', [PageAdmin::class, 'search'])->name('pagina.search');
 Route::resource('/admin/pagina', PageAdmin::class)->parameters(['pagina' => 'page']);
 
 Route::get('/admin/configuracao', [SettingAdmin::class, 'index'])->name('configuracao');
 Route::put('/admin/configuracao/{setting}', [SettingAdmin::class, 'update'])->name('configuracao.alterar');
 
+// Rotas Admin usuários
+Route::post('/admin/usuario/search', [UserAdmin::class, 'search'])->name('usuario.search');
 Route::resource('/admin/usuario', UserAdmin::class)->parameters(['usuario' => 'user']);
 
 });

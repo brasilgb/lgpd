@@ -30,7 +30,7 @@ class PageController extends Controller
     {
         $term = $request->search;
         $reload = true;
-        $pages = Page::where('title', 'like', "%$term%")->paginate(15);
+        $pages = Page::where('title', 'like', "%$term%")->where('type', 0)->paginate(15);
         return Inertia::render('admin/pages', ['pages' => $pages, 'reload' => $reload, 'pageTitle' => 'Páginas buscadas']);
     }
     /**

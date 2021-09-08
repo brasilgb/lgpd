@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { HiOutlineColorSwatch, HiOutlineLibrary, HiOutlineLightBulb, HiOutlinePuzzle, HiOutlineUsers } from 'react-icons/hi';
 import { BiChurch } from "react-icons/bi";
 import Layout from '../../../components/site/layout';
-
+import SubBarSite from '../../../components/site/subbar'
 const HomeSite = ({ section1, section2, section3, section4 }) => {
 
 
@@ -32,10 +32,7 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
         <Fragment>
 
             <Layout>
-
-                <div className="bg-white py-10">
-                    <p className="text-xl text-gray-900 text-shadow text-center">Você está acessando o portal da transparência do Grupo Solar</p>
-                </div>
+            <SubBarSite pageName={'Página inicial'}/>
                 {section1 &&
                     <div>
                         {
@@ -84,7 +81,7 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
                                     <div key={pIndex2} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                                         <div className="h-full flex flex-col p-0 shadow bg-white transition duration-600 ease-in-out hover:shadow-lg hover:bg-white" style={{ fontFamily: "'Comfortaa', cursive" }}>
                                             <div className="pb-1 pr-0 bg-gradient-to-r from-yellow-800 to-yellow-600">
-                                                <img className="" src={"/storage/post/" + post2.featured} alt="" />
+                                                <img className="" src={"/storage/post/" + post2.length > 0 ? post2[0].featured : ''} alt="" />
                                             </div>
                                             <h1 className="mt-2 text-2xl uppercase text-center">{post2.title}</h1>
                                             <p className="text-center text-gray-500 text-sm">{post2.summary}</p>
@@ -112,7 +109,7 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
                                     <div key={pIndex3} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                                         <div className="h-full flex flex-col p-0 shadow bg-white transition duration-600 ease-in-out hover:shadow-lg hover:bg-white" style={{ fontFamily: "'Comfortaa', cursive" }}>
                                             <div className="pb-1 pr-0 bg-gradient-to-r from-yellow-800 to-yellow-600">
-                                                <img className="" src={"/storage/post/" + post3.featured} alt="" />
+                                                <img className="" src={"/storage/post/" + post3.length > 0 ? post3[0].featured: ''} alt="" />
                                             </div>
                                             <h1 className="mt-2 text-2xl uppercase text-center">{post3.title}</h1>
                                             <p className="text-center text-gray-500 text-sm">{post3.summary}</p>
@@ -140,7 +137,7 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
                                     <div key={pIndex4} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                                         <div className="h-full flex flex-col p-0 shadow bg-white transition duration-600 ease-in-out hover:shadow-lg hover:bg-white" style={{ fontFamily: "'Comfortaa', cursive" }}>
                                             <div className="pb-1 pr-0 bg-gradient-to-r from-yellow-800 to-yellow-600">
-                                                <img className="" src={"/storage/post/" + post4[0].featured} alt="" />
+                                                <img className="" src={"/storage/post/" + post4.length > 0 ? post4[0].featured : ''} alt="" />
                                             </div>
                                             <h1 className="mt-2 text-2xl uppercase text-center">{post4.title}</h1>
                                             <p className="text-center text-gray-500 text-sm">{post4.summary}</p>

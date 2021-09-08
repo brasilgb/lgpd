@@ -104,7 +104,6 @@ const PageAdmin = ({ pages, success, reload, pageTitle }) => {
                                     <th className="text-left p-2">Título</th>
                                     <th className="text-left p-2">Resumo</th>
                                     <th className="text-left p-2">Data Criação</th>
-                                    <th className="text-left p-2">Social</th>
                                     <th className="text-left p-2">Ativar</th>
                                     <th className="w-20 text-left p-2">Ações</th>
                                 </tr>
@@ -116,7 +115,6 @@ const PageAdmin = ({ pages, success, reload, pageTitle }) => {
                                         <td className="p-2">{page.title}</td>
                                         <td className="p-2">{page.summary}</td>
                                         <td className="p-2">{dataFormatada(page.created_at)}</td>
-                                        <td className="p-2">{page.social == 1 ? <HiOutlineCheck className="text-2xl text-green-600" /> : <HiX className="text-2xl text-red-600" />}</td>
                                         <td className="p-2">{page.active == 1 ? <HiOutlineCheck className="text-2xl text-green-600" /> : <HiX className="text-2xl text-red-600" />}</td>
                                         <td className="p-2 flex justify-end">
                                             <InertiaLink

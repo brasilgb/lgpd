@@ -13,7 +13,6 @@ const Edit = ({ page, pageTitle, success }) => {
     const summaryRef = useRef();
     const contentRef = useRef();
     const featuredRef = useRef([]);
-    const socialRef = useRef();
     const activeRef = useRef();
     const [imageFile, setImageFile] = useState();
 
@@ -29,7 +28,6 @@ const Edit = ({ page, pageTitle, success }) => {
         titleRef.current.value = page.title;
         summaryRef.current.value = page.summary;
         contentRef.current.value = page.content;
-        socialRef.current.checked = page.social;
         activeRef.current.checked = page.active;
     }, [])
 
@@ -39,10 +37,9 @@ const Edit = ({ page, pageTitle, success }) => {
         const summary = summaryRef.current.value;
         const content = contentRef.current.value;
         const featured = featuredRef.current.files[0];
-        const social = socialRef.current.checked;
         const active = activeRef.current.checked;
 
-        Inertia.post(route('pagina.update', page.id_post), { _method: 'put', title, summary, content, featured, social, active });
+        Inertia.post(route('pagina.update', page.id_post), { _method: 'put', title, summary, content, featured, active });
     };
 
     return (
@@ -125,24 +122,12 @@ const Edit = ({ page, pageTitle, success }) => {
                                 <div className="pt-2">
                                     <div className="flex items-center">
                                         <input
-                                            ref={socialRef}
-                                            type="checkbox"
-                                            className="form-checkbox text-gray-500 mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                            id="social"
-                                        />
-                                        <label htmlFor=""><span className="text-gray-500 pl-2">Vizualizar botões das redes sociais</span></label>
-                                    </div>
-                                </div>
-
-                                <div className="pt-2">
-                                    <div className="flex items-center">
-                                        <input
                                             ref={activeRef}
                                             type="checkbox"
                                             className="form-checkbox text-gray-500 mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                             id="active"
                                         />
-                                        <label htmlFor=""><span className="text-gray-500 pl-2">Tornar página disponível em menus</span></label>
+                                        <label htmlFor=""><span className="text-gray-500 pl-2">Tornar página disponível</span></label>
                                     </div>
                                 </div>
 

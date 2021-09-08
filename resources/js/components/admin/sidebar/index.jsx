@@ -32,7 +32,7 @@ const SidebarAdmin = () => {
                             <HiOutlineCollection />
                             <span className="mx-4 font-medium">Dashboard</span>
                         </InertiaLink>
-
+ 
                         <InertiaLink
                             className={
                                 route().current('categoria.*') ?
