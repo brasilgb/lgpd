@@ -63,7 +63,7 @@ class PageController extends Controller
                 'title' => ['required'],
                 'summary' => ['required'],
                 'content' => ['required'],
-                'featured' => ['mimes:jpeg,jpg,png', 'max:1500']
+                'featured' => ['mimes:jpeg,jpg,png', 'max:5000']
 
             ],
             $messages,
@@ -143,7 +143,7 @@ class PageController extends Controller
                 'title' => ['required'],
                 'summary' => ['required'],
                 'content' => ['required'],
-                'featured' => ['mimes:jpeg,jpg,png', 'max:1500']
+                'featured' => ['mimes:jpeg,jpg,png', 'max:5000']
             ],
             $messages,
             [

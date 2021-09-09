@@ -3,7 +3,7 @@ import { HiIdentification, HiOutlineColorSwatch, HiOutlineLibrary, HiOutlineLigh
 import { BiChurch } from "react-icons/bi";
 import Layout from '../../../components/site/layout';
 import SubBarSite from '../../../components/site/subbar'
-import {GoArrowSmallRight} from 'react-icons/go'
+import { GoArrowSmallRight } from 'react-icons/go'
 import route from 'ziggy';
 const HomeSite = ({ section1, section2, section3, section4 }) => {
 
@@ -94,7 +94,7 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
                                                     </div>
                                                 </div>
                                                 <div className="relative py-6 flex-grow">
-                                                    <a className="absolute flex items-center bottom-3 right-4 text-sm font-semibold text-yellow-600 hover:text-yellow-500" href={route('categoria', post2.slug)}><span>Saiba mais</span><GoArrowSmallRight className="pt-1 text-4xl"/></a>
+                                                    <a className="absolute flex items-center bottom-3 right-4 text-sm font-semibold text-yellow-600 hover:text-yellow-500" href={route('categoria', post2.slug)}><span>Saiba mais</span><GoArrowSmallRight className="pt-1 text-4xl" /></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -140,27 +140,29 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
                 }
 
                 {section4 &&
-                    <div className="bg-gray-200 bg-opacity-20 px-4 md:px-8 lg:px-80 py-20 pt-2">
+                    <div className="bg-gray-200 px-4 md:px-8 lg:px-80 py-20 pt-2">
                         {section4.map((sec4, index4) => (
                             <div key={index4}>
-                                <div className="py-8" style={{ fontFamily: "'Comfortaa', cursive" }}>
-                                    <h1 className="text-3xl text-center text-gray-100 text-shadow">{sec4.categorytitle}</h1>
-                                    <p className="text-xl text-center py-4 text-gray-200">{sec4.descricao}</p>
+                                <div className="py-8">
+                                    <h1 className="text-3xl uppercase text-center text-gray-800 text-shadow">{sec4.categorytitle}</h1>
+                                    <p className="text-xl text-center py-4 text-gray-700">{sec4.descricao}</p>
                                 </div>
-                                {sec4.posts.map((post4, pIndex4) => (
-                                    <div key={pIndex4} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                                        <div className="h-full flex flex-col p-0 shadow bg-white transition duration-600 ease-in-out hover:shadow-lg hover:bg-white" style={{ fontFamily: "'Comfortaa', cursive" }}>
-                                            <div className="pb-1 pr-0 bg-gradient-to-r from-yellow-800 to-yellow-600">
-                                                <img className="" src={"/storage/post/" + post4.length > 0 ? post4[0].featured : ''} alt="" />
-                                            </div>
-                                            <h1 className="mt-2 text-2xl uppercase text-center">{post4.title}</h1>
-                                            <p className="text-center text-gray-500 text-sm">{post4.summary}</p>
-                                            <div className="relative py-6 flex-grow">
-                                                <a className="absolute bottom-3 right-4 text-sm text-gray-600 hover:text-gray-500" href="#">+ Veja Mais</a>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                                    {sec4.posts.map((post4, pIndex4) => (
+                                        <div key={pIndex4}>
+                                            <div className="h-full flex flex-col p-0 shadow bg-white transition duration-600 ease-in-out hover:shadow-lg hover:bg-white">
+                                                <div className="pb-1 pr-0">
+                                                    <img className="" src={"/storage/post/" + post4.featured } alt="" />
+                                                </div>
+                                                <h1 className="mt-2 text-2xl uppercase text-blue-600 text-center">{post4.title}</h1>
+                                                <p className="text-center text-gray-500 text-md">{post4.summary}</p>
+                                                <div className="relative py-6 flex-grow">
+                                                <a className="absolute flex items-center bottom-3 right-4 text-sm font-semibold text-yellow-600 hover:text-yellow-500" href={route('postagem', post4.slug)}><span>Saiba mais</span><GoArrowSmallRight className="pt-1 text-4xl" /></a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
                             </div>
                         ))
                         }

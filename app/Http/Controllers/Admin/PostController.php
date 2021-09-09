@@ -65,7 +65,7 @@ class PostController extends Controller
                 'title' => ['required'],
                 'summary' => ['required'],
                 'content' => ['required'],
-                'featured' => ['mimes:jpeg,jpg,png', 'max:1500'],
+                'featured' => ['mimes:jpeg,jpg,png', 'max:5000'],
                 'category' => ['required']
             ],
             $messages,
@@ -150,7 +150,7 @@ class PostController extends Controller
                 'summary' => ['required'],
                 'content' => ['required'],
                 'category' => ['required'],
-                'featured' => ['mimes:jpeg,jpg,png', 'max:1500']
+                'featured' => ['mimes:jpeg,jpg,png', 'max:5000']
             ],
             $messages,
             [
