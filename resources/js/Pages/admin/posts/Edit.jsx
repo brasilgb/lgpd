@@ -4,7 +4,7 @@ import route from 'ziggy';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import Layout from '../../../components/admin/layout';
-
+import { Editor } from '@tinymce/tinymce-react';
 const Edit = ({ categories, post, postTitle, success }) => {
 
     const { errors } = usePage().props
@@ -24,11 +24,11 @@ const Edit = ({ categories, post, postTitle, success }) => {
             return <div className="border-4 border-gray-100 shadow-md rounded-md bg-red-400 text-white p-4 text-center flex justify-center"><HiExclamation className="text-2xl pt-1" /> Carregue somente imagens JPG, JPEG e PNG</div>;
         }
     };
- 
+
     useEffect(() => {
         titleRef.current.value = post.title;
         summaryRef.current.value = post.summary;
-        contentRef.current.value = post.content;
+        contentRef.current.content = post.content;
         categoryRef.current.value = post.category_id;
         activeRef.current.checked = post.active;
     }, [])
@@ -37,7 +37,7 @@ const Edit = ({ categories, post, postTitle, success }) => {
         e.preventDefault();
         const title = titleRef.current.value;
         const summary = summaryRef.current.value;
-        const content = contentRef.current.value;
+        const content = contentRef.current.getContent();
         const featured = featuredRef.current.files[0];
         const category = categoryRef.current.value;
         const active = activeRef.current.checked;
@@ -102,13 +102,33 @@ const Edit = ({ categories, post, postTitle, success }) => {
 
                                 <div className="pt-2">
                                     <label htmlFor=""><span className="text-gray-500">Conteúdo da postagem</span></label>
-                                    <textarea
+                                    {/* <textarea
                                         ref={contentRef}
                                         rows="4"
                                         className="form-input text-gray-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                         id="content"
                                         placeholder=""
-                                    ></textarea>
+                                    ></textarea> */}
+                                    {/* Editor de texto Tinymc */}
+                                    <Editor
+                                        apiKey="3v1hskg4ud3hwf1bi5to0pt3xp6zjyksrvujfngcpzzaw2l3"
+                                        onInit={(evt, editor) => contentRef.current = editor}
+                                        initialValue="<p>This is the initial content of the editor.</p>"
+                                        init={{
+                                            height: 400,
+                                            menubar: false,
+                                            plugins: [
+                                                'advlist autolink lists link image charmap print preview anchor',
+                                                'searchreplace visualblocks code fullscreen',
+                                                'insertdatetime media table paste code help wordcount'
+                                            ],
+                                            toolbar: 'undo redo | formatselect | ' +
+                                                'bold italic backcolor | alignleft aligncenter ' +
+                                                'alignright alignjustify | bullist numlist outdent indent | ' +
+                                                'removeformat | help',
+                                            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                                        }}
+                                    />
                                     {errors.content && <div className="p-2 border border-t-0 border-red-200 text-sm flex items-center w-full bg-yellow-100 text-red-500"><HiExclamation className="text-md mt-1" />{errors.content}</div>}
                                 </div>
 

@@ -8,16 +8,16 @@ const subBarSite = ({pageName}) => {
     return (
         <Fragment>
             <div className="bg-gray-100 py-6">
-                <div className="container mx-auto flex items-center justify-center ">
-                    <div className="flex-auto ">
-                        <p className="flex items-center text-left text-md text-gray-900 text-shadow">Portal da Transparência Grupo Solar <MdKeyboardArrowRight className="text-3xl"/> {pageName}</p>
+                <div className="container p-2 md-p0 mx-auto flex flex-col md:flex-row items-center justify-center">
+                    <div className="flex-auto mb-4 md:mb-0">
+                        <div className="flex items-center text-left text-sm md:text-xl text-gray-900 text-shadow">Portal da Transparência Grupo Solar <MdKeyboardArrowRight className="mt-2 text-xl md:text-3xl"/> <span className=""> {pageName}</span></div>
                     </div>
-                    <div className="flex items-center justify-items-end">
+                    <div className="flex md:justify-items-end justify-items-center">
                         <InertiaLink
                             type="button"
                             as="button"
                             href="#"
-                            className="flex py-2 px-4 mx-4 items-center bg-blue-700 hover:bg-blue-600 text-white shadow rounded-md transition:2ms"
+                            className="flex py-2 mr-1 px-4 md:mx-4 items-center bg-blue-700 hover:bg-blue-600 text-white shadow rounded-md transition:2ms"
                         >
                             <span>Fale com o DPO</span> <FaUserTie className="ml-2"/>
                         </InertiaLink>
@@ -26,7 +26,7 @@ const subBarSite = ({pageName}) => {
                             type="button"
                             as="button"
                             href="#"
-                            className="flex py-2 px-4  items-center bg-blue-700 hover:bg-blue-600 text-white shadow rounded-md"
+                            className="flex py-2 ml-1 px-4 items-center bg-blue-700 hover:bg-blue-600 text-white shadow rounded-md"
                         >
                             <span>Acesso do titular de dados</span> <RiAdminFill className="ml-2"/>
                         </InertiaLink>

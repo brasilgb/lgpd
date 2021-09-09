@@ -26,11 +26,11 @@ const Layout = ({ children }) => {
         <Fragment>
             <div className="flex flex-col min-h-screen">
 
-                <div className="w-full z-50 pt-20">
+                <div className="w-full z-50 pt-12 md:pt-20">
                     <NavBarSite />
                 </div>
 
-                <div className="bg-gray-200 flex-grow">
+                <div className="bg-gray-200 flex-grow px-2 md:px-0">
                     {children}
                 </div>
 

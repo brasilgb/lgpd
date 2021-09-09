@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderByDesc('id_user')->paginate(15);
+        $users = User::orderByDesc('id_user')->paginate(10);
         $reload = false;
         return Inertia::render('admin/users', ['users' => $users, 'reload' => $reload, 'userTitle' => 'usuários cadastrados']);
     }

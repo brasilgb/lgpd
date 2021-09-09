@@ -16,7 +16,7 @@ const FooterSite = () => {
     return (
         <Fragment>
             <div className="bg-blue-500">
-                <div className="container px-6 py-4 mx-auto">
+                <div className="container px-6 py-4 mx-auto hidden md:block">
                     <nav>
                         <div className="container mx-auto">
                             <div className="py-2 md:flex md:items-center md:justify-between h-22">
@@ -30,12 +30,6 @@ const FooterSite = () => {
                                             </InertiaLink>
                                         </div>
 
-                                        {/* <!-- Mobile menu button --> */}
-                                        <div className="flex md:hidden">
-                                            {/* <button type="button" className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
-                                    <HiMenu/>
-                                </button> */}
-                                        </div>
                                     </div>
                                     <div className="container flex justify-center p-4 mx-auto text-white font-semibold">
                                         <InertiaLink
@@ -100,7 +94,7 @@ const FooterSite = () => {
                 </div>
                 <footer className="">
                     <div className="container mx-auto border-t border-blue-400">
-                        <p className="text-center text-white py-4">© Grupo Solar 2021. Todos os direitos reservados.</p>
+                        <p className="text-center text-white p-4">© Grupo Solar 2021. Todos os direitos reservados.</p>
                     </div>
                 </footer>
             </div>

@@ -21,7 +21,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages = Page::orderByDesc('id_post')->where('type', 0)->paginate(15);
+        $pages = Page::orderByDesc('id_post')->where('type', 0)->paginate(10);
         $reload = false;
         return Inertia::render('admin/pages', ['pages' => $pages, 'reload' => $reload, 'pageTitle' => 'Páginas cadastradas']);
     }

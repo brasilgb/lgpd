@@ -4,6 +4,7 @@ import { render } from 'react-dom'
 import { createInertiaApp } from '@inertiajs/inertia-react'
 import { InertiaProgress } from '@inertiajs/progress'
 
+
 InertiaProgress.init({
   color: '#FFF',
   showSpinner: true,

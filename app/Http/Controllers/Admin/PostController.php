@@ -22,7 +22,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->orderByDesc('id_post')->where('type', 1)->paginate(15);
+        $posts = Post::with('category')->orderByDesc('id_post')->where('type', 1)->paginate(10);
         $reload = false;
         return Inertia::render('admin/posts', ['posts' => $posts, 'reload' => $reload, 'postTitle' => 'Postagens cadastradas']);
     }

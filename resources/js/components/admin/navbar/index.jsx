@@ -18,6 +18,7 @@ const NavbarAdmin = () => {
     }
 
     const [menuUserOpen, setMenuUserOpen] = useState(false);
+    
     return (
         <Fragment>
             <nav className="bg-blue-500 shadow dark:bg-blue-500">

@@ -63,15 +63,21 @@ const navBarSite = () => {
         setMenuCategoryOpen(newState)
 
     };
+
+    const [menuOpen, setMenuOpen] = useState(menuOpen);
+
     return (
         <Fragment>
 
             <nav className={`bg-blue-500 header ${shadowStyle} ${hiddenStyle}`}>
 
-                <div className="container mx-auto">
-                    <div className="md:flex md:items-center md:justify-between">
-                        <div className="flex items-center justify-between">
-                            <div className="">
+            {/* <div className="container mx-auto md:flex md:justify-between md:items-center"> */}
+                    {/* <div className="flex items-center justify-between"> */}
+
+                <div className="container mx-auto px-6 py-4 md:px-0 md:py-0">
+                    <div className="md:flex items-center md:justify-between">
+                        <div className="flex flex-col md:flex md:items-center md:justify-between">
+                            <div className="hidden md:block">
                                 <InertiaLink
                                     href="/">
                                     <img className="h-16 rounded-full" src={'/storage/images/' + logo} alt={settings.title} />
@@ -80,19 +86,27 @@ const navBarSite = () => {
 
                             {/* <!-- Mobile menu button --> */}
                             <div className="flex md:hidden">
-                                <button type="button" className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
-                                    <HiMenu />
+                                <button
+                                    className="text-gray-100 dark:text-gray-200 hover:text-white dark:hover:text-gray-400 focus:outline-none focus:text-white dark:focus:text-gray-400"
+                                    aria-label="toggle menu"
+                                    onClick={() => setMenuOpen(!menuOpen)}
+                                    >
+                                    <HiMenu className="3xl" />
                                 </button>
                             </div>
                         </div>
 
                         {/* <!-- Mobile Menu open: "block", Menu closed: "hidden" --> */}
-                        <div className="flex-1 md:flex md:items-center md:justify-between">
+                        <div className={"flex-1 md:flex md:items-center md:justify-between" +
+                          (menuOpen ? " block" : " hidden")}>
 
-                            <div className="container flex items-center justify-center mx-auto text-gray-100">
+                            <div className="container flex flex-col md:flex-row md:items-center md:justify-center md:mx-auto text-gray-100">
+                            <div className="my-1 md:my-0 py-2 md:hidden">
+                                    <span className="p-2 rounded bg-white text-blue-500 font-bold text-lg capitalize">{settings.title}</span>
+                            </div>
                                 <InertiaLink
                                     href={route('home')}
-                                    className="p-7 hover:bg-blue-400 capitalize hover:underline"
+                                    className="my-1 md:my-0 md:flex md:p-7 hover:bg-blue-400 capitalize hover:underline"
                                 >
                                     home
                                 </InertiaLink>
@@ -102,7 +116,7 @@ const navBarSite = () => {
                                         <InertiaLink
                                             key={index}
                                             href={route('pagina', page.slug)}
-                                            className="p-7 hover:bg-blue-400 capitalize hover:underline"
+                                            className="my-1 md:my-0 md:p-7 md:flex hover:bg-blue-400 capitalize hover:underline"
                                         >
                                             {page.title}
                                         </InertiaLink>
@@ -116,18 +130,18 @@ const navBarSite = () => {
                                                 <div className="relative z-10 block" aria-label="toggle profile dropdown">
                                                     {menuItem.parent == 0 &&
                                                         <InertiaLink
-                                                            href=""
+                                                            href="#"
                                                             onClick={(e) => (menuItem.sub_categories.length == 0
                                                                 ? openLink(e, menuItem.slug)
                                                                 : toggleSubMenu(e, i))}
-                                                            className="flex focus:bg-white focus:text-gray-700 p-7 hover:bg-blue-400 capitalize hover:underline"
+                                                            className="my-1 md:my-0 md:p-7 md:flex md:focus:bg-white md:focus:text-gray-500 hover:bg-blue-400 capitalize hover:underline"
                                                         >
                                                             {menuItem.categoryname}
                                                         </InertiaLink>
                                                     }
                                                 </div>
 
-                                                <div className={"absolute right-0 z-20 w-full py-2 mt-0 bg-white shadow-xl dark:bg-gray-800" +
+                                                <div className={"md:absolute right-0 z-20 w-full md:py-2 mt-0 md:bg-white md:shadow-xl dark:bg-gray-800" +
                                                     (menuCategoryOpen[i] ? " block" : " hidden")
                                                 }>
                                                     {/* <AiFillCaretUp className="absolute left-50 text-red-500 -mt-10"/> */}
@@ -137,7 +151,7 @@ const navBarSite = () => {
                                                                 <InertiaLink
                                                                     key={i}
                                                                     href={route('categoria', subMenu.slug)}
-                                                                    className="block px-4 py-2 text-md text-gray-700 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:text-gray-600 dark:hover:text-white"
+                                                                    className="block my-1 md:my-0 px-2 md:px-4 md:py-2 text-md text-gray-100 hover:text-white md:text-gray-600 hover:text-gray-500 capitalize transition-colors duration-200 transform dark:text-gray-300 dark:hover:text-white"
                                                                 >
                                                                     {subMenu.categoryname}
                                                                 </InertiaLink>
@@ -153,12 +167,12 @@ const navBarSite = () => {
 
                                 <InertiaLink
                                     href="#"
-                                    className="flex focus:bg-blue-400 p-7 hover:bg-blue-400 capitalize hover:underline">
+                                    className="my-1 md:my-0 md:p-7 flex focus:bg-blue-400 hover:bg-blue-400 capitalize hover:underline">
                                     Contato
                                 </InertiaLink>
                             </div>
 
-                            <div className="flex justify-center mt-4 lg:flex lg:mt-0">
+                            <div className="flex justify-left md:justify-center lg:mt-4 lg:flex lg:mt-0 lg:block">
                                 <div className="relative">
                                     <button
                                         title="Acesso administrativo"

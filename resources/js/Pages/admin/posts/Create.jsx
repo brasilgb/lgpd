@@ -3,6 +3,7 @@ import { HiDocumentDuplicate, HiCheck, HiChevronDoubleLeft, HiSave, HiExclamatio
 import route from 'ziggy';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
+import { Editor } from '@tinymce/tinymce-react';
 import Layout from '../../../components/admin/layout';
 
 const Create = ({ categories, success, postTitle, error }) => {
@@ -11,7 +12,7 @@ const Create = ({ categories, success, postTitle, error }) => {
 
     const titleRef = useRef();
     const summaryRef = useRef();
-    const contentRef = useRef();
+    const contentRef = useRef(null);
     const featuredRef = useRef();
     const categoryRef = useRef();
     const activeRef = useRef();
@@ -29,7 +30,7 @@ const Create = ({ categories, success, postTitle, error }) => {
         e.preventDefault();
         const title = titleRef.current.value;
         const summary = summaryRef.current.value;
-        const content = contentRef.current.value;
+        const content = contentRef.current.getContent();
         const category = categoryRef.current.value;
         const featured = featuredRef.current.files[0];
         const active = activeRef.current.checked;
@@ -95,16 +96,37 @@ const Create = ({ categories, success, postTitle, error }) => {
 
                                 <div className="pt-2">
                                     <label htmlFor=""><span className="text-gray-500">Conteúdo da postagem</span></label>
-                                    <textarea
+                                    {/* <textarea
                                         ref={contentRef}
                                         rows="4"
                                         className="form-input text-gray-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                         id="content"
                                         placeholder=""
-                                    ></textarea>
+                                    ></textarea> */}
+
+                                    {/* Editor de texto Tinymc */}
+                                    <Editor
+                                        apiKey="3v1hskg4ud3hwf1bi5to0pt3xp6zjyksrvujfngcpzzaw2l3"
+                                        onInit={(evt, editor) => contentRef.current = editor}
+                                        initialValue="<p>This is the initial content of the editor.</p>"
+                                        init={{
+                                            height: 400,
+                                            menubar: false,
+                                            plugins: [
+                                                'advlist autolink lists link image charmap print preview anchor',
+                                                'searchreplace visualblocks code fullscreen',
+                                                'insertdatetime media table paste code help wordcount'
+                                            ],
+                                            toolbar: 'undo redo | formatselect | ' +
+                                                'bold italic backcolor | alignleft aligncenter ' +
+                                                'alignright alignjustify | bullist numlist outdent indent | ' +
+                                                'removeformat | help',
+                                            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                                        }}
+                                    />
                                     {errors.content && <div className="p-2 border border-t-0 border-red-200 text-sm flex items-center w-full bg-yellow-100 text-red-500"><HiExclamation className="text-md mt-1" />{errors.content}</div>}
                                 </div>
- 
+
                                 <div className="pt-2">
                                     <label htmlFor=""><span className="text-gray-500">Imagem destacada</span></label>
                                     <input

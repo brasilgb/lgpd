@@ -2,6 +2,7 @@ import { InertiaLink, Head } from '@inertiajs/inertia-react'
 import route from 'ziggy'
 import React, { Fragment } from 'react'
 import { HiLightBulb } from 'react-icons/hi'
+import {GoArrowSmallRight} from 'react-icons/go'
 import Layout from '../../../components/site/layout'
 import SubBarSite from '../../../components/site/subbar'
 
@@ -21,7 +22,7 @@ const categorySite = ({ categories_posts }) => {
                             <div key={index}>
                                 {category.posts.length > 0 ?
                                     <div>
-                                        <section className="h-auto border-b border-white" style={{
+                                        <section className="border-b border-white" style={{
                                             backgroundImage: `url('/storage/post/${category.posts[0].featured}')`,
                                             backgroundPosition: 'right',
                                             backgroundColor: '#F59E0B',
@@ -30,11 +31,11 @@ const categorySite = ({ categories_posts }) => {
                                         }}>
 
                                             <div className="container py-0 mx-auto">
-                                                <div className="items-center lg:flex">
-                                                    <div className="h-96 flex items-center justify-left w-full rounded-r-full bg-gradient-to-r from-yellow-500 to-yellow-400 lg:w-7/12">
-                                                        <div className="lg:max-w-lg">
-                                                            <h1 className="text-2xl font-semibold text-gray-200 uppercase dark:text-white lg:text-3xl">{category.categorytitle}</h1>
-                                                            <p className="mt-2 text-gray-500 dark:text-gray-400">{category.descricao}</p>
+                                                <div className="h-40 md:h-96 items-center lg:flex">
+                                                    <div className="h-full md:h-96  flex items-center justify-left w-full md:rounded-r-full bg-gradient-to-r from-yellow-500 to-yellow-400 lg:w-7/12">
+                                                        <div className="max-w-lg lg:max-w-lg p-2">
+                                                            <h1 className="md:text-2xl text-md font-semibold text-gray-200 uppercase dark:text-white lg:text-3xl">{category.categorytitle}</h1>
+                                                            <p className="mt-2 md:text-xl text-sm text-gray-100 dark:text-gray-400">{category.descricao}</p>
                                                         </div>
                                                     </div>
                                                     <div className="h-96 flex items-center justify-rigth w-full mt-6 lg:mt-0 lg:w-5/12">
@@ -45,21 +46,24 @@ const categorySite = ({ categories_posts }) => {
 
                                         </section>
 
-
                                         {category.posts.map((post, pIndex) => (
-                                            <section key={pIndex} className="mx-auto container">
+                                            <div>
                                                 {post.type == 1 &&
-                                                    <div className="py-4">
-                                                        <h1 className="py-4">{post.title}</h1>
-                                                        <InertiaLink
-                                                        href={route('postagem', post.slug)}
-                                                        >
-                                                            IR
+                                                    <section key={pIndex} className="mx-auto container px-4 py-2 my-4 bg-gray-100 rounded border border-white">
+
+                                                        <h1 className="py-4 text-lg md:text-xl uppercase font-semibold text-blue-700">{post.title}</h1>
+                                                        <p className="py-4 text-sm md:text-lg text-gray-700">{post.summary}</p>
+                                                        <div className="mb-0 pt-1 flex flex-auto items-center justify-end border-t border-gray-200">
+                                                            <InertiaLink
+                                                                href={route('postagem', post.slug)}
+                                                                className="flex items-center text-sm font-semibold text-yellow-600 hover:text-yellow-500"
+                                                            >
+                                                               <span>Saiba mais</span><GoArrowSmallRight className="pt-1 text-4xl" />
                                                             </InertiaLink>
-                                                        <p className="py-4">{post.summary}</p>
-                                                    </div>
+                                                        </div>
+                                                    </section>
                                                 }
-                                            </section>
+                                            </div>
                                         ))}
 
                                     </div>
