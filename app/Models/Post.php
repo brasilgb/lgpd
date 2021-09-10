@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
 
     protected $primaryKey = 'id_post';
-    
+
     public $incrementing = null;
 
     protected $fillable = [
@@ -24,6 +24,7 @@ class Post extends Model
         'social', //ativa ícones mídia social. 0=desativar 1=ativar
         'active', //Torna visualizada no frontend. 0=desativar 1=ativar
         'type', //Caso seja página ou post. 0=página 1=postagem
+        'dpo', //Caso seja página ou post. 0=página 1=postagem
         'link' //Adiciona link caso seja postagem. 0=remove 1=adiciona
     ];
 

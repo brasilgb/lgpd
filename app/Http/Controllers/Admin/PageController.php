@@ -92,6 +92,7 @@ class PageController extends Controller
             'featured' => $request->file('featured') ? $fileName : '',
             'social' => $request->social == true ? 1 : 0,
             'active' => $request->active == true ? 1 : 0,
+            'dpo' => $request->dpo == true ? 1 : 0,
             'type' => 0
         ];
         Page::create($data);
@@ -172,7 +173,8 @@ class PageController extends Controller
             'content' => $request->content,
             'featured' => $request->file('featured') ? $fileName : $page->featured,
             'social' => $request->social == true ? 1 : 0,
-            'active' => $request->active == true ? 1 : 0
+            'active' => $request->active == true ? 1 : 0,
+            'dpo' => $request->dpo == true ? 1 : 0
         ];
 
         $page->update($data);

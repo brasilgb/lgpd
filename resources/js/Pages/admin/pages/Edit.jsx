@@ -15,6 +15,7 @@ const Edit = ({ page, pageTitle, success }) => {
     const contentRef = useRef();
     const featuredRef = useRef([]);
     const activeRef = useRef();
+    const dpoRef = useRef();
     const [imageFile, setImageFile] = useState();
 
     const loadImageFile = (filefield) => {
@@ -29,6 +30,8 @@ const Edit = ({ page, pageTitle, success }) => {
         titleRef.current.value = page.title;
         summaryRef.current.value = page.summary;
         activeRef.current.checked = page.active;
+        dpoRef.current.checked = page.dpo;
+
     }, [])
 
     const updatePage = (e) => {
@@ -38,8 +41,9 @@ const Edit = ({ page, pageTitle, success }) => {
         const content = contentRef.current.getContent();
         const featured = featuredRef.current.files[0];
         const active = activeRef.current.checked;
+        const dpo = dpoRef.current.checked;
 
-        Inertia.post(route('pagina.update', page.id_post), { _method: 'put', title, summary, content, featured, active });
+        Inertia.post(route('pagina.update', page.id_post), { _method: 'put', title, summary, content, featured, active, dpo });
     };
 
     return (
@@ -144,6 +148,18 @@ const Edit = ({ page, pageTitle, success }) => {
                                             id="active"
                                         />
                                         <label htmlFor=""><span className="text-gray-500 pl-2">Tornar página disponível</span></label>
+                                    </div>
+                                </div>
+
+                                <div className="pt-2">
+                                    <div className="flex items-center">
+                                        <input
+                                            ref={dpoRef}
+                                            type="checkbox"
+                                            className="form-checkbox text-gray-500 mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                            id="dpo"
+                                        />
+                                        <label htmlFor=""><span className="text-gray-500 pl-2">Linkar ao botão fale com o DPO</span></label>
                                     </div>
                                 </div>
 

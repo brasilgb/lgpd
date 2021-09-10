@@ -113,11 +113,7 @@ const navBarSite = () => {
                                 </div>
                                 <InertiaLink
                                     href={route('home')}
-                                    className={route().current('home') ?
-                                        "my-1 md:my-0 md:flex md:p-7 bg-blue-400 capitalize hover:underline"
-                                        :
-                                        "my-1 md:my-0 md:flex md:p-7 hover:bg-blue-400 capitalize hover:underline"
-                                    }
+                                    className="my-1 md:my-0 md:flex md:p-7 hover:bg-blue-400 capitalize hover:underline"
                                 >
                                     home
                                 </InertiaLink>
@@ -127,17 +123,13 @@ const navBarSite = () => {
                                         <InertiaLink
                                             key={index}
                                             href={route('pagina', page.slug)}
-                                            className={route().current('pagina') ?
-                                            "my-1 md:my-0 md:flex md:p-7 bg-blue-400 capitalize hover:underline"
-                                            :
-                                            "my-1 md:my-0 md:flex md:p-7 hover:bg-blue-400 capitalize hover:underline"
-                                        }
+                                            className="my-1 md:my-0 md:flex md:p-7 hover:bg-blue-400 capitalize hover:underline"
                                         >
                                             {page.title}
                                         </InertiaLink>
                                     )
                                 ))}
-
+                                
                                 {categories.map(function (menuItem, i) {
                                     if (menuItem.active == 1) {
                                         return (
@@ -150,11 +142,7 @@ const navBarSite = () => {
                                                             onClick={(e) => (menuItem.sub_categories.length == 0
                                                                 ? openLink(e, menuItem.slug)
                                                                 : toggleSubMenu(e, i))}
-                                                                className={route().current('categoria') ?
-                                                                "my-1 md:my-0 md:flex md:p-7 bg-blue-400 capitalize hover:underline"
-                                                                :
-                                                                "my-1 md:my-0 md:flex md:p-7 focus:bg-blue-400 hover:bg-blue-400 capitalize hover:underline"
-                                                            }
+                                                                className="my-1 md:my-0 md:flex md:p-7 focus:bg-blue-400 hover:bg-blue-400 capitalize hover:underline"
                                                         >
                                                             {menuItem.categoryname}
                                                             {menuCategoryOpen[i] &&

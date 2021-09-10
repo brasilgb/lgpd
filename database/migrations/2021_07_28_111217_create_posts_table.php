@@ -25,6 +25,7 @@ class CreatePostsTable extends Migration
             $table->integer('social');
             $table->integer('active');
             $table->integer('type');
+            $table->integer('dpo');
             $table->integer('link')->nullable();
             $table->timestamps();
         });

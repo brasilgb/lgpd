@@ -15,6 +15,8 @@ const Create = ({ success, pageTitle, error }) => {
     const contentRef = useRef();
     const featuredRef = useRef();
     const activeRef = useRef();
+    const dpoRef = useRef();
+
     const [imageFile, setImageFile] = useState();
 
     const loadImageFile = (filefield) => {
@@ -32,8 +34,9 @@ const Create = ({ success, pageTitle, error }) => {
         const content = contentRef.current.getContent();
         const featured = featuredRef.current.files[0];
         const active = activeRef.current.checked;
+        const dpo = dpoRef.current.checked;
 
-        Inertia.post(route('pagina.store'), { title, summary, content, featured, active });
+        Inertia.post(route('pagina.store'), { title, summary, content, featured, active, dpo });
     };
 
     return (
@@ -96,7 +99,7 @@ const Create = ({ success, pageTitle, error }) => {
                                     <Editor
                                         apiKey="3v1hskg4ud3hwf1bi5to0pt3xp6zjyksrvujfngcpzzaw2l3"
                                         onInit={(evt, editor) => contentRef.current = editor}
-                                        initialValue="<p>This is the initial content of the editor.</p>"
+                                        initialValue=""
                                         init={{
                                             height: 400,
                                             menubar: false,
@@ -135,7 +138,19 @@ const Create = ({ success, pageTitle, error }) => {
                                             className="form-checkbox text-gray-500 mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                             id="active"
                                         />
-                                        <label htmlFor=""><span className="text-gray-500 pl-2">Tornar página disponível</span></label>
+                                        <label htmlFor=""><span className="text-gray-500 pl-2">Tornar página disponível em menus</span></label>
+                                    </div>
+                                </div>
+
+                                <div className="pt-2">
+                                    <div className="flex items-center">
+                                        <input
+                                            ref={dpoRef}
+                                            type="checkbox"
+                                            className="form-checkbox text-gray-500 mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                            id="dpo"
+                                        />
+                                        <label htmlFor=""><span className="text-gray-500 pl-2">Linkar ao botão fale com o DPO</span></label>
                                     </div>
                                 </div>
 
