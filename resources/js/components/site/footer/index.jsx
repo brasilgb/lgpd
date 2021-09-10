@@ -69,7 +69,7 @@ const FooterSite = () => {
                                                                 <InertiaLink
                                                                     key={i}
                                                                     href={route('categoria', subMenu.slug)}
-                                                                    className="block px-4 py-2 text-sm capitalize underline hover:no-underline"
+                                                                    className="block px-4 py-2 text-sm lowercase capitalize underline hover:no-underline"
                                                                 >
                                                                     {subMenu.categoryname}
                                                                 </InertiaLink>

@@ -65,7 +65,7 @@ const categorySite = ({ categories_posts }) => {
                                                 }
                                             </div>
                                         ))}
-
+ 
                                     </div>
                                     :
                                     <div className="container flex justify-center mx-auto rounded-lg mt-10 p-10 bg-yellow-200 border border-red-300">

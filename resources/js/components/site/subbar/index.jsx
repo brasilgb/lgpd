@@ -30,7 +30,7 @@ const subBarSite = ({ pageName }) => {
                                         type="button"
                                         as="button"
                                         href={route('pagina', page.slug)}
-                                        className="flex py-2 px-4 items-center bg-blue-700 hover:bg-blue-600 text-white shadow rounded-md"
+                                        className="flex py-2 px-4 items-center bg-blue-700 hover:bg-blue-600 text-white shadow rounded-md capitalize"
                                     >
                                         <span>Fale com o DPO</span> <FaUserTie className="ml-2" />
                                     </InertiaLink>

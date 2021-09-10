@@ -1,11 +1,14 @@
+import { InertiaLink } from '@inertiajs/inertia-react'
 import React, { Fragment } from 'react'
 import Layout from '../../../components/site/layout'
 import SubBarSite from '../../../components/site/subbar'
+import {GoArrowSmallRight} from 'react-icons/go'
+
 const pageSite = ({ page_content }) => {
     return (
         <Fragment>
             <Layout>
-            <SubBarSite pageName={page_content.title}/>
+                <SubBarSite pageName={page_content.title} />
                 <section className="border-b border-white" style={{
                     backgroundImage: `url('/storage/page/${page_content.featured}')`,
                     backgroundPosition: 'right',
@@ -31,16 +34,17 @@ const pageSite = ({ page_content }) => {
                         </div>
                     </div>
                 </section>
-                <section className="container mx-auto">
-                    <div className="py-10">
-                        <h1 className="py-8 text-3xl">{page_content.title}</h1>
-                        <div>
-                        <p dangerouslySetInnerHTML={{ __html: page_content.content }}/>
+
+                {page_content.type == 0 &&
+                    <section className="mx-auto container px-4 py-2 my-4 bg-gray-100 rounded border border-white">
+
+                        <h1 className="py-4 text-lg md:text-xl uppercase font-semibold text-blue-700">{page_content.title}</h1>
+                        <div className="py-4">
+                            <p dangerouslySetInnerHTML={{ __html: page_content.content }} />
                         </div>
-                    </div>
 
-                </section>
-
+                    </section>
+                }
             </Layout>
         </Fragment>
     )

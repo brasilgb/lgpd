@@ -1,7 +1,7 @@
+import { InertiaLink } from '@inertiajs/inertia-react'
 import React, { Fragment } from 'react'
 import Layout from '../../../components/site/layout'
 import SubBarSite from '../../../components/site/subbar'
-
 const postSite = ({ post_content }) => {
 
     return (
@@ -33,13 +33,17 @@ const postSite = ({ post_content }) => {
                         </div>
                     </div>
                 </section>
-                <section className="container mx-auto">
-                    <div className="py-10">
-                        <h1 className="py-8 text-3xl">{post_content.title}</h1>
-                        <p dangerouslySetInnerHTML={{ __html: post_content.content }}/>
-                    </div>
 
-                </section>
+               {post_content.type == 1 &&
+                    <section className="mx-auto container px-4 py-2 my-4 bg-gray-100 rounded border border-white">
+
+                        <h1 className="py-4 text-lg md:text-xl uppercase font-semibold text-blue-700">{post_content.title}</h1>
+                        <div className="py-4">
+                            <p dangerouslySetInnerHTML={{ __html: post_content.content }} />
+                        </div>
+
+                    </section>
+                }
 
             </Layout>
         </Fragment>
