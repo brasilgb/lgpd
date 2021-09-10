@@ -47,9 +47,9 @@ const categorySite = ({ categories_posts }) => {
                                         </section>
 
                                         {category.posts.map((post, pIndex) => (
-                                            <div>
+                                            <div key={pIndex}>
                                                 {post.type == 1 &&
-                                                    <section key={pIndex} className="mx-auto container px-4 py-2 my-4 bg-gray-100 rounded border border-white">
+                                                    <section className="mx-auto container px-4 py-2 my-4 bg-gray-100 rounded border border-white">
 
                                                         <h1 className="py-4 text-lg md:text-xl uppercase font-semibold text-blue-700">{post.title}</h1>
                                                         <p className="py-4 text-sm md:text-lg text-gray-700">{post.summary}</p>

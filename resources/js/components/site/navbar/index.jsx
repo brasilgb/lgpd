@@ -8,6 +8,7 @@ import useDocumentScrollThrottled from '../../../hooks';
 
 import "../../../../../public/css/styles.css";
 import { HiMenu } from 'react-icons/hi';
+import { slice } from 'lodash';
 
 const navBarSite = () => {
 
@@ -55,6 +56,7 @@ const navBarSite = () => {
 
         const newState = clone.map((val, index) => {
             if (index === i) {
+
                 return val
             }
             return false
@@ -64,6 +66,11 @@ const navBarSite = () => {
 
     };
 
+    // const [iconFocus, setIconFocus] = useState(iconFocus);
+    // if(iconFocus){
+
+    // }
+
     const [menuOpen, setMenuOpen] = useState(menuOpen);
 
     return (
@@ -71,15 +78,15 @@ const navBarSite = () => {
 
             <nav className={`bg-blue-500 header ${shadowStyle} ${hiddenStyle}`}>
 
-            {/* <div className="container mx-auto md:flex md:justify-between md:items-center"> */}
-                    {/* <div className="flex items-center justify-between"> */}
+                {/* <div className="container mx-auto md:flex md:justify-between md:items-center"> */}
+                {/* <div className="flex items-center justify-between"> */}
 
                 <div className="container mx-auto px-6 py-4 md:px-0 md:py-0">
                     <div className="md:flex items-center md:justify-between">
                         <div className="flex flex-col md:flex md:items-center md:justify-between">
                             <div className="hidden md:block">
                                 <InertiaLink
-                                    href="/">
+                                    href={route('home')}>
                                     <img className="h-16 rounded-full" src={'/storage/images/' + logo} alt={settings.title} />
                                 </InertiaLink>
                             </div>
@@ -90,7 +97,7 @@ const navBarSite = () => {
                                     className="text-gray-100 dark:text-gray-200 hover:text-white dark:hover:text-gray-400 focus:outline-none focus:text-white dark:focus:text-gray-400"
                                     aria-label="toggle menu"
                                     onClick={() => setMenuOpen(!menuOpen)}
-                                    >
+                                >
                                     <HiMenu className="3xl" />
                                 </button>
                             </div>
@@ -98,15 +105,19 @@ const navBarSite = () => {
 
                         {/* <!-- Mobile Menu open: "block", Menu closed: "hidden" --> */}
                         <div className={"flex-1 md:flex md:items-center md:justify-between" +
-                          (menuOpen ? " block" : " hidden")}>
+                            (menuOpen ? " block" : " hidden")}>
 
                             <div className="container flex flex-col md:flex-row md:items-center md:justify-center md:mx-auto text-gray-100">
-                            <div className="my-1 md:my-0 py-2 md:hidden">
+                                <div className="my-1 md:my-0 py-2 md:hidden">
                                     <span className="p-2 rounded bg-white text-blue-500 font-bold text-lg capitalize">{settings.title}</span>
-                            </div>
+                                </div>
                                 <InertiaLink
                                     href={route('home')}
-                                    className="my-1 md:my-0 md:flex md:p-7 hover:bg-blue-400 capitalize hover:underline"
+                                    className={route().current('home') ?
+                                        "my-1 md:my-0 md:flex md:p-7 bg-blue-400 capitalize hover:underline"
+                                        :
+                                        "my-1 md:my-0 md:flex md:p-7 hover:bg-blue-400 capitalize hover:underline"
+                                    }
                                 >
                                     home
                                 </InertiaLink>
@@ -116,7 +127,11 @@ const navBarSite = () => {
                                         <InertiaLink
                                             key={index}
                                             href={route('pagina', page.slug)}
-                                            className="my-1 md:my-0 md:p-7 md:flex hover:bg-blue-400 capitalize hover:underline"
+                                            className={route().current('pagina') ?
+                                            "my-1 md:my-0 md:flex md:p-7 bg-blue-400 capitalize hover:underline"
+                                            :
+                                            "my-1 md:my-0 md:flex md:p-7 hover:bg-blue-400 capitalize hover:underline"
+                                        }
                                         >
                                             {page.title}
                                         </InertiaLink>
@@ -131,12 +146,21 @@ const navBarSite = () => {
                                                     {menuItem.parent == 0 &&
                                                         <InertiaLink
                                                             href="#"
+                                                            // onFocus={(e) => (menuItem.sub_categories.length == 0 ? false : setIconFocus(i))}
                                                             onClick={(e) => (menuItem.sub_categories.length == 0
                                                                 ? openLink(e, menuItem.slug)
                                                                 : toggleSubMenu(e, i))}
-                                                            className="my-1 md:my-0 md:p-7 md:flex md:focus:bg-white md:focus:text-gray-500 hover:bg-blue-400 capitalize hover:underline"
+                                                                className={route().current('categoria') ?
+                                                                "my-1 md:my-0 md:flex md:p-7 bg-blue-400 capitalize hover:underline"
+                                                                :
+                                                                "my-1 md:my-0 md:flex md:p-7 focus:bg-blue-400 hover:bg-blue-400 capitalize hover:underline"
+                                                            }
                                                         >
                                                             {menuItem.categoryname}
+                                                            {menuCategoryOpen[i] &&
+                                                            <div className="absolute w-full left-0 -bottom-2">
+                                                            <AiFillCaretUp className="mx-auto text-white text-2xl"/>
+                                                            </div>}
                                                         </InertiaLink>
                                                     }
                                                 </div>
