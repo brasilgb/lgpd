@@ -28,7 +28,7 @@ const Edit = ({ categories, post, postTitle, success }) => {
     useEffect(() => {
         titleRef.current.value = post.title;
         summaryRef.current.value = post.summary;
-        contentRef.current.content = post.content;
+        // contentRef.current.content = post.content;
         categoryRef.current.value = post.category_id;
         activeRef.current.checked = post.active;
     }, [])
@@ -102,18 +102,13 @@ const Edit = ({ categories, post, postTitle, success }) => {
 
                                 <div className="pt-2">
                                     <label htmlFor=""><span className="text-gray-500">Conteúdo da postagem</span></label>
-                                    {/* <textarea
-                                        ref={contentRef}
-                                        rows="4"
-                                        className="form-input text-gray-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                        id="content"
-                                        placeholder=""
-                                    ></textarea> */}
+
                                     {/* Editor de texto Tinymc */}
                                     <Editor
                                         apiKey="3v1hskg4ud3hwf1bi5to0pt3xp6zjyksrvujfngcpzzaw2l3"
                                         onInit={(evt, editor) => contentRef.current = editor}
-                                        initialValue="<p>This is the initial content of the editor.</p>"
+                                        initialValue={post.content}
+                                        content= {post.content}
                                         init={{
                                             height: 400,
                                             menubar: false,

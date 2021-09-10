@@ -96,13 +96,6 @@ const Create = ({ categories, success, postTitle, error }) => {
 
                                 <div className="pt-2">
                                     <label htmlFor=""><span className="text-gray-500">Conteúdo da postagem</span></label>
-                                    {/* <textarea
-                                        ref={contentRef}
-                                        rows="4"
-                                        className="form-input text-gray-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                        id="content"
-                                        placeholder=""
-                                    ></textarea> */}
 
                                     {/* Editor de texto Tinymc */}
                                     <Editor

@@ -35,7 +35,7 @@ const pageSite = ({ page_content }) => {
                     <div className="py-10">
                         <h1 className="py-8 text-3xl">{page_content.title}</h1>
                         <div>
-                            {page_content.content}
+                        <p dangerouslySetInnerHTML={{ __html: page_content.content }}/>
                         </div>
                     </div>
 
