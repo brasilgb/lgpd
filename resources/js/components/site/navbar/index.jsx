@@ -177,11 +177,12 @@ const navBarSite = () => {
                                     }
                                 })}
 
-                                <InertiaLink
+                                {/* <InertiaLink
                                     href="#"
                                     className="my-1 md:my-0 md:p-7 flex focus:bg-blue-400 hover:bg-blue-400 capitalize hover:underline">
                                     Contato
-                                </InertiaLink>
+                                </InertiaLink> */}
+
                             </div>
 
                             <div className="flex justify-left md:justify-center lg:mt-4 lg:flex lg:mt-0 lg:block">
