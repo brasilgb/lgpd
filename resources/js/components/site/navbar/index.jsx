@@ -12,7 +12,7 @@ import { slice } from 'lodash';
 
 const navBarSite = () => {
 
-    const { settings, categories, pages } = usePage().props;
+    const { settings, categories, pages } = usePage(false).props;
 
     const logo = settings.logo ? settings.logo : 'default.jpg';
 

@@ -8,14 +8,13 @@ import Layout from '../../../components/admin/layout';
 
 const Edit = ({ page, pageTitle, success }) => {
 
-    const { errors } = usePage().props
+    const { errors, settings } = usePage().props
 
     const titleRef = useRef();
     const summaryRef = useRef();
     const contentRef = useRef();
     const featuredRef = useRef([]);
     const activeRef = useRef();
-    const dpoRef = useRef();
     const [imageFile, setImageFile] = useState();
 
     const loadImageFile = (filefield) => {
@@ -30,7 +29,6 @@ const Edit = ({ page, pageTitle, success }) => {
         titleRef.current.value = page.title;
         summaryRef.current.value = page.summary;
         activeRef.current.checked = page.active;
-        dpoRef.current.checked = page.dpo;
 
     }, [])
 
@@ -49,7 +47,7 @@ const Edit = ({ page, pageTitle, success }) => {
     return (
         <Fragment>
             <Layout>
-                <Head title={"Site " + pageTitle} />
+                <Head title={settings.title + " - " + pageTitle} />
                 <div className="rounded py-2 px-4 text-gray-900 bg-gray-100 shadow">
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
@@ -148,18 +146,6 @@ const Edit = ({ page, pageTitle, success }) => {
                                             id="active"
                                         />
                                         <label htmlFor=""><span className="text-gray-500 pl-2">Tornar página disponível</span></label>
-                                    </div>
-                                </div>
-
-                                <div className="pt-2">
-                                    <div className="flex items-center">
-                                        <input
-                                            ref={dpoRef}
-                                            type="checkbox"
-                                            className="form-checkbox text-gray-500 mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                            id="dpo"
-                                        />
-                                        <label htmlFor=""><span className="text-gray-500 pl-2">Linkar ao botão fale com o DPO</span></label>
                                     </div>
                                 </div>
 

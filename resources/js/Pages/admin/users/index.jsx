@@ -1,5 +1,5 @@
 import React, { Fragment, useRef, useState } from 'react';
-import { InertiaLink, Head } from '@inertiajs/inertia-react';
+import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import route from 'ziggy';
 import { HiDocumentDuplicate, HiCheck, HiPlus, HiSearch, HiRefresh, HiOutlineCheck, HiPencilAlt, HiLightBulb, HiX, HiTrash } from 'react-icons/hi';
 import Layout from '../../../components/admin/layout';
@@ -9,6 +9,8 @@ import { compareAsc, format } from 'date-fns';
 import ModalUser from '../../../components/admin/modal/user';
 
 const UserAdmin = ({ users, success, reload, userTitle }) => {
+
+    const { settings } = usePage().props
 
     const verifyUsers = () => {
         if (users.data.length == 0) {
@@ -57,7 +59,7 @@ const UserAdmin = ({ users, success, reload, userTitle }) => {
     return (
         <Fragment>
             <Layout>
-                <Head title={"Site " + userTitle} />
+                <Head title={settings.title + " - " + userTitle} />
                 <div className="rounded py-2 px-4 text-gray-900 bg-gray-100 shadow">
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">

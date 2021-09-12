@@ -1,5 +1,5 @@
 import React, { Fragment, useRef, useState } from 'react';
-import { InertiaLink, Head } from '@inertiajs/inertia-react';
+import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import route from 'ziggy';
 import { HiDocumentDuplicate, HiCheck, HiPlus, HiSearch, HiRefresh, HiOutlineCheck, HiX, HiPencilAlt, HiTrash, HiLightBulb } from 'react-icons/hi';
 import Layout from '../../../components/admin/layout';
@@ -10,6 +10,7 @@ import ModalPost from '../../../components/admin/modal/post'
 
 const postAdmin = ({ posts, success, reload, postTitle }) => {
 
+    const { settings } = usePage().props
     const verifyPosts = () => {
         if (posts.data.length == 0) {
             return <tr><td colSpan="7"><div className="flex justify-left bg-red-200 text-red-700 text-md p-2"><HiLightBulb className="text-2xl text-yellow-600" /> Não há postagens a serem mostradas no momento. Clique no botão criar postagem para adicionar.</div></td></tr>;
@@ -55,7 +56,7 @@ const postAdmin = ({ posts, success, reload, postTitle }) => {
     return (
         <Fragment>
             <Layout>
-                <Head title={"Site " + postTitle} />
+                <Head title={settings.title + " - " + postTitle} />
                 <div className="rounded py-2 px-4 text-gray-900 bg-gray-100 shadow">
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">

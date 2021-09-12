@@ -7,10 +7,9 @@ import Layout from '../../../components/admin/layout';
 
 const Create = ({ success, userTitle, error }) => {
 
-    const { errors } = usePage().props
+    const { errors, settings } = usePage().props
 
     const nameRef = useRef();
-    const usernameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
     const password_confirmationRef = useRef();
@@ -19,19 +18,18 @@ const Create = ({ success, userTitle, error }) => {
     const saveData = (e) => {
         e.preventDefault();
         const name = nameRef.current.value;
-        const username = usernameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         const password_confirmation = password_confirmationRef.current.value;
         const active = activeRef.current.checked;
 
-        Inertia.post(route('usuario.store'), { name, username, email, password, password_confirmation, active });
+        Inertia.post(route('usuario.store'), { name, email, password, password_confirmation, active });
     };
 
     return (
         <Fragment>
             <Layout>
-                <Head user={"Site " + userTitle} />
+                <Head user={settings.title + " - " + userTitle} />
                 <div className="rounded py-2 px-4 text-gray-900 bg-gray-100 shadow">
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">

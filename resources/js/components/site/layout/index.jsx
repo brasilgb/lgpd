@@ -1,10 +1,12 @@
-import { usePage } from '@inertiajs/inertia-react';
+import { Head, usePage } from '@inertiajs/inertia-react';
 import React, { Fragment, useState } from 'react';
 import { HiOutlineArrowCircleUp } from 'react-icons/hi';
 import FooterSite from '../footer';
 import NavBarSite from '../navbar';
 
 const Layout = ({ children }) => {
+
+    const { settings } = usePage().props
 
     const [showScroll, setShowScroll] = useState(false)
 
@@ -24,6 +26,9 @@ const Layout = ({ children }) => {
 
     return (
         <Fragment>
+            <Head>
+            <link rel="icon" type="image/svg+xml" href={"/storage/images/" + settings.logo} />
+            </Head>
             <div className="flex flex-col min-h-screen">
 
                 <div className="w-full z-50 pt-12 md:pt-20">

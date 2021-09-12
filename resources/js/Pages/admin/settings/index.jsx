@@ -7,7 +7,7 @@ import Layout from '../../../components/admin/layout';
 
 const Setting = ({ setting, settingTitle, success, errimg, erraudio }) => {
 
-    const { errors } = usePage().props
+    const { errors, settings } = usePage().props
 
     // const [values, setValues] = useState({
     //     Emailname: null,
@@ -52,7 +52,7 @@ const Setting = ({ setting, settingTitle, success, errimg, erraudio }) => {
     return (
         <Fragment>
             <Layout>
-                <Head Email={"Site " + settingTitle} />
+                <Head title={settings.title + " - " + settingTitle} />
                 <div className="rounded py-2 px-4 text-gray-900 bg-gray-100 shadow">
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">

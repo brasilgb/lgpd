@@ -7,7 +7,7 @@ import Layout from '../../../components/admin/layout';
 import { Editor } from '@tinymce/tinymce-react';
 const Edit = ({ categories, post, postTitle, success }) => {
 
-    const { errors } = usePage().props
+    const { errors, settings } = usePage().props
 
     const titleRef = useRef();
     const summaryRef = useRef();
@@ -48,7 +48,7 @@ const Edit = ({ categories, post, postTitle, success }) => {
     return (
         <Fragment>
             <Layout>
-                <Head title={"Site " + postTitle} />
+                <Head title={settings.title + " - " + postTitle} />
                 <div className="rounded py-2 px-4 text-gray-900 bg-gray-100 shadow">
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">

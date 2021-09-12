@@ -17,7 +17,6 @@ class Category extends Model
         'id_category',
         'categoryname',
         'slug',
-        'seccao',
         'categorytitle',
         'descricao',
         'active',

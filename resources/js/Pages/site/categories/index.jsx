@@ -1,4 +1,4 @@
-import { InertiaLink, Head } from '@inertiajs/inertia-react'
+import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react'
 import route from 'ziggy'
 import React, { Fragment } from 'react'
 import { HiLightBulb } from 'react-icons/hi'
@@ -8,11 +8,13 @@ import SubBarSite from '../../../components/site/subbar'
 
 const categorySite = ({ categories_posts }) => {
 
+    const { settings } = usePage().props
     return (
         <Fragment>
 
             <Layout>
-                <Head title={categories_posts[0].categoryname} />
+
+                <Head title={settings.title + ' : ' + categories_posts[0].categoryname} />
 
                 <div className="w-full">
                     <SubBarSite pageName={categories_posts[0].categoryname} />

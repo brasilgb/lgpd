@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Section;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -57,6 +58,10 @@ class HandleInertiaRequests extends Middleware
 
             'pages' => fn () => Post::get()
                 ? Post::where('type', 0)->orderBy('title')->get()
+                : '',
+
+            'sections' => fn () => Section::get()
+                ? Section::first(['button1', 'button2'])
                 : ''
         ]);
     }

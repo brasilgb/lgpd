@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -17,13 +18,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $section1 = Category::with('posts')->orderByDesc('id_category')->where('seccao', 1)->limit(1)->get();
+        $category_section = Section::first();
+        $section1 = Category::with('posts')->orderByDesc('id_category')->where('id_category', $category_section->section1)->limit(1)->get();
 
-        $section2 = Category::with('subCategories')->where('seccao', 2)->get();
+        $section2 = Category::with('subCategories')->where('id_category', $category_section->section2)->get();
 
-        $section3 = Category::with('posts')->where('seccao', 3)->get();
+        $section3 = Category::with('posts')->where('id_category', $category_section->section3)->get();
 
-        $section4 = Category::with('posts')->where('seccao', 4)->get();
+        $section4 = Category::with('posts')->where('id_category', $category_section->section4)->get();
 
         return Inertia::render('site/home', [
             'section1' => $section1,

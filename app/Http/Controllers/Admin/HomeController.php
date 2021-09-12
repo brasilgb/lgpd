@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('admin/home', ['title' => 'Título da página!']);
+        return Inertia::render('admin/home', ['title' => 'Dashboard!']);
     }
 
     /**

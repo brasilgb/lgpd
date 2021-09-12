@@ -1,13 +1,16 @@
-import { InertiaLink } from '@inertiajs/inertia-react'
+import { Head, usePage } from '@inertiajs/inertia-react'
 import React, { Fragment } from 'react'
 import Layout from '../../../components/site/layout'
 import SubBarSite from '../../../components/site/subbar'
 import {GoArrowSmallRight} from 'react-icons/go'
 
 const pageSite = ({ page_content }) => {
+
+    const { settings } = usePage().props
     return (
         <Fragment>
             <Layout>
+                <Head title={settings.title + ' : ' + page_content.title}/>
                 <SubBarSite pageName={page_content.title} />
                 <section className="border-b border-white" style={{
                     backgroundImage: `url('/storage/page/${page_content.featured}')`,

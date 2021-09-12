@@ -1,5 +1,5 @@
 import React, { Fragment, useRef, useState } from 'react';
-import { InertiaLink, Head } from '@inertiajs/inertia-react';
+import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import route from 'ziggy';
 import { HiDocumentDuplicate, HiCheck, HiPlus, HiSearch, HiRefresh, HiLightBulb, HiOutlineCheck, HiX, HiPencilAlt, HiTrash } from 'react-icons/hi';
 import Layout from '../../../components/admin/layout';
@@ -10,7 +10,7 @@ import ModalPage from '../../../components/admin/modal/page'
 
 const PageAdmin = ({ pages, success, reload, pageTitle }) => {
 
-
+const { settings } = usePage().props
     const verifyPages = () => {
         if (pages.data.length == 0) {
             return <tr><td colSpan="7"><div className="flex justify-left bg-red-200 text-red-700 text-md p-2"><HiLightBulb className="text-2xl text-yellow-600" /> Não há páginas a serem mostradas no momento. Clique no botão criar página para adicionar.</div></td></tr>;
@@ -58,7 +58,7 @@ const PageAdmin = ({ pages, success, reload, pageTitle }) => {
     return (
         <Fragment>
             <Layout>
-                <Head title={"Site " + pageTitle} />
+                <Head title={settings.title + " - " + pageTitle} />
                 <div className="rounded py-2 px-4 text-gray-900 bg-gray-100 shadow">
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">

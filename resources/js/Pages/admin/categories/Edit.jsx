@@ -12,7 +12,6 @@ const Edit = ({ category, parentcategory, categoryTitle, success }) => {
     const [seccaoOpen, setSeccaoOpen] = useState(false);
 
     const categorynameRef = useRef();
-    const seccaoRef = useRef();
     const parentcategoryRef = useRef();
     const categorytitleRef = useRef();
     const descricaoRef = useRef();
@@ -20,7 +19,6 @@ const Edit = ({ category, parentcategory, categoryTitle, success }) => {
 
     useEffect(() => {
         categorynameRef.current.value = category.categoryname;
-        seccaoRef.current.value = category.seccao;
         parentcategoryRef.current.value = category.parent;
         categorytitleRef.current.value = category.categorytitle;
         descricaoRef.current.value = category.descricao;
@@ -30,12 +28,11 @@ const Edit = ({ category, parentcategory, categoryTitle, success }) => {
     const updateCategory = (e) => {
         e.preventDefault();
         const categoryname = categorynameRef.current.value;
-        const seccao = seccaoRef.current.value;
         const parentcategory = parentcategoryRef.current.value;
         const categorytitle = categorytitleRef.current.value;
         const descricao = descricaoRef.current.value;
         const active = activeRef.current.checked;
-        Inertia.put(route('categoria.update', category.id_category), { categoryname, seccao,parentcategory, categorytitle, descricao, active });
+        Inertia.put(route('categoria.update', category.id_category), { categoryname, parentcategory, categorytitle, descricao, active });
     };
 
     return (
@@ -113,27 +110,11 @@ const Edit = ({ category, parentcategory, categoryTitle, success }) => {
                         <div
                             onClick={() => setSeccaoOpen(!seccaoOpen)}
                             className="mt-4 p-2 cursor-pointer rounded-t bg-gray-200 border border-gray-300 flex justify-left">
-                            <span>Adicione esta categoria como secção na página inicial ou cabeçalho da categoria</span> {seccaoOpen ? <HiChevronDown className="text-2xl" /> : <HiChevronUp className="text-2xl" />}
+                            <span>Preencha caso adicione esta categoria como secção na página inicial ou cabeçalho da categoria</span> {seccaoOpen ? <HiChevronDown className="text-2xl" /> : <HiChevronUp className="text-2xl" />}
                         </div>
                         <div className={"py-4 px-2 border border-gray-300 border-t-0 bg-gray-200 " +
                             (seccaoOpen ? 'block' : 'hidden')
                         }>
-                            <div className="w-8/12 pt-0">
-                                {/* <label htmlFor=""><span className="text-gray-500">Secção</span></label> */}
-                                <select
-                                    ref={seccaoRef}
-                                    className="form-input text-gray-500 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    id="seccao"
-                                    placeholder=""
-                                >
-                                    <option value="0">Selecione a secção</option>
-                                    <option value="1">Secção 1</option>
-                                    <option value="2">Secção 2</option>
-                                    <option value="3">Secção 3</option>
-                                    <option value="4">Secção 4</option>
-                                </select>
-                                {errors.seccao && <div className="p-2 border border-t-0 border-red-200 text-sm flex items-center w-full bg-yellow-100 text-red-500"><HiExclamation className="text-md mt-1" />{errors.seccao}</div>}
-                            </div>
 
                             <div className="w-8/12 pt-2">
                                 <label><span className="text-gray-500">Título para a secção ou cabeçalho da categoria</span></label>

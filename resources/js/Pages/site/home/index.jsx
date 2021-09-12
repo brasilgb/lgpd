@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { Head, usePage } from '@inertiajs/inertia-react'
 import { HiIdentification, HiOutlineColorSwatch, HiOutlineLightBulb, HiOutlinePuzzle } from 'react-icons/hi';
 import Layout from '../../../components/site/layout';
 import SubBarSite from '../../../components/site/subbar'
@@ -9,6 +10,9 @@ import route from 'ziggy';
 import { RiFolderLockFill } from 'react-icons/ri';
 
 const HomeSite = ({ section1, section2, section3, section4 }) => {
+    
+    const { settings } = usePage().props
+
     const iconSec2 = (index, classValue) => {
 
         switch (index) {
@@ -38,6 +42,7 @@ const HomeSite = ({ section1, section2, section3, section4 }) => {
         <Fragment>
 
             <Layout>
+            <Head title={settings.title + ' : Página Inicial'}/>
                 <SubBarSite pageName={'Página inicial'} />
                 {section1 &&
                     <div>

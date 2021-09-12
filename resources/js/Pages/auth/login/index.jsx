@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState } from 'react'
 import { HiOutlineAtSymbol, HiOutlineLockClosed } from 'react-icons/hi'
 import { BiLogIn } from 'react-icons/bi'
 import Layout from '../layout'
-import { usePage } from '@inertiajs/inertia-react'
+import { InertiaLink, usePage } from '@inertiajs/inertia-react'
 import { Inertia } from '@inertiajs/inertia'
 import route from 'ziggy'
 const Login = () => {
@@ -20,14 +20,22 @@ const Login = () => {
         const password = passwordRef.current.value;
 
         Inertia.post(route('login'), { email, password });
-    }
+    };
+
+    const [openPass, setOpenPass] = useState(false);
+
     return (
         <Layout>
             <Fragment>
 
                 <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
                     <div className="flex items-center justify-center">
-                        <img className="rounded-full bg-blue-500 h-32 w-32" src={"storage/images/" + logo} alt={settings.title} />
+                        <InertiaLink
+                            href={route('home')}
+                            title="Voltar ao site"
+                        >
+                            <img className="rounded-full bg-blue-500 h-32 w-32" src={"storage/images/" + logo} alt={settings.title} />
+                        </InertiaLink>
                     </div>
 
                     <div className="relative mt-10 h-px bg-gray-300">
@@ -76,13 +84,22 @@ const Login = () => {
                                 {errors.password && <div className="text-md text-red-500 p-1">{errors.password}</div>}
                             </div>
 
-                            <div className="flex items-center mb-6 -mt-4">
+                            <div className="flex items-center mb-2 -mt-4">
                                 <div className="flex ml-auto">
-                                    <a href="#" className="inline-flex text-xs sm:text-sm text-blue-500 hover:text-blue-700">Perdeu a senha?</a>
+                                    <div 
+                                    onClick={() => setOpenPass(!openPass)}
+                                    className="inline-flex text-xs sm:text-sm text-blue-500 hover:text-blue-700  cursor-pointer"
+                                    >
+                                        Perdeu a senha?
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="flex w-full">
+                            </div>
+                            <div className={"bg-yellow-100 border border-red-100 text-sm rounded text-red-400 p-2 mb-2" + 
+                                (openPass ? " block" : " hidden")}>
+                                Para redefinir a senha caso precise, entre em contato com responsável no setor de TI.
+                            </div>
+                            <div className="flex w-full pt-2">
                                 <button
                                     type="submit"
                                     className="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-500 hover:bg-blue-600 rounded py-2 w-full transition duration-150 ease-in"

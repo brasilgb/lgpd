@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PostController as PostAdmin;
 use App\Http\Controllers\Admin\PageController as PageAdmin;
 use App\Http\Controllers\Admin\SettingController as SettingAdmin;
 use App\Http\Controllers\Admin\UserController as UserAdmin;
+use App\Http\Controllers\Admin\SectionController as SectionAdmin;
 
 // Controller do site
 use App\Http\Controllers\Site\HomeController as HomeSite;
@@ -34,8 +35,13 @@ Route::resource('/admin/postagem', PostAdmin::class)->parameters(['postagem' => 
 Route::post('/admin/pagina/search', [PageAdmin::class, 'search'])->name('pagina.search');
 Route::resource('/admin/pagina', PageAdmin::class)->parameters(['pagina' => 'page']);
 
+// Rotas Admin configuração
 Route::get('/admin/configuracao', [SettingAdmin::class, 'index'])->name('configuracao');
 Route::put('/admin/configuracao/{setting}', [SettingAdmin::class, 'update'])->name('configuracao.alterar');
+
+// Rotas Admin secção
+Route::get('/admin/seccao', [SectionAdmin::class, 'index'])->name('seccao');
+Route::put('/admin/seccao/{section}', [SectionAdmin::class, 'update'])->name('seccao.alterar');
 
 // Rotas Admin usuários
 Route::post('/admin/usuario/search', [UserAdmin::class, 'search'])->name('usuario.search');
