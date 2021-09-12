@@ -13,6 +13,9 @@ const FooterSite = () => {
         Inertia.get(route('categoria', slug));
     };
 
+    let data = new Date();
+    let ano = data.getFullYear();
+
     return (
         <Fragment>
             <div className="bg-blue-500">
@@ -94,7 +97,9 @@ const FooterSite = () => {
                 </div>
                 <footer className="">
                     <div className="container mx-auto border-t border-blue-400">
-                        <p className="text-center text-white p-4">© Grupo Solar 2021. Todos os direitos reservados.</p>
+                        
+                    <p className="text-center text-white p-4">&copy;{ano} Solar Comércio e Agroindústria Ltda. Todos os direitos reservados. | Desenvolvido por TI - Sistemas | Grupo Solar</p>
+
                     </div>
                 </footer>
             </div>
