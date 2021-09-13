@@ -10,10 +10,10 @@ use Inertia\Inertia;
 
 class PostController extends Controller
 {
-    public function index($post) 
+    public function index($post)
     {
         $post_content = Post::where('slug', $post)->first();
-        
+
         return Inertia::render('site/posts', ['post_content' => $post_content]);
     }
 }

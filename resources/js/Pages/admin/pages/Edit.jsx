@@ -39,9 +39,8 @@ const Edit = ({ page, pageTitle, success }) => {
         const content = contentRef.current.getContent();
         const featured = featuredRef.current.files[0];
         const active = activeRef.current.checked;
-        const dpo = dpoRef.current.checked;
 
-        Inertia.post(route('pagina.update', page.id_post), { _method: 'put', title, summary, content, featured, active, dpo });
+        Inertia.post(route('pagina.update', page.id_post), { _method: 'put', title, summary, content, featured, active });
     };
 
     return (

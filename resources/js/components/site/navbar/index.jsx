@@ -129,7 +129,7 @@ const navBarSite = () => {
                                         </InertiaLink>
                                     )
                                 ))}
-                                
+
                                 {categories.map(function (menuItem, i) {
                                     if (menuItem.active == 1) {
                                         return (

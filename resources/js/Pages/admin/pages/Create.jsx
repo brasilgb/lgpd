@@ -34,7 +34,7 @@ const Create = ({ success, pageTitle, error }) => {
         const featured = featuredRef.current.files[0];
         const active = activeRef.current.checked;
 
-        Inertia.post(route('pagina.store'), { title, summary, content, featured, active, dpo });
+        Inertia.post(route('pagina.store'), { title, summary, content, featured, active });
     };
 
     return (
