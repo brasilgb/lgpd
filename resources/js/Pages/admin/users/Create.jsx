@@ -13,6 +13,7 @@ const Create = ({ success, userTitle, error }) => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const password_confirmationRef = useRef();
+    const ruleRef = useRef();
     const activeRef = useRef();
 
     const saveData = (e) => {
@@ -21,9 +22,10 @@ const Create = ({ success, userTitle, error }) => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         const password_confirmation = password_confirmationRef.current.value;
+        const rule = ruleRef.current.value;
         const active = activeRef.current.checked;
 
-        Inertia.post(route('usuario.store'), { name, email, password, password_confirmation, active });
+        Inertia.post(route('usuario.store'), { name, email, password, password_confirmation, rule, active });
     };
 
     return (
@@ -56,7 +58,7 @@ const Create = ({ success, userTitle, error }) => {
 
                     <form onSubmit={saveData} className="py-4" autoComplete="off">
 
-                    <div className="pt-2">
+                        <div className="pt-2">
                             <label><span className="text-gray-500">Nome</span></label>
                             <input
                                 ref={nameRef}
@@ -102,6 +104,20 @@ const Create = ({ success, userTitle, error }) => {
                                 placeholder=""
                             />
                             {errors.password_confirmation && <div className="p-2 border border-t-0 border-red-200 text-sm flex items-center w-full bg-yellow-100 text-red-500"><HiExclamation className="text-md mt-1" /> {errors.password_confirmation}</div>}
+                        </div>
+
+                        <div className="pt-2">
+                            <label><span className="text-gray-500">Acesso</span></label>
+                            <select
+                                ref={ruleRef}
+                                className="form-input text-gray-500 mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                id="rule"
+                            >
+                                <option value="0">Selecione acesso</option>
+                                <option value="1">Administrador</option>
+                                <option value="2">Usuário</option>
+                            </select>
+                            {errors.rule && <div className="p-2 border border-t-0 border-red-200 text-sm flex items-center w-full bg-yellow-100 text-red-500"><HiExclamation className="text-md mt-1" /> {errors.rule}</div>}
                         </div>
 
                         <div className="w-8/12 pt-2">

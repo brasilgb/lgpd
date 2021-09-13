@@ -105,6 +105,7 @@ const UserAdmin = ({ users, success, reload, userTitle }) => {
                                     <th className="text-left p-2">ID</th>
                                     <th className="text-left p-2">Nome</th>
                                     <th className="text-left p-2">E-mail</th>
+                                    <th className="text-left p-2">Acesso</th>
                                     <th className="text-left p-2">Cadastro</th>
                                     <th className="text-left p-2">Ativar</th>
                                     <th className="w-20 text-left p-2">Ações</th>
@@ -116,6 +117,7 @@ const UserAdmin = ({ users, success, reload, userTitle }) => {
                                         <td className="p-2">{user.id_user}</td>
                                         <td className="p-2">{user.name}</td>
                                         <td className="p-2">{user.email}</td>
+                                        <td className="p-2">{user.rule == 1 ? "Administrador" : "Usuário" }</td>
                                         <td className="p-2">{dataFormatada(user.created_at)}</td>
                                         <td className="p-2">{user.active == 1 ? <HiOutlineCheck className="text-2xl text-green-600" /> : <HiX className="text-2xl text-red-600" />}</td>
                                         <td className="p-2 flex justify-end">
