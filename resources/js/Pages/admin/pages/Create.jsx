@@ -7,7 +7,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import Layout from '../../../components/admin/layout';
 
 const Create = ({ success, pageTitle, error }) => {
-
+ 
     const { errors, settings } = usePage().props
 
     const titleRef = useRef();

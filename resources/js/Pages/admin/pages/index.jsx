@@ -16,7 +16,7 @@ const { settings } = usePage().props
             return <tr><td colSpan="7"><div className="flex justify-left bg-red-200 text-red-700 text-md p-2"><HiLightBulb className="text-2xl text-yellow-600" /> Não há páginas a serem mostradas no momento. Clique no botão criar página para adicionar.</div></td></tr>;
         }
     };
-
+ 
     const dataFormatada = (dataRaw) => {
         return format(new Date(dataRaw), 'dd/MM/yyyy')
     }

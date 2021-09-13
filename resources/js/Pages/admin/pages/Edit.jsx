@@ -42,7 +42,7 @@ const Edit = ({ page, pageTitle, success }) => {
 
         Inertia.post(route('pagina.update', page.id_post), { _method: 'put', title, summary, content, featured, active });
     };
-
+ 
     return (
         <Fragment>
             <Layout>
