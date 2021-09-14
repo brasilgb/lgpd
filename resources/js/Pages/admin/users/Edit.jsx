@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect, useRef } from 'react';
-import { HiDocumentDuplicate, HiCheck, HiChevronDoubleLeft, HiSave, HiExclamation } from 'react-icons/hi';
+import { HiDocumentDuplicate, HiCheck, HiChevronDoubleLeft, HiSave, HiExclamation, HiUsers } from 'react-icons/hi';
 import route from 'ziggy';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
@@ -44,7 +44,7 @@ const Edit = ({ user, userTitle, success }) => {
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
                         <h1 className="text-2xl text-gray-600 flex items-center">
-                            <HiDocumentDuplicate /> Usuários
+                            <HiUsers className="pt-1" /> Usuários
                         </h1>
                     </div>
 

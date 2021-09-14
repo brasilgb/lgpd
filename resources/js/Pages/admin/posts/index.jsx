@@ -61,7 +61,7 @@ const postAdmin = ({ posts, success, reload, postTitle }) => {
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
                         <h1 className="text-2xl text-gray-600 flex items-center">
-                            <HiPencilAlt /> Postagens
+                            <HiPencilAlt className="pt-1" /> Postagens
                         </h1>
                     </div>
 

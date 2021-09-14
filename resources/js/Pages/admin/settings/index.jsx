@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect, useRef } from 'react';
-import { HiDocumentDuplicate, HiCheck, HiChevronDoubleLeft, HiSave, HiExclamation, HiTrash } from 'react-icons/hi';
+import { HiDocumentDuplicate, HiCheck, HiChevronDoubleLeft, HiSave, HiExclamation, HiTrash, HiCog, HiOutlineCog } from 'react-icons/hi';
 import route from 'ziggy';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
@@ -57,7 +57,7 @@ const Setting = ({ setting, settingTitle, success, errimg, erraudio }) => {
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
                         <h1 className="text-2xl text-gray-600 flex items-center">
-                            <HiDocumentDuplicate /> Configurações gerais
+                            <HiOutlineCog className="pt-1" /> Configurações gerais
                         </h1>
                     </div>
 

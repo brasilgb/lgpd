@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useRef } from 'react';
-import { HiDocumentDuplicate, HiCheck, HiSave } from 'react-icons/hi';
+import { HiDocumentDuplicate, HiCheck, HiSave, HiViewList } from 'react-icons/hi';
 import route from 'ziggy';
 import { Inertia } from '@inertiajs/inertia';
 import { Head, usePage } from '@inertiajs/inertia-react';
@@ -45,7 +45,7 @@ const Seccoes = ({ success, section, categories_section, pages_section, sectionT
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
                         <h1 className="text-2xl text-gray-600 flex items-center">
-                            <HiDocumentDuplicate /> Secções
+                            <HiViewList className="pt-1" /> Secções
                         </h1>
                     </div>
 

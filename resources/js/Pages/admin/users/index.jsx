@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState } from 'react';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import route from 'ziggy';
-import { HiDocumentDuplicate, HiCheck, HiPlus, HiSearch, HiOutlineCheck, HiPencilAlt, HiLightBulb, HiX, HiTrash, HiChevronDoubleLeft } from 'react-icons/hi';
+import { HiDocumentDuplicate, HiCheck, HiPlus, HiSearch, HiOutlineCheck, HiPencilAlt, HiLightBulb, HiX, HiTrash, HiChevronDoubleLeft, HiUser, HiUsers } from 'react-icons/hi';
 import Layout from '../../../components/admin/layout';
 import Pagination from '../../../components/admin/pagination';
 import { Inertia } from '@inertiajs/inertia';
@@ -64,7 +64,7 @@ const UserAdmin = ({ users, success, reload, userTitle }) => {
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
                         <h1 className="text-2xl text-gray-600 flex items-center">
-                            <HiDocumentDuplicate /> Usuários
+                            <HiUsers className="pt-1" /> Usuários
                         </h1>
                     </div>
 

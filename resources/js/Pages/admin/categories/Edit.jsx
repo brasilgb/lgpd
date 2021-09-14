@@ -43,7 +43,7 @@ const Edit = ({ category, parentcategory, categoryTitle, success }) => {
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
                         <h1 className="text-2xl text-gray-600 flex items-center">
-                            <HiViewGrid /> Categorias
+                            <HiViewGrid className="pt-1" /> Categorias
                         </h1>
                     </div>
 

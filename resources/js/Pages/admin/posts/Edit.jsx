@@ -53,7 +53,7 @@ const Edit = ({ categories, post, postTitle, success }) => {
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
                         <h1 className="text-2xl text-gray-600 flex items-center">
-                            <HiPencilAlt /> Postagems
+                            <HiPencilAlt className="pt-1" /> Postagens
                         </h1>
                     </div>
 

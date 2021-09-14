@@ -7,7 +7,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import Layout from '../../../components/admin/layout';
 
 const Create = ({ success, pageTitle, error }) => {
- 
+
     const { errors, settings } = usePage().props
 
     const titleRef = useRef();
@@ -45,7 +45,7 @@ const Create = ({ success, pageTitle, error }) => {
 
                     <div className="p-2 mt-2 flex bg-gray-200 rounded-t-md border border-gray-300">
                         <h1 className="text-2xl text-gray-600 flex items-center">
-                            <HiDocumentDuplicate /> Páginas
+                            <HiDocumentDuplicate className="pt-1" /> Páginas
                         </h1>
                     </div>
 
