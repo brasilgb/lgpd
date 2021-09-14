@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState } from 'react';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import route from 'ziggy';
-import { HiDocumentDuplicate, HiCheck, HiPlus, HiSearch, HiRefresh, HiOutlineCheck, HiPencilAlt, HiLightBulb, HiX, HiTrash } from 'react-icons/hi';
+import { HiDocumentDuplicate, HiCheck, HiPlus, HiSearch, HiOutlineCheck, HiPencilAlt, HiLightBulb, HiX, HiTrash, HiChevronDoubleLeft } from 'react-icons/hi';
 import Layout from '../../../components/admin/layout';
 import Pagination from '../../../components/admin/pagination';
 import { Inertia } from '@inertiajs/inertia';
@@ -40,8 +40,8 @@ const UserAdmin = ({ users, success, reload, userTitle }) => {
                     as="button"
                     type="button"
                     href={route('usuario.index')}
-                    className="flex items-center mb-2 md:mb-0 px-5 py-2 text-sm shadow-sm border-2 border-white text-gray-500 rounded-lg">
-                    <HiRefresh className="text-xl text-green-600" />
+                    className="flex items-center mb-2 md:mb-0 bg-blue-500 hover:bg-blue-600 px-5 py-2 text-sm shadow-sm border-2 border-white text-white rounded-lg hover:shadow-lg">
+                    <HiChevronDoubleLeft className="text-xl" /> Voltar
                 </InertiaLink>
             )
         } else {

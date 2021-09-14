@@ -31,7 +31,7 @@ class PostController extends Controller
     {
         $term = $request->search;
         $reload = true;
-        $posts = Post::where('title', 'like', "%$term%")->where('type', 1)->paginate(200);
+        $posts = Post::with('category')->where('title', 'like', "%$term%")->where('type', 1)->paginate(200);
         return Inertia::render('admin/posts', ['posts' => $posts, 'reload' => $reload, 'postTitle' => 'Postagens buscadas']);
     }
     /**

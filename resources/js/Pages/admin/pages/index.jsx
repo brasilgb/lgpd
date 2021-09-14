@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState } from 'react';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import route from 'ziggy';
-import { HiDocumentDuplicate, HiCheck, HiPlus, HiSearch, HiRefresh, HiLightBulb, HiOutlineCheck, HiX, HiPencilAlt, HiTrash } from 'react-icons/hi';
+import { HiDocumentDuplicate, HiCheck, HiPlus, HiSearch, HiLightBulb, HiOutlineCheck, HiX, HiPencilAlt, HiTrash, HiChevronDoubleLeft } from 'react-icons/hi';
 import Layout from '../../../components/admin/layout';
 import Pagination from '../../../components/admin/pagination';
 import { Inertia } from '@inertiajs/inertia';
@@ -16,7 +16,7 @@ const { settings } = usePage().props
             return <tr><td colSpan="7"><div className="flex justify-left bg-red-200 text-red-700 text-md p-2"><HiLightBulb className="text-2xl text-yellow-600" /> Não há páginas a serem mostradas no momento. Clique no botão criar página para adicionar.</div></td></tr>;
         }
     };
- 
+
     const dataFormatada = (dataRaw) => {
         return format(new Date(dataRaw), 'dd/MM/yyyy')
     }
@@ -39,8 +39,8 @@ const { settings } = usePage().props
                     as="button"
                     type="button"
                     href={route('pagina.index')}
-                    className="flex items-center mb-2 md:mb-0 px-5 py-2 text-sm shadow-sm border-2 border-white text-gray-500 rounded-lg">
-                    <HiRefresh className="text-xl text-green-600" />
+                    className="flex items-center mb-2 md:mb-0 bg-blue-500 hover:bg-blue-600 px-5 py-2 text-sm shadow-sm border-2 border-white text-white rounded-lg hover:shadow-lg">
+                    <HiChevronDoubleLeft className="text-xl" /> Voltar
                 </InertiaLink>
             )
         } else {

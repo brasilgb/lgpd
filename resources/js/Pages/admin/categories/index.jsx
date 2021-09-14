@@ -2,7 +2,7 @@ import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, Head, usePage } from '@inertiajs/inertia-react';
 import React, { Fragment, useRef, useState } from 'react'
 import route from 'ziggy';
-import {HiChevronDoubleLeft, HiCheck, HiOutlineCheck, HiPencilAlt, HiPlus, HiSearch, HiTrash, HiX, HiDocumentDuplicate, HiLightBulb, HiViewGrid } from 'react-icons/hi'
+import {HiChevronDoubleLeft, HiCheck, HiOutlineCheck, HiPencilAlt, HiPlus, HiSearch, HiTrash, HiX, HiLightBulb, HiViewGrid } from 'react-icons/hi'
 import { compareAsc, format } from 'date-fns'
 import Layout from '../../../components/admin/layout'
 import ModalCategory from '../../../components/admin/modal/category'

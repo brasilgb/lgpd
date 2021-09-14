@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $term = $request->search;
         $reload = true;
-        $users = User::where('title', 'like', "%$term%")->paginate(200);
+        $users = User::where('name', 'like', "%$term%")->paginate(200);
         return Inertia::render('admin/users', ['users' => $users, 'reload' => $reload, 'userTitle' => 'usuários buscados']);
     }
     /**
