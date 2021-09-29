@@ -107,6 +107,7 @@ const Edit = ({ page, pageTitle, success }) => {
                                         initialValue={page.content}
                                         content={page.content}
                                         init={{
+                                            language: 'pt_BR',
                                             height: 400,
                                             menubar: false,
                                             plugins: [
@@ -115,7 +116,7 @@ const Edit = ({ page, pageTitle, success }) => {
                                                 'insertdatetime media table paste code help wordcount'
                                             ],
                                             toolbar: 'undo redo | formatselect | ' +
-                                                'bold italic backcolor | alignleft aligncenter ' +
+                                                'bold italic forecolor backcolor | alignleft aligncenter ' +
                                                 'alignright alignjustify | bullist numlist outdent indent | ' +
                                                 'removeformat | help',
                                             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
