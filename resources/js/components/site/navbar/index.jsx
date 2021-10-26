@@ -163,7 +163,7 @@ const navBarSite = () => {
                                                                 <InertiaLink
                                                                     key={i}
                                                                     href={route('categoria', subMenu.slug)}
-                                                                    className="block my-1 md:my-0 px-2 md:px-4 md:py-2 text-md text-gray-100 hover:text-white md:text-gray-600 hover:text-gray-500 capitalize transition-colors duration-200 transform dark:text-gray-300 dark:hover:text-white"
+                                                                    className="block my-1 md:my-0 px-2 md:px-4 md:py-2 text-md text-gray-100  md:text-gray-600 hover:text-gray-500 capitalize transition-colors duration-200 transform dark:text-gray-300 dark:hover:text-white"
                                                                 >
                                                                     {subMenu.categoryname}
                                                                 </InertiaLink>
